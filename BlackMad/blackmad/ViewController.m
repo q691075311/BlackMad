@@ -21,6 +21,8 @@
     UILabel * lable = [[UILabel alloc] init];
     lable.text = @"222222";
     lable.text = @"";
+    lable.backgroundColor = [UIColor cyanColor];
+    lable.frame = CGRectMake(0, 0, 100, 100);
     [self.view addSubview:lable];
     
     
