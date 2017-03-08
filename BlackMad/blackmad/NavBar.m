@@ -34,10 +34,11 @@
     _rigthBtn.hidden = NO;
     _leftBtn.hidden = NO;
     if (leftImageName) {
-        [_leftBtn setImage:[UIImage imageNamed:leftImageName] forState:UIControlStateNormal];
+//        [_leftBtn setImage:[UIImage imageNamed:leftImageName] forState:UIControlStateNormal];
+        [_leftBtn setBackgroundImage:[UIImage imageNamed:leftImageName] forState:UIControlStateNormal];
     }
     if (rigthImageName) {
-        [_rigthBtn setImage:[UIImage imageNamed:rigthImageName] forState:UIControlStateNormal];
+        [_rigthBtn setBackgroundImage:[UIImage imageNamed:rigthImageName] forState:UIControlStateNormal];
     }
 }
 - (IBAction)leftBtn:(UIButton *)sender {
