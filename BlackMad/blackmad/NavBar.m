@@ -17,6 +17,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         NavBar * bar = [[[NSBundle mainBundle] loadNibNamed:@"NavBar" owner:self options:nil] lastObject];
+        bar.frame = frame;
+        bar.autoresizingMask = self.autoresizingMask;
         return bar;
     }
     return self;
