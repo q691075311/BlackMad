@@ -20,6 +20,7 @@
     
     UILabel * lable = [[UILabel alloc] init];
     lable.text = @"222222";
+    lable.text = @"";
     [self.view addSubview:lable];
     
     
