@@ -17,10 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+    [self.navBar configNavBarTitle:@"黑疯" WithLeftView:nil WithRigthView:nil];
     
 }
-
+- (void)touchLeftBtn{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

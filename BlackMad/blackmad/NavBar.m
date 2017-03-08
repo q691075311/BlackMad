@@ -16,7 +16,8 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        
+        NavBar * bar = [[[NSBundle mainBundle] loadNibNamed:@"NavBar" owner:nil options:nil] lastObject];
+        return bar;
     }
     return self;
 }
@@ -28,8 +29,24 @@
 }
 - (void)configNavBarTitle:(NSString *)title WithLeftView:(NSString *)leftImageName WithRigthView:(NSString *)rigthImageName{
     _title.text = title;
-    [_leftBtn setImage:[UIImage imageNamed:leftImageName] forState:UIControlStateNormal];
-    [_rigthBtn setImage:[UIImage imageNamed:rigthImageName] forState:UIControlStateNormal];
+    _rigthBtn.hidden = NO;
+    _leftBtn.hidden = NO;
+    if (leftImageName) {
+        [_leftBtn setImage:[UIImage imageNamed:leftImageName] forState:UIControlStateNormal];
+    }
+    if (rigthImageName) {
+        [_rigthBtn setImage:[UIImage imageNamed:rigthImageName] forState:UIControlStateNormal];
+    }
+}
+- (IBAction)leftBtn:(UIButton *)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(touchLeftBtn)]) {
+        [_delegate touchLeftBtn];
+    }
+}
+- (IBAction)rigthBtn:(UIButton *)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(touchRigthBtn)]) {
+        [_delegate touchRigthBtn];
+    }
 }
 
 /*
