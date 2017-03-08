@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NavBar">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="64"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="疯趣" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pas-l0-5sP">
+                    <rect key="frame" x="150" y="19" width="200" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="mOG-nt-5uI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxA-rN-j26">
+                    <rect key="frame" x="10" y="12" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="FBw-dE-Ou8"/>
+                        <constraint firstAttribute="width" constant="40" id="JjN-ef-odR"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiB-K7-Rdv">
+                    <rect key="frame" x="450" y="12" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="DP1-hY-ScG"/>
+                        <constraint firstAttribute="height" constant="40" id="wXD-Ox-gMo"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Pas-l0-5sP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0sb-18-B9C"/>
+                <constraint firstItem="Pas-l0-5sP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="150" id="5AA-WT-F9H"/>
+                <constraint firstAttribute="trailing" secondItem="PiB-K7-Rdv" secondAttribute="trailing" constant="10" id="BzD-3n-Nce"/>
+                <constraint firstItem="PiB-K7-Rdv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="IBx-1C-Xma"/>
+                <constraint firstItem="Pas-l0-5sP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WaK-ye-ade"/>
+                <constraint firstAttribute="trailing" secondItem="Pas-l0-5sP" secondAttribute="trailing" constant="150" id="eGR-7j-Bcx"/>
+                <constraint firstItem="bxA-rN-j26" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="unU-rG-u8i"/>
+                <constraint firstItem="bxA-rN-j26" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="yky-Pq-5sG"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="leftBtn" destination="bxA-rN-j26" id="RU6-ni-yeR"/>
+                <outlet property="rigthBtn" destination="PiB-K7-Rdv" id="kSU-Yb-sHL"/>
+                <outlet property="title" destination="Pas-l0-5sP" id="z7X-EV-awR"/>
+            </connections>
+            <point key="canvasLocation" x="339" y="380"/>
+        </view>
+    </objects>
+</document>

@@ -13,6 +13,9 @@
 		4B7F8C551E6FBF6100686040 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B7F8C531E6FBF6100686040 /* Main.storyboard */; };
 		4B7F8C571E6FBF6100686040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B7F8C561E6FBF6100686040 /* Assets.xcassets */; };
 		4B7F8C5A1E6FBF6100686040 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B7F8C581E6FBF6100686040 /* LaunchScreen.storyboard */; };
+		4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C6C1E6FE1F700686040 /* NavBar.m */; };
+		4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7F8C6E1E6FE2B400686040 /* NavBar.xib */; };
+		4B7F8C751E6FF51300686040 /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C741E6FF51300686040 /* BaseController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,11 @@
 		4B7F8C561E6FBF6100686040 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B7F8C591E6FBF6100686040 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B7F8C5B1E6FBF6100686040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B7F8C6B1E6FE1F700686040 /* NavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBar.h; sourceTree = "<group>"; };
+		4B7F8C6C1E6FE1F700686040 /* NavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBar.m; sourceTree = "<group>"; };
+		4B7F8C6E1E6FE2B400686040 /* NavBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBar.xib; sourceTree = "<group>"; };
+		4B7F8C731E6FF51300686040 /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
+		4B7F8C741E6FF51300686040 /* BaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,10 @@
 		4B7F8C491E6FBF6100686040 /* blackmad */ = {
 			isa = PBXGroup;
 			children = (
+				4B7F8C641E6FE08D00686040 /* Tool */,
+				4B7F8C631E6FE08B00686040 /* Modle */,
+				4B7F8C621E6FE08800686040 /* View */,
+				4B7F8C611E6FE08100686040 /* Controller */,
 				4B7F8C4D1E6FBF6100686040 /* AppDelegate.h */,
 				4B7F8C4E1E6FBF6100686040 /* AppDelegate.m */,
 				4B7F8C501E6FBF6100686040 /* ViewController.h */,
@@ -77,6 +89,39 @@
 				4B7F8C4B1E6FBF6100686040 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4B7F8C611E6FE08100686040 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4B7F8C621E6FE08800686040 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		4B7F8C631E6FE08B00686040 /* Modle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Modle;
+			sourceTree = "<group>";
+		};
+		4B7F8C641E6FE08D00686040 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				4B7F8C731E6FF51300686040 /* BaseController.h */,
+				4B7F8C741E6FF51300686040 /* BaseController.m */,
+				4B7F8C6B1E6FE1F700686040 /* NavBar.h */,
+				4B7F8C6C1E6FE1F700686040 /* NavBar.m */,
+				4B7F8C6E1E6FE2B400686040 /* NavBar.xib */,
+			);
+			name = Tool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B7F8C5A1E6FBF6100686040 /* LaunchScreen.storyboard in Resources */,
+				4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */,
 				4B7F8C571E6FBF6100686040 /* Assets.xcassets in Resources */,
 				4B7F8C551E6FBF6100686040 /* Main.storyboard in Resources */,
 			);
@@ -149,6 +195,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */,
+				4B7F8C751E6FF51300686040 /* BaseController.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
 				4B7F8C4F1E6FBF6100686040 /* AppDelegate.m in Sources */,
 				4B7F8C4C1E6FBF6100686040 /* main.m in Sources */,
