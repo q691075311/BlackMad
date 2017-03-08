@@ -34,6 +34,7 @@
 		4B7F8C6E1E6FE2B400686040 /* NavBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBar.xib; sourceTree = "<group>"; };
 		4B7F8C731E6FF51300686040 /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
 		4B7F8C741E6FF51300686040 /* BaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
+		4B7F8C761E6FFDFD00686040 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 				4B7F8C561E6FBF6100686040 /* Assets.xcassets */,
 				4B7F8C581E6FBF6100686040 /* LaunchScreen.storyboard */,
 				4B7F8C5B1E6FBF6100686040 /* Info.plist */,
+				4B7F8C761E6FFDFD00686040 /* PrefixHeader.pch */,
 				4B7F8C4A1E6FBF6100686040 /* Supporting Files */,
 			);
 			path = blackmad;
@@ -312,6 +314,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BlackMad/blackmad/PrefixHeader.pch";
 				INFOPLIST_FILE = blackmad/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -325,6 +329,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BlackMad/blackmad/PrefixHeader.pch";
 				INFOPLIST_FILE = blackmad/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
