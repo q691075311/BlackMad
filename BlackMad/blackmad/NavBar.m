@@ -16,7 +16,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        NavBar * bar = [[[NSBundle mainBundle] loadNibNamed:@"NavBar" owner:nil options:nil] lastObject];
+        NavBar * bar = [[[NSBundle mainBundle] loadNibNamed:@"NavBar" owner:self options:nil] lastObject];
         return bar;
     }
     return self;

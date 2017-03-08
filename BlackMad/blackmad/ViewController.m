@@ -19,6 +19,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self.navBar configNavBarTitle:@"黑疯" WithLeftView:nil WithRigthView:nil];
     
+    
 }
 - (void)touchLeftBtn{
     
