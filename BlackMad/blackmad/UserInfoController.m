@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.navBar configNavBarTitle:@"个人中心" WithLeftView:@"back" WithRigthView:nil];
+}
+
+- (void)touchLeftBtn{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
