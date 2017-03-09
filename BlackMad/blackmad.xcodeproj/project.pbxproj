@@ -19,6 +19,10 @@
 		4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C6C1E6FE1F700686040 /* NavBar.m */; };
 		4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7F8C6E1E6FE2B400686040 /* NavBar.xib */; };
 		4B7F8C751E6FF51300686040 /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C741E6FF51300686040 /* BaseController.m */; };
+		4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */; };
+		4BB0761F1E70EAA100D8DF4B /* MainBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */; };
+		4BB076231E712DD300D8DF4B /* MainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB076221E712DD300D8DF4B /* MainCell.m */; };
+		4BB0762B1E71427100D8DF4B /* UserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0762A1E71427100D8DF4B /* UserInfoController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,13 @@
 		4B7F8C731E6FF51300686040 /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
 		4B7F8C741E6FF51300686040 /* BaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
 		4B7F8C761E6FFDFD00686040 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4BB0761B1E70EA8E00D8DF4B /* MainBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainBtnView.h; sourceTree = "<group>"; };
+		4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainBtnView.m; sourceTree = "<group>"; };
+		4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainBtnView.xib; sourceTree = "<group>"; };
+		4BB076211E712DD300D8DF4B /* MainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCell.h; sourceTree = "<group>"; };
+		4BB076221E712DD300D8DF4B /* MainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCell.m; sourceTree = "<group>"; };
+		4BB076291E71427100D8DF4B /* UserInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoController.h; sourceTree = "<group>"; };
+		4BB0762A1E71427100D8DF4B /* UserInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +111,6 @@
 				4B7F8C611E6FE08100686040 /* Controller */,
 				4B7F8C4D1E6FBF6100686040 /* AppDelegate.h */,
 				4B7F8C4E1E6FBF6100686040 /* AppDelegate.m */,
-				4B7F8C501E6FBF6100686040 /* ViewController.h */,
-				4B7F8C511E6FBF6100686040 /* ViewController.m */,
 				4B7F8C531E6FBF6100686040 /* Main.storyboard */,
 				4B7F8C561E6FBF6100686040 /* Assets.xcassets */,
 				4B7F8C581E6FBF6100686040 /* LaunchScreen.storyboard */,
@@ -123,6 +132,8 @@
 		4B7F8C611E6FE08100686040 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4BB076251E713F6F00D8DF4B /* 个人中心 */,
+				4BB076241E713F5B00D8DF4B /* 首页 */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -130,8 +141,9 @@
 		4B7F8C621E6FE08800686040 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4B00A2E11E702F4A0084ADF6 /* MainheadView.h */,
-				4B00A2E21E702F4A0084ADF6 /* MainheadView.m */,
+				4BB0761A1E70EA4F00D8DF4B /* 首页Btn视图 */,
+				4BB076191E70EA3800D8DF4B /* 首页头视图 */,
+				4BB076201E712DA700D8DF4B /* cell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -153,6 +165,52 @@
 				4B7F8C6E1E6FE2B400686040 /* NavBar.xib */,
 			);
 			name = Tool;
+			sourceTree = "<group>";
+		};
+		4BB076191E70EA3800D8DF4B /* 首页头视图 */ = {
+			isa = PBXGroup;
+			children = (
+				4B00A2E11E702F4A0084ADF6 /* MainheadView.h */,
+				4B00A2E21E702F4A0084ADF6 /* MainheadView.m */,
+			);
+			name = "首页头视图";
+			sourceTree = "<group>";
+		};
+		4BB0761A1E70EA4F00D8DF4B /* 首页Btn视图 */ = {
+			isa = PBXGroup;
+			children = (
+				4BB0761B1E70EA8E00D8DF4B /* MainBtnView.h */,
+				4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */,
+				4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */,
+			);
+			name = "首页Btn视图";
+			sourceTree = "<group>";
+		};
+		4BB076201E712DA700D8DF4B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				4BB076211E712DD300D8DF4B /* MainCell.h */,
+				4BB076221E712DD300D8DF4B /* MainCell.m */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		4BB076241E713F5B00D8DF4B /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				4B7F8C501E6FBF6100686040 /* ViewController.h */,
+				4B7F8C511E6FBF6100686040 /* ViewController.m */,
+			);
+			name = "首页";
+			sourceTree = "<group>";
+		};
+		4BB076251E713F6F00D8DF4B /* 个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				4BB076291E71427100D8DF4B /* UserInfoController.h */,
+				4BB0762A1E71427100D8DF4B /* UserInfoController.m */,
+			);
+			name = "个人中心";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BB0761F1E70EAA100D8DF4B /* MainBtnView.xib in Resources */,
 				4B7F8C5A1E6FBF6100686040 /* LaunchScreen.storyboard in Resources */,
 				4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */,
 				4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */,
@@ -231,9 +290,12 @@
 				4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */,
 				4B7F8C751E6FF51300686040 /* BaseController.m in Sources */,
 				4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */,
+				4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
+				4BB0762B1E71427100D8DF4B /* UserInfoController.m in Sources */,
 				4B7F8C4F1E6FBF6100686040 /* AppDelegate.m in Sources */,
 				4B7F8C4C1E6FBF6100686040 /* main.m in Sources */,
+				4BB076231E712DD300D8DF4B /* MainCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
