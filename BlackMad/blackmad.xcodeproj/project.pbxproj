@@ -19,6 +19,8 @@
 		4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C6C1E6FE1F700686040 /* NavBar.m */; };
 		4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7F8C6E1E6FE2B400686040 /* NavBar.xib */; };
 		4B7F8C751E6FF51300686040 /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C741E6FF51300686040 /* BaseController.m */; };
+		4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */; };
+		4BB0761F1E70EAA100D8DF4B /* MainBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,9 @@
 		4B7F8C731E6FF51300686040 /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
 		4B7F8C741E6FF51300686040 /* BaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
 		4B7F8C761E6FFDFD00686040 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4BB0761B1E70EA8E00D8DF4B /* MainBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainBtnView.h; sourceTree = "<group>"; };
+		4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainBtnView.m; sourceTree = "<group>"; };
+		4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainBtnView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +135,8 @@
 		4B7F8C621E6FE08800686040 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4B00A2E11E702F4A0084ADF6 /* MainheadView.h */,
-				4B00A2E21E702F4A0084ADF6 /* MainheadView.m */,
+				4BB076191E70EA3800D8DF4B /* 首页头视图 */,
+				4BB0761A1E70EA4F00D8DF4B /* 首页Btn视图 */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -153,6 +158,25 @@
 				4B7F8C6E1E6FE2B400686040 /* NavBar.xib */,
 			);
 			name = Tool;
+			sourceTree = "<group>";
+		};
+		4BB076191E70EA3800D8DF4B /* 首页头视图 */ = {
+			isa = PBXGroup;
+			children = (
+				4B00A2E11E702F4A0084ADF6 /* MainheadView.h */,
+				4B00A2E21E702F4A0084ADF6 /* MainheadView.m */,
+			);
+			name = "首页头视图";
+			sourceTree = "<group>";
+		};
+		4BB0761A1E70EA4F00D8DF4B /* 首页Btn视图 */ = {
+			isa = PBXGroup;
+			children = (
+				4BB0761B1E70EA8E00D8DF4B /* MainBtnView.h */,
+				4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */,
+				4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */,
+			);
+			name = "首页Btn视图";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BB0761F1E70EAA100D8DF4B /* MainBtnView.xib in Resources */,
 				4B7F8C5A1E6FBF6100686040 /* LaunchScreen.storyboard in Resources */,
 				4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */,
 				4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */,
@@ -231,6 +256,7 @@
 				4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */,
 				4B7F8C751E6FF51300686040 /* BaseController.m in Sources */,
 				4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */,
+				4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
 				4B7F8C4F1E6FBF6100686040 /* AppDelegate.m in Sources */,
 				4B7F8C4C1E6FBF6100686040 /* main.m in Sources */,
