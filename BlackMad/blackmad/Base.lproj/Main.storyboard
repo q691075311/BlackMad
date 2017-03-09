@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,14 +16,48 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PLX-wZ-Aix">
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="3X2-Na-Bzy" customClass="MainheadView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="344"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8S-aM-YOB" customClass="XRCarouselView">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="180" id="A57-he-fVp"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="k8S-aM-YOB" firstAttribute="leading" secondItem="3X2-Na-Bzy" secondAttribute="leading" id="N0j-bD-2aW"/>
+                                        <constraint firstItem="k8S-aM-YOB" firstAttribute="top" secondItem="3X2-Na-Bzy" secondAttribute="top" id="UqG-JH-NgJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="k8S-aM-YOB" secondAttribute="trailing" id="vD2-p6-F4b"/>
+                                    </constraints>
+                                </view>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PLX-wZ-Aix" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="54" id="9a1-vE-ebB"/>
+                            <constraint firstAttribute="trailing" secondItem="PLX-wZ-Aix" secondAttribute="trailing" id="LXT-wt-ZIq"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PLX-wZ-Aix" secondAttribute="bottom" id="W3s-PA-bBJ"/>
+                            <constraint firstItem="PLX-wZ-Aix" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oXv-IX-rGw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8l2-sN-qwS"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="XRCarouselView" destination="k8S-aM-YOB" id="whz-dA-IVy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437.5" y="398.5"/>
+            <point key="canvasLocation" x="289.5" y="367.5"/>
         </scene>
     </scenes>
 </document>
