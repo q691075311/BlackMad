@@ -33,29 +33,21 @@
     _headImage.layer.masksToBounds = YES;
     _headImage.layer.cornerRadius = 60;
     //设置用户名的textfield的左边框
-    UIView * view = [self textFildLeftViewWithImage:@"user"];
-    _loginPhone.layer.masksToBounds = YES;
-    _loginPhone.layer.cornerRadius = 24;
-    _loginPhone.layer.borderWidth = 1;
-    //红色
-    _loginPhone.layer.borderColor = COLORWITHRGB(205, 48, 44).CGColor;
-    _loginPhone.leftView = view;
-    _loginPhone.leftViewMode = UITextFieldViewModeAlways;
-    
+    [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
+    [self changeTextFieldLayer:_loginPhone];
     //设置密码的textfield的左边框
-    UIView * view1 = [self textFildLeftViewWithImage:@"pwdh"];
-    _pwdField.layer.masksToBounds = YES;
-    _pwdField.layer.cornerRadius = 24;
-    _pwdField.layer.borderWidth = 1;
-    //灰色
-    _pwdField.layer.borderColor = COLORWITHRGB(192, 192, 192).CGColor;
-    _pwdField.leftView = view1;
-    _pwdField.leftViewMode = UITextFieldViewModeAlways;
-    
+    [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
+    [self changeTextFieldLayer:_pwdField];
     //设置登录btn的边框
     _loginBtn.layer.masksToBounds = YES;
     _loginBtn.layer.cornerRadius = 24;
     
+}
+- (void)changeTextFieldLayer:(UITextField *)textField{
+    textField.layer.masksToBounds = YES;
+    textField.layer.cornerRadius = 24;
+    textField.layer.borderWidth = 1;
+    textField.leftViewMode = UITextFieldViewModeAlways;
 }
 #pragma mark--UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
