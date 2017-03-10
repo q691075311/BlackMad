@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserInfoView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userback" translatesAutoresizingMaskIntoConstraints="NO" id="DDY-jl-pWw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aDr-wT-Ol0">
+                    <rect key="frame" x="28" y="30" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="amG-gY-csh"/>
+                        <constraint firstAttribute="width" constant="80" id="mE9-j9-w0b"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GJ-zM-Z88">
+                    <rect key="frame" x="135" y="46" width="230" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="VS5-AE-wkF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmP-gi-wG2">
+                    <rect key="frame" x="135" y="70" width="230" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="SVM-Ui-jy4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aDr-wT-Ol0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="1b8-iF-rAc"/>
+                <constraint firstItem="SmP-gi-wG2" firstAttribute="top" secondItem="1GJ-zM-Z88" secondAttribute="bottom" id="1ow-dH-ehP"/>
+                <constraint firstItem="1GJ-zM-Z88" firstAttribute="leading" secondItem="aDr-wT-Ol0" secondAttribute="trailing" constant="27" id="1ql-s4-jU0"/>
+                <constraint firstItem="SmP-gi-wG2" firstAttribute="leading" secondItem="aDr-wT-Ol0" secondAttribute="trailing" constant="27" id="COR-zc-OW6"/>
+                <constraint firstAttribute="bottom" secondItem="DDY-jl-pWw" secondAttribute="bottom" id="Lld-pc-FHH"/>
+                <constraint firstItem="DDY-jl-pWw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ohp-IN-l8d"/>
+                <constraint firstItem="aDr-wT-Ol0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="Q8m-Xc-0AC"/>
+                <constraint firstAttribute="trailing" secondItem="1GJ-zM-Z88" secondAttribute="trailing" constant="10" id="Zqh-Dt-jS4"/>
+                <constraint firstItem="1GJ-zM-Z88" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="46" id="kJu-DU-OMQ"/>
+                <constraint firstAttribute="trailing" secondItem="SmP-gi-wG2" secondAttribute="trailing" constant="10" id="s0w-wA-vn9"/>
+                <constraint firstAttribute="trailing" secondItem="DDY-jl-pWw" secondAttribute="trailing" id="shB-oB-Y9L"/>
+                <constraint firstItem="DDY-jl-pWw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zy2-hr-4bj"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="userImage" destination="aDr-wT-Ol0" id="RER-9w-wQa"/>
+                <outlet property="userName" destination="1GJ-zM-Z88" id="sYB-eU-eAT"/>
+                <outlet property="userPhone" destination="SmP-gi-wG2" id="55b-J3-8Mo"/>
+            </connections>
+            <point key="canvasLocation" x="559.5" y="419"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="userback" width="375" height="140"/>
+    </resources>
+</document>
