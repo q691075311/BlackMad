@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "LaunchController.h"
+#import "LoginController.h"
+#import "BaseController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +21,43 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSLog(@"%@",NSHomeDirectory());
+//    NSDictionary * dic = [[NSBundle mainBundle] infoDictionary];
+//    if ([dic[@"CFBundleVersion"] isEqualToString:[USERDEF objectForKey:@"version"]]) {
+//        //不是第一次启动
+//        [self everLaunch];
+//    }else{
+//        [USERDEF setObject:dic[@"CFBundleVersion"] forKey:@"version"];
+//        [USERDEF synchronize];
+//        [self firstLaunch];
+//    }
+    [self everLaunch];
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+#pragma mark--第一次启动
+- (void)firstLaunch{
+    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    LaunchController * vc = [sb instantiateViewControllerWithIdentifier:@"LaunchController"];
+//    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = vc;
+}
+#pragma mark--不是第一次启动
+- (void)everLaunch{
+    NSString * loginName = [USERDEF objectForKey:@"loginname"];
+    NSString * pwd = [USERDEF objectForKey:@"pwd"];
+    if (loginName && pwd) {
+        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        self.window.rootViewController = nav;
+    }else{
+        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        self.window.rootViewController = nav;
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

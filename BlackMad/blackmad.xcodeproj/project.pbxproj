@@ -22,6 +22,8 @@
 		4B8EA2041E7240030051EC5A /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2031E7240030051EC5A /* UserInfoView.m */; };
 		4B8EA2061E7240290051EC5A /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8EA2051E7240290051EC5A /* UserInfoView.xib */; };
 		4B8EA2091E72440C0051EC5A /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2081E72440C0051EC5A /* UserInfoCell.m */; };
+		4B8EA20D1E7278200051EC5A /* LaunchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA20C1E7278200051EC5A /* LaunchController.m */; };
+		4B8EA2121E7282940051EC5A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2111E7282940051EC5A /* LoginController.m */; };
 		4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */; };
 		4BB0761F1E70EAA100D8DF4B /* MainBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */; };
 		4BB076231E712DD300D8DF4B /* MainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB076221E712DD300D8DF4B /* MainCell.m */; };
@@ -55,6 +57,10 @@
 		4B8EA2051E7240290051EC5A /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
 		4B8EA2071E72440C0051EC5A /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
 		4B8EA2081E72440C0051EC5A /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
+		4B8EA20B1E7278200051EC5A /* LaunchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchController.h; sourceTree = "<group>"; };
+		4B8EA20C1E7278200051EC5A /* LaunchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchController.m; sourceTree = "<group>"; };
+		4B8EA2101E7282940051EC5A /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		4B8EA2111E7282940051EC5A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		4BB0761B1E70EA8E00D8DF4B /* MainBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainBtnView.h; sourceTree = "<group>"; };
 		4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainBtnView.m; sourceTree = "<group>"; };
 		4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainBtnView.xib; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 		4B7F8C611E6FE08100686040 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4B8EA20A1E7277930051EC5A /* 启动页面 */,
 				4BB076251E713F6F00D8DF4B /* 个人中心 */,
 				4BB076241E713F5B00D8DF4B /* 首页 */,
 			);
@@ -149,6 +156,7 @@
 		4B7F8C621E6FE08800686040 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4B8EA20E1E72823D0051EC5A /* 登录页面 */,
 				4B8EA2011E723FB30051EC5A /* 个人中心头视图 */,
 				4BB0761A1E70EA4F00D8DF4B /* 首页Btn视图 */,
 				4BB076191E70EA3800D8DF4B /* 首页头视图 */,
@@ -184,6 +192,24 @@
 				4B8EA2051E7240290051EC5A /* UserInfoView.xib */,
 			);
 			name = "个人中心头视图";
+			sourceTree = "<group>";
+		};
+		4B8EA20A1E7277930051EC5A /* 启动页面 */ = {
+			isa = PBXGroup;
+			children = (
+				4B8EA20B1E7278200051EC5A /* LaunchController.h */,
+				4B8EA20C1E7278200051EC5A /* LaunchController.m */,
+			);
+			name = "启动页面";
+			sourceTree = "<group>";
+		};
+		4B8EA20E1E72823D0051EC5A /* 登录页面 */ = {
+			isa = PBXGroup;
+			children = (
+				4B8EA2101E7282940051EC5A /* LoginController.h */,
+				4B8EA2111E7282940051EC5A /* LoginController.m */,
+			);
+			name = "登录页面";
 			sourceTree = "<group>";
 		};
 		4BB076191E70EA3800D8DF4B /* 首页头视图 */ = {
@@ -310,10 +336,12 @@
 			files = (
 				4B8EA2091E72440C0051EC5A /* UserInfoCell.m in Sources */,
 				4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */,
+				4B8EA20D1E7278200051EC5A /* LaunchController.m in Sources */,
 				4B8EA2041E7240030051EC5A /* UserInfoView.m in Sources */,
 				4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */,
 				4B7F8C751E6FF51300686040 /* BaseController.m in Sources */,
 				4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */,
+				4B8EA2121E7282940051EC5A /* LoginController.m in Sources */,
 				4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
 				4BB0762B1E71427100D8DF4B /* UserInfoController.m in Sources */,
