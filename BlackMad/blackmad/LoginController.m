@@ -7,13 +7,15 @@
 //
 
 #import "LoginController.h"
-
+#import "IQKeyboardReturnKeyHandler.h"
+#import "ViewController.h"
 
 @interface LoginController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UITextField *loginPhone;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *registeredBtn;
 
 @end
 
@@ -26,6 +28,8 @@
     [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
     _loginPhone.delegate = self;
     _pwdField.delegate = self;
+    IQKeyboardReturnKeyHandler * returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] init];
+    returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyNext;
     [self initUI];
     
 }
@@ -35,6 +39,7 @@
     //设置用户名的textfield的左边框
     [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
     [self changeTextFieldLayer:_loginPhone];
+    _loginPhone.keyboardType = UIKeyboardTypePhonePad;
     //设置密码的textfield的左边框
     [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
     [self changeTextFieldLayer:_pwdField];
@@ -84,9 +89,26 @@
  *  @param sender
  */
 - (IBAction)login:(UIButton *)sender {
+    if (_loginPhone.text.length != 11) {
+        
+    }
+    if (_pwdField.text.length != 0) {
+        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+/**
+ *  注册
+ *
+ *  @param sender
+ */
+- (IBAction)registeredBtn:(UIButton *)sender {
     
     
-    
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
