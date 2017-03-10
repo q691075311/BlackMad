@@ -79,9 +79,8 @@
 - (UIView *)textFildLeftViewWithImage:(NSString *)imageURL{
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 24)];
     UIView * leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 24)];
-//    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageURL]];
-    UIImageView * imageView = [[UIImageView alloc] init];
-//    [imageView sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png"]];
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageURL]];
+
     imageView.frame = CGRectMake(20, 0, 24, 24);
     [view addSubview:leftView];
     [view addSubview:imageView];
