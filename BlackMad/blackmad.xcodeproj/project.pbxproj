@@ -10,6 +10,8 @@
 		4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2DD1E702E1E0084ADF6 /* XRCarouselView.m */; };
 		4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */; };
 		4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2E21E702F4A0084ADF6 /* MainheadView.m */; };
+		4B3D9AB61E73AB6600FD5314 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D9AB31E73AB6600FD5314 /* SVProgressHUD.bundle */; };
+		4B3D9AB71E73AB6600FD5314 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3D9AB51E73AB6600FD5314 /* SVProgressHUD.m */; };
 		4B7F8C4C1E6FBF6100686040 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C4B1E6FBF6100686040 /* main.m */; };
 		4B7F8C4F1E6FBF6100686040 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C4E1E6FBF6100686040 /* AppDelegate.m */; };
 		4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C511E6FBF6100686040 /* ViewController.m */; };
@@ -51,6 +53,9 @@
 		4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XRPlaceholder.png; sourceTree = "<group>"; };
 		4B00A2E11E702F4A0084ADF6 /* MainheadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainheadView.h; sourceTree = "<group>"; };
 		4B00A2E21E702F4A0084ADF6 /* MainheadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainheadView.m; sourceTree = "<group>"; };
+		4B3D9AB31E73AB6600FD5314 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		4B3D9AB41E73AB6600FD5314 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		4B3D9AB51E73AB6600FD5314 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		4B7F8C471E6FBF6100686040 /* blackmad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blackmad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7F8C4B1E6FBF6100686040 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4B7F8C4D1E6FBF6100686040 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 		4B00A2DA1E702DFC0084ADF6 /* 第三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				4B3D9AB21E73AB6600FD5314 /* SVProgressHUD */,
 				4BA1F00A1E731BA500B4EED4 /* IQKeyboardManager */,
 				4B00A2DB1E702E1E0084ADF6 /* XRCarouselView */,
 			);
@@ -144,6 +150,16 @@
 				4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */,
 			);
 			path = XRCarouselView;
+			sourceTree = "<group>";
+		};
+		4B3D9AB21E73AB6600FD5314 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				4B3D9AB31E73AB6600FD5314 /* SVProgressHUD.bundle */,
+				4B3D9AB41E73AB6600FD5314 /* SVProgressHUD.h */,
+				4B3D9AB51E73AB6600FD5314 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		4B7F8C3E1E6FBF6100686040 = {
@@ -444,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BB0761F1E70EAA100D8DF4B /* MainBtnView.xib in Resources */,
+				4B3D9AB61E73AB6600FD5314 /* SVProgressHUD.bundle in Resources */,
 				4B7F8C5A1E6FBF6100686040 /* LaunchScreen.storyboard in Resources */,
 				4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */,
 				4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */,
@@ -470,6 +487,7 @@
 				4BA1F03B1E731BA500B4EED4 /* IQToolbar.m in Sources */,
 				4B8EA2041E7240030051EC5A /* UserInfoView.m in Sources */,
 				4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */,
+				4B3D9AB71E73AB6600FD5314 /* SVProgressHUD.m in Sources */,
 				4B7F8C751E6FF51300686040 /* BaseController.m in Sources */,
 				4BA1F0341E731BA500B4EED4 /* IQUIWindow+Hierarchy.m in Sources */,
 				4BA1F0311E731BA500B4EED4 /* IQUITextFieldView+Additions.m in Sources */,

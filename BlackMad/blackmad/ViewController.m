@@ -88,9 +88,10 @@
 }
 - (void)touchLeftBtn{
     //进入个人中心
-    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    UserInfoController * vc = [sb instantiateViewControllerWithIdentifier:@"UserInfoController"];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self pushToController:@"UserInfoController"
+            WithStoyBordID:@"Main"
+                  WithForm:self
+                  WithInfo:@{}];
     
 }
 
