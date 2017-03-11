@@ -65,7 +65,7 @@
         [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
     }
 }
-
+//改变UITextField的状态
 - (void)changeTextFieldStyleWith:(UITextField *)textField WithLeftView:(NSString *)imageURL WithR:(int)R WithG:(int)G WithB:(int)B{
     UIView * view = [self textFildLeftViewWithImage:imageURL];
     textField.leftView = view;
