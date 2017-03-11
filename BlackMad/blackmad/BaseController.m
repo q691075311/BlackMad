@@ -34,6 +34,17 @@
 - (void)touchLeftBtn{
     
 }
+#pragma mark--跳转页面
+- (BaseController *)pushToController:(NSString *)controllerID
+                      WithStoyBordID:(NSString *)stoyBordID
+                            WithForm:(BaseController *)formController
+                            WithInfo:(NSDictionary *)info{
+    UIStoryboard * sb = [UIStoryboard storyboardWithName:stoyBordID bundle:[NSBundle mainBundle]];
+    BaseController * vc = [sb instantiateViewControllerWithIdentifier:controllerID];
+    vc.userInfo = info;
+    [formController.navigationController pushViewController:vc animated:YES];
+    return vc;
+}
 
 /*
 #pragma mark - Navigation

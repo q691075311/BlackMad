@@ -7,14 +7,22 @@
 //
 
 #import "LoginController.h"
+#import "IQKeyboardReturnKeyHandler.h"
+#import "ViewController.h"
 
+
+typedef enum :NSUInteger{
+    userType_Login,
+    userType_Registered
+}userType;
 
 @interface LoginController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UITextField *loginPhone;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-
+@property (weak, nonatomic) IBOutlet UIButton *registeredBtn;
+@property (nonatomic,assign) userType type;
 @end
 
 @implementation LoginController
@@ -22,40 +30,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _type = userType_Login;
     self.navigationController.navigationBar.hidden = YES;
-    [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
+    
     _loginPhone.delegate = self;
     _pwdField.delegate = self;
+    IQKeyboardReturnKeyHandler * returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] init];
+    returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyNext;
     [self initUI];
     
 }
 - (void)initUI{
+    if (_type == userType_Login) {
+        [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
+        [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+        [_registeredBtn setTitle:@"点击注册" forState:UIControlStateNormal];
+        _headImage.image = [UIImage imageNamed:@"headimage"];
+        _pwdField.placeholder = @"请输入密码";
+    }else if (_type == userType_Registered){
+        [self.navBar configNavBarTitle:@"账户注册" WithLeftView:nil WithRigthView:nil];
+        [_loginBtn setTitle:@"注册" forState:UIControlStateNormal];
+        [_registeredBtn setTitle:@"有账号？返回登录" forState:UIControlStateNormal];
+        _headImage.image = [UIImage imageNamed:@"logo"];
+        _pwdField.placeholder = @"请输入密码（6-18位字符）";
+    }
     _headImage.layer.masksToBounds = YES;
     _headImage.layer.cornerRadius = 60;
     //设置用户名的textfield的左边框
-    UIView * view = [self textFildLeftViewWithImage:@"user"];
-    _loginPhone.layer.masksToBounds = YES;
-    _loginPhone.layer.cornerRadius = 24;
-    _loginPhone.layer.borderWidth = 1;
-    //红色
-    _loginPhone.layer.borderColor = COLORWITHRGB(205, 48, 44).CGColor;
-    _loginPhone.leftView = view;
-    _loginPhone.leftViewMode = UITextFieldViewModeAlways;
-    
+    [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
+    [self changeTextFieldLayer:_loginPhone];
+    _loginPhone.keyboardType = UIKeyboardTypePhonePad;
     //设置密码的textfield的左边框
-    UIView * view1 = [self textFildLeftViewWithImage:@"pwdh"];
-    _pwdField.layer.masksToBounds = YES;
-    _pwdField.layer.cornerRadius = 24;
-    _pwdField.layer.borderWidth = 1;
-    //灰色
-    _pwdField.layer.borderColor = COLORWITHRGB(192, 192, 192).CGColor;
-    _pwdField.leftView = view1;
-    _pwdField.leftViewMode = UITextFieldViewModeAlways;
-    
+    _pwdField.secureTextEntry = YES;
+    [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
+    [self changeTextFieldLayer:_pwdField];
     //设置登录btn的边框
     _loginBtn.layer.masksToBounds = YES;
     _loginBtn.layer.cornerRadius = 24;
     
+}
+- (void)changeTextFieldLayer:(UITextField *)textField{
+    textField.layer.masksToBounds = YES;
+    textField.layer.cornerRadius = 24;
+    textField.layer.borderWidth = 1;
+    textField.leftViewMode = UITextFieldViewModeAlways;
 }
 #pragma mark--UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -68,7 +86,7 @@
         [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
     }
 }
-
+//改变UITextField的状态
 - (void)changeTextFieldStyleWith:(UITextField *)textField WithLeftView:(NSString *)imageURL WithR:(int)R WithG:(int)G WithB:(int)B{
     UIView * view = [self textFildLeftViewWithImage:imageURL];
     textField.leftView = view;
@@ -92,9 +110,42 @@
  *  @param sender
  */
 - (IBAction)login:(UIButton *)sender {
+    if (_loginPhone.text.length != 11) {
+        [SVProgressHUD showErrorWithStatus:@"输入正确的手机号"];
+        return;
+    }
+    if (_pwdField.text.length < 6 || _pwdField.text.length > 18) {
+        [SVProgressHUD showErrorWithStatus:@"请输入密码（6-18位字符）"];
+        return;
+    }
+    if (_type == userType_Login) {
+        //登录成功
+        [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+    }else if (_type == userType_Registered){
+        //注册成功
+        _type = userType_Login;
+        [self initUI];
+        _loginPhone.text = @"";
+        _pwdField.text = @"";
+        [self.view endEditing:YES];
+    }
+}
+/**
+ *  注册
+ *
+ *  @param sender
+ */
+- (IBAction)registeredBtn:(UIButton *)sender {
+    if (_type == userType_Login) {
+        _type = userType_Registered;
+    }else if (_type == userType_Registered){
+        _type = userType_Login;
+    }
+    [self initUI];
     
-    
-    
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {

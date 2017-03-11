@@ -27,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBar.hidden = YES;
     [self.navBar configNavBarTitle:@"疯趣" WithLeftView:@"mainLeft" WithRigthView:nil];
     [self loadXRCarouselView];
     [self setFristLineView];
@@ -59,10 +60,10 @@
 }
 //加载广告页
 - (void)loadXRCarouselView{
-    NSArray * arr = @[[UIImage imageNamed:@"image"],
-                      [UIImage imageNamed:@"image"],
-                      [UIImage imageNamed:@"image"],
-                      [UIImage imageNamed:@"image"]];
+    NSArray * arr = @[[UIImage imageNamed:@"userback"],
+                      [UIImage imageNamed:@"userback"],
+                      [UIImage imageNamed:@"userback"],
+                      [UIImage imageNamed:@"userback"]];
     _XRCarouselView.imageArray = arr;
     _XRCarouselView.time = 2;
     _XRCarouselView.changeMode = ChangeModeDefault;
@@ -87,9 +88,10 @@
 }
 - (void)touchLeftBtn{
     //进入个人中心
-    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    UserInfoController * vc = [sb instantiateViewControllerWithIdentifier:@"UserInfoController"];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self pushToController:@"UserInfoController"
+            WithStoyBordID:@"Main"
+                  WithForm:self
+                  WithInfo:@{}];
     
 }
 

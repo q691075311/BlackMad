@@ -18,7 +18,13 @@
  *  导航栏
  */
 @property (nonatomic,strong) NavBar * navBar;
-
+/**
+ *  跳转页面
+ */
+- (BaseController *)pushToController:(NSString *)controllerID
+                      WithStoyBordID:(NSString *)stoyBordID
+                            WithForm:(BaseController *)formController
+                            WithInfo:(NSDictionary *)info;
 /**
  *  NavBar
  */

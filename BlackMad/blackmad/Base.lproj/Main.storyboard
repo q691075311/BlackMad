@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Vp-Ik-lpC">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="181" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PLX-wZ-Aix">
-                                <rect key="frame" x="0.0" y="118" width="375" height="549"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="181" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PLX-wZ-Aix">
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="3X2-Na-Bzy" customClass="MainheadView">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="279"/>
@@ -44,7 +44,7 @@
                                         <rect key="frame" x="0.0" y="307" width="375" height="230"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JJJ-UF-bDH" id="T8O-Py-I5S">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="229.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOY-PW-mQU">
@@ -145,7 +145,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e2p-WS-cOL" id="pPK-LB-d5v">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGl-LM-YxF">
@@ -289,11 +289,27 @@
                                     <action selector="login:" destination="L2h-9d-lrc" eventType="touchUpInside" id="bIR-mR-wRf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DF-nW-cNc">
+                                <rect key="frame" x="147" y="495" width="200" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="6bv-8V-aRy"/>
+                                    <constraint firstAttribute="height" constant="22" id="BaB-8b-4gi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
+                                <state key="normal" title="点击注册">
+                                    <color key="titleColor" red="0.80392156862745101" green="0.18823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="registeredBtn:" destination="L2h-9d-lrc" eventType="touchUpInside" id="SDV-fq-T8d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WKf-Dj-jlp" firstAttribute="leading" secondItem="H27-kJ-0QZ" secondAttribute="leading" constant="25" id="6q5-lC-ga2"/>
                             <constraint firstItem="67F-RW-asZ" firstAttribute="centerX" secondItem="H27-kJ-0QZ" secondAttribute="centerX" id="84Q-Ej-wyT"/>
+                            <constraint firstAttribute="trailing" secondItem="1DF-nW-cNc" secondAttribute="trailing" constant="28" id="Dj0-ym-n4Q"/>
+                            <constraint firstItem="1DF-nW-cNc" firstAttribute="top" secondItem="a5v-7p-U1E" secondAttribute="bottom" constant="16" id="Ix8-3D-9Ze"/>
                             <constraint firstItem="67F-RW-asZ" firstAttribute="top" secondItem="QbL-ox-CeN" secondAttribute="bottom" constant="96" id="K8K-md-ovB"/>
                             <constraint firstItem="qkd-Y6-jT6" firstAttribute="leading" secondItem="H27-kJ-0QZ" secondAttribute="leading" constant="25" id="UKE-Qj-D21"/>
                             <constraint firstItem="qkd-Y6-jT6" firstAttribute="top" secondItem="WKf-Dj-jlp" secondAttribute="bottom" constant="25" id="YeD-sv-pxo"/>
@@ -311,6 +327,7 @@
                         <outlet property="loginBtn" destination="a5v-7p-U1E" id="SFY-7L-Jb1"/>
                         <outlet property="loginPhone" destination="WKf-Dj-jlp" id="4eV-Mk-pB9"/>
                         <outlet property="pwdField" destination="qkd-Y6-jT6" id="eTI-5d-YlQ"/>
+                        <outlet property="registeredBtn" destination="1DF-nW-cNc" id="I2A-cc-gYI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53y-bD-mzM" userLabel="First Responder" sceneMemberID="firstResponder"/>

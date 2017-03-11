@@ -11,6 +11,7 @@
 #import "LaunchController.h"
 #import "LoginController.h"
 #import "BaseController.h"
+#import "IQKeyboardManager.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     NSLog(@"%@",NSHomeDirectory());
+    [self initIQKeyboard];
 //    NSDictionary * dic = [[NSBundle mainBundle] infoDictionary];
 //    if ([dic[@"CFBundleVersion"] isEqualToString:[USERDEF objectForKey:@"version"]]) {
 //        //不是第一次启动
@@ -58,6 +60,14 @@
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
         self.window.rootViewController = nav;
     }
+}
+#pragma mark--控制键盘弹出的三方库
+- (void)initIQKeyboard{
+    IQKeyboardManager * manger = [IQKeyboardManager sharedManager];
+    manger.enable = YES;
+    manger.shouldResignOnTouchOutside = YES;
+    manger.shouldToolbarUsesTextFieldTintColor = NO;
+    manger.enableAutoToolbar = NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
