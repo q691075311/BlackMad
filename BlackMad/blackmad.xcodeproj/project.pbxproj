@@ -26,6 +26,14 @@
 		4B8EA2091E72440C0051EC5A /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2081E72440C0051EC5A /* UserInfoCell.m */; };
 		4B8EA20D1E7278200051EC5A /* LaunchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA20C1E7278200051EC5A /* LaunchController.m */; };
 		4B8EA2121E7282940051EC5A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2111E7282940051EC5A /* LoginController.m */; };
+		4BA157131E762E2E0087D279 /* InterestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA157121E762E2E0087D279 /* InterestController.m */; };
+		4BA157161E7636BB0087D279 /* InterestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA157151E7636BB0087D279 /* InterestCell.m */; };
+		4BA1571A1E766BEE0087D279 /* ChangeUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA157191E766BEE0087D279 /* ChangeUserInfoController.m */; };
+		4BA157201E766C580087D279 /* AccountManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1571F1E766C580087D279 /* AccountManagementController.m */; };
+		4BA157231E766C7C0087D279 /* MyTicketController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA157221E766C7C0087D279 /* MyTicketController.m */; };
+		4BA157291E769BB60087D279 /* ChooseGenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA157281E769BB60087D279 /* ChooseGenderView.m */; };
+		4BA1572C1E769BD70087D279 /* ChooseBirthdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1572B1E769BD70087D279 /* ChooseBirthdayView.m */; };
+		4BA1572F1E769BEA0087D279 /* ChooseAdressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1572E1E769BEA0087D279 /* ChooseAdressView.m */; };
 		4BA1F02F1E731BA500B4EED4 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1F00D1E731BA500B4EED4 /* IQNSArray+Sort.m */; };
 		4BA1F0301E731BA500B4EED4 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1F00F1E731BA500B4EED4 /* IQUIScrollView+Additions.m */; };
 		4BA1F0311E731BA500B4EED4 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1F0111E731BA500B4EED4 /* IQUITextFieldView+Additions.m */; };
@@ -81,6 +89,22 @@
 		4B8EA20C1E7278200051EC5A /* LaunchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchController.m; sourceTree = "<group>"; };
 		4B8EA2101E7282940051EC5A /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		4B8EA2111E7282940051EC5A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		4BA157111E762E2E0087D279 /* InterestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestController.h; sourceTree = "<group>"; };
+		4BA157121E762E2E0087D279 /* InterestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestController.m; sourceTree = "<group>"; };
+		4BA157141E7636BB0087D279 /* InterestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestCell.h; sourceTree = "<group>"; };
+		4BA157151E7636BB0087D279 /* InterestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestCell.m; sourceTree = "<group>"; };
+		4BA157181E766BEE0087D279 /* ChangeUserInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeUserInfoController.h; sourceTree = "<group>"; };
+		4BA157191E766BEE0087D279 /* ChangeUserInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeUserInfoController.m; sourceTree = "<group>"; };
+		4BA1571E1E766C580087D279 /* AccountManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManagementController.h; sourceTree = "<group>"; };
+		4BA1571F1E766C580087D279 /* AccountManagementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManagementController.m; sourceTree = "<group>"; };
+		4BA157211E766C7C0087D279 /* MyTicketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketController.h; sourceTree = "<group>"; };
+		4BA157221E766C7C0087D279 /* MyTicketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketController.m; sourceTree = "<group>"; };
+		4BA157271E769BB60087D279 /* ChooseGenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseGenderView.h; sourceTree = "<group>"; };
+		4BA157281E769BB60087D279 /* ChooseGenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseGenderView.m; sourceTree = "<group>"; };
+		4BA1572A1E769BD70087D279 /* ChooseBirthdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseBirthdayView.h; sourceTree = "<group>"; };
+		4BA1572B1E769BD70087D279 /* ChooseBirthdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseBirthdayView.m; sourceTree = "<group>"; };
+		4BA1572D1E769BEA0087D279 /* ChooseAdressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAdressView.h; sourceTree = "<group>"; };
+		4BA1572E1E769BEA0087D279 /* ChooseAdressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAdressView.m; sourceTree = "<group>"; };
 		4BA1F00C1E731BA500B4EED4 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		4BA1F00D1E731BA500B4EED4 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		4BA1F00E1E731BA500B4EED4 /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -209,6 +233,7 @@
 		4B7F8C611E6FE08100686040 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4B8EA20E1E72823D0051EC5A /* 登录页面 */,
 				4B8EA20A1E7277930051EC5A /* 启动页面 */,
 				4BB076251E713F6F00D8DF4B /* 个人中心 */,
 				4BB076241E713F5B00D8DF4B /* 首页 */,
@@ -219,7 +244,7 @@
 		4B7F8C621E6FE08800686040 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4B8EA20E1E72823D0051EC5A /* 登录页面 */,
+				4BA157261E769B870087D279 /* 视图控件 */,
 				4B8EA2011E723FB30051EC5A /* 个人中心头视图 */,
 				4BB0761A1E70EA4F00D8DF4B /* 首页Btn视图 */,
 				4BB076191E70EA3800D8DF4B /* 首页头视图 */,
@@ -271,8 +296,44 @@
 			children = (
 				4B8EA2101E7282940051EC5A /* LoginController.h */,
 				4B8EA2111E7282940051EC5A /* LoginController.m */,
+				4BA157101E762DD30087D279 /* 兴趣爱好 */,
 			);
 			name = "登录页面";
+			sourceTree = "<group>";
+		};
+		4BA157101E762DD30087D279 /* 兴趣爱好 */ = {
+			isa = PBXGroup;
+			children = (
+				4BA157111E762E2E0087D279 /* InterestController.h */,
+				4BA157121E762E2E0087D279 /* InterestController.m */,
+			);
+			name = "兴趣爱好";
+			sourceTree = "<group>";
+		};
+		4BA157171E766BA60087D279 /* 个人中心子页面 */ = {
+			isa = PBXGroup;
+			children = (
+				4BA157181E766BEE0087D279 /* ChangeUserInfoController.h */,
+				4BA157191E766BEE0087D279 /* ChangeUserInfoController.m */,
+				4BA157211E766C7C0087D279 /* MyTicketController.h */,
+				4BA157221E766C7C0087D279 /* MyTicketController.m */,
+				4BA1571E1E766C580087D279 /* AccountManagementController.h */,
+				4BA1571F1E766C580087D279 /* AccountManagementController.m */,
+			);
+			name = "个人中心子页面";
+			sourceTree = "<group>";
+		};
+		4BA157261E769B870087D279 /* 视图控件 */ = {
+			isa = PBXGroup;
+			children = (
+				4BA157271E769BB60087D279 /* ChooseGenderView.h */,
+				4BA157281E769BB60087D279 /* ChooseGenderView.m */,
+				4BA1572A1E769BD70087D279 /* ChooseBirthdayView.h */,
+				4BA1572B1E769BD70087D279 /* ChooseBirthdayView.m */,
+				4BA1572D1E769BEA0087D279 /* ChooseAdressView.h */,
+				4BA1572E1E769BEA0087D279 /* ChooseAdressView.m */,
+			);
+			name = "视图控件";
 			sourceTree = "<group>";
 		};
 		4BA1F00A1E731BA500B4EED4 /* IQKeyboardManager */ = {
@@ -379,6 +440,8 @@
 				4BB076221E712DD300D8DF4B /* MainCell.m */,
 				4B8EA2071E72440C0051EC5A /* UserInfoCell.h */,
 				4B8EA2081E72440C0051EC5A /* UserInfoCell.m */,
+				4BA157141E7636BB0087D279 /* InterestCell.h */,
+				4BA157151E7636BB0087D279 /* InterestCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -397,6 +460,7 @@
 			children = (
 				4BB076291E71427100D8DF4B /* UserInfoController.h */,
 				4BB0762A1E71427100D8DF4B /* UserInfoController.m */,
+				4BA157171E766BA60087D279 /* 个人中心子页面 */,
 			);
 			name = "个人中心";
 			sourceTree = "<group>";
@@ -483,21 +547,29 @@
 				4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */,
 				4BA1F03C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				4BA1F0391E731BA500B4EED4 /* IQPreviousNextView.m in Sources */,
+				4BA157131E762E2E0087D279 /* InterestController.m in Sources */,
 				4B8EA20D1E7278200051EC5A /* LaunchController.m in Sources */,
+				4BA1572F1E769BEA0087D279 /* ChooseAdressView.m in Sources */,
 				4BA1F03B1E731BA500B4EED4 /* IQToolbar.m in Sources */,
 				4B8EA2041E7240030051EC5A /* UserInfoView.m in Sources */,
 				4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */,
+				4BA1571A1E766BEE0087D279 /* ChangeUserInfoController.m in Sources */,
 				4B3D9AB71E73AB6600FD5314 /* SVProgressHUD.m in Sources */,
 				4B7F8C751E6FF51300686040 /* BaseController.m in Sources */,
+				4BA157231E766C7C0087D279 /* MyTicketController.m in Sources */,
 				4BA1F0341E731BA500B4EED4 /* IQUIWindow+Hierarchy.m in Sources */,
 				4BA1F0311E731BA500B4EED4 /* IQUITextFieldView+Additions.m in Sources */,
 				4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */,
 				4B8EA2121E7282940051EC5A /* LoginController.m in Sources */,
+				4BA157291E769BB60087D279 /* ChooseGenderView.m in Sources */,
 				4BA1F0331E731BA500B4EED4 /* IQUIViewController+Additions.m in Sources */,
 				4BA1F03A1E731BA500B4EED4 /* IQTitleBarButtonItem.m in Sources */,
+				4BA157201E766C580087D279 /* AccountManagementController.m in Sources */,
 				4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */,
 				4BA1F0361E731BA500B4EED4 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				4BA157161E7636BB0087D279 /* InterestCell.m in Sources */,
 				4BA1F0381E731BA500B4EED4 /* IQBarButtonItem.m in Sources */,
+				4BA1572C1E769BD70087D279 /* ChooseBirthdayView.m in Sources */,
 				4BA1F02F1E731BA500B4EED4 /* IQNSArray+Sort.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
 				4BA1F0351E731BA500B4EED4 /* IQKeyboardManager.m in Sources */,

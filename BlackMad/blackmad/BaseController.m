@@ -32,7 +32,7 @@
     
 }
 - (void)touchLeftBtn{
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark--跳转页面
 - (BaseController *)pushToController:(NSString *)controllerID

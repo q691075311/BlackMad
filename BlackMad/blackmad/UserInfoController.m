@@ -12,7 +12,8 @@
 
 @interface UserInfoController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic,copy) NSArray *titleArr;
+@property (nonatomic,copy) NSArray *imageArr;
 @end
 
 @implementation UserInfoController
@@ -28,6 +29,12 @@
     _tableView.tableHeaderView = headView;
     _tableView.tableFooterView.frame = CGRectZero;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _titleArr = @[@"完善个人信息",
+                           @"我的券",
+                           @"账户管理"];
+    _imageArr= @[@"userinfo",
+                          @"myjuan",
+                          @"userguanli"];
     
 }
 #pragma mark--UITableViewDataSource
@@ -38,32 +45,34 @@
     /**
      *  假数据
      */
-    NSArray * titleArr = @[@"完善个人信息",
-                           @"我的券",
-                           @"账户管理"];
-    NSArray * imageArr= @[@"userinfo",
-                          @"myjuan",
-                          @"userguanli"];
+    
     
     /**
      *  假数据
      */
     UserInfoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UserInfoCell" forIndexPath:indexPath];
-    cell.setTitle.text = titleArr[indexPath.row];
-    cell.setImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageArr[indexPath.row]]];
+    cell.setTitle.text = _titleArr[indexPath.row];
+    cell.setImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",_imageArr[indexPath.row]]];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSArray * arr= @[@"ChangeUserInfoController",
+                     @"MyTicketController",
+                     @"AccountManagementController"];
+    [self pushToController:arr[indexPath.row]
+            WithStoyBordID:@"Main"
+                  WithForm:self
+                  WithInfo:@{}];
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 52;
 }
-
+//左边按钮
 - (void)touchLeftBtn{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

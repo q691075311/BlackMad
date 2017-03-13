@@ -42,7 +42,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pas-l0-5sP">
-                    <rect key="frame" x="150" y="34" width="200" height="27"/>
+                    <rect key="frame" x="120" y="34" width="260" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -51,8 +51,8 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="bxA-rN-j26" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="AgX-2D-OgJ"/>
-                <constraint firstItem="Pas-l0-5sP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="150" id="Iaq-HO-A2f"/>
-                <constraint firstAttribute="trailing" secondItem="Pas-l0-5sP" secondAttribute="trailing" constant="150" id="R8f-eF-LZr"/>
+                <constraint firstItem="Pas-l0-5sP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="120" id="Iaq-HO-A2f"/>
+                <constraint firstAttribute="trailing" secondItem="Pas-l0-5sP" secondAttribute="trailing" constant="120" id="R8f-eF-LZr"/>
                 <constraint firstItem="bxA-rN-j26" firstAttribute="top" secondItem="Gvv-MV-D1m" secondAttribute="bottom" constant="7" id="RSP-OD-Wq0"/>
                 <constraint firstItem="PiB-K7-Rdv" firstAttribute="top" secondItem="Gvv-MV-D1m" secondAttribute="bottom" constant="7" id="ani-YE-fcA"/>
                 <constraint firstAttribute="bottom" secondItem="Pas-l0-5sP" secondAttribute="bottom" constant="14" id="b2o-au-3uP"/>
