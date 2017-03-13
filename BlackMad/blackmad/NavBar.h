@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UIButton *leftBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rigthBtn;
+@property (nonatomic,assign) BOOL isAppearLineView;//是否隐藏辅助线
 
 @property (nonatomic,assign) id<NavBarDelegate>delegate;
 
