@@ -7,6 +7,8 @@
 //
 
 #import "BaseController.h"
+#import "ChooseLocationView.h"
+#import "CitiesDataTool.h"
 
 @interface ChangeUserInfoController : BaseController
 
@@ -21,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *birthday;//生日
 @property (weak, nonatomic) IBOutlet UILabel *adress;//地址
 
+@property (nonatomic,strong) ChooseLocationView *chooseLocationView;
+@property (nonatomic,strong) UIView  *cover;
 @end
