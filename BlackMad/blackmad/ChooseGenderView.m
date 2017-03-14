@@ -30,7 +30,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.frame = frame;
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
         self.hidden = YES;
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hidden)];
         [self addGestureRecognizer:tap];

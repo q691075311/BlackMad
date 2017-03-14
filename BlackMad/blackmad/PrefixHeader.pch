@@ -13,6 +13,7 @@
 #define DWIDTH [UIScreen mainScreen].bounds.size.width
 #define DHIGTH [UIScreen mainScreen].bounds.size.height
 #define USERDEF [NSUserDefaults standardUserDefaults]
+#define WINDOWS [[[UIApplication sharedApplication] delegate] window]
 #define COLORWITHRGB(R,G,B) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1]
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
