@@ -42,7 +42,7 @@
 
 @end
 
-@interface ChangeUserInfoContainerController()<UITableViewDelegate,UITableViewDataSource>
+@interface ChangeUserInfoContainerController()<UITableViewDelegate,UITableViewDataSource,ChooseGenderDelegate>
 @property (weak, nonatomic) IBOutlet UIView *footView;
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;//保存btn
 
@@ -91,6 +91,7 @@
  */
 - (void)chooseGender{
     ChooseGenderView * view = [[ChooseGenderView alloc] initWithFrame:CGRectMake(0, 0, DWIDTH, DHIGTH)];
+    view.delegate = self;
     [view show];
 }
 /**
@@ -109,8 +110,11 @@
 - (IBAction)saveBtn:(UIButton *)sender {
     NSLog(@"%@%@%@%@",_nickName.text,_gender.text,_birthday.text,_adress.text);
 }
-
-
+#pragma mark--ChooseGenderDelegate
+- (void)selectWithGender:(NSString *)gender{
+    NSLog(@"%@",gender);
+    _gender.text = gender;
+}
 
 @end
 

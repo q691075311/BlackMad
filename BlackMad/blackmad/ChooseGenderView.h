@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ChooseGenderDelegate <NSObject>
+
+- (void)selectWithGender:(NSString *)gender;
+
+@end
+
 @interface ChooseGenderView : UIView
-
+@property (nonatomic,assign) id<ChooseGenderDelegate>delegate;
 - (void)show;
-
 @end
