@@ -13,12 +13,19 @@
 #define BTN_HIGTH 22
 #define BTN_WIDTH 50
 #define BTN_DISTANTS (DWIDTH-(BTN_WIDTH*3))/6
+typedef enum: NSUInteger{
+    allType = 0,
+    hasChangeType = 1,
+    notChangeType = 2
+}barType;
 
 @interface MyTicketController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (nonatomic,strong) UIView * lineView;
 @property (nonatomic,strong) UIButton * lastBtn;//记录上一个Btn
+@property (nonatomic,copy) NSArray * textArr;
+@property (nonatomic,assign) barType touchType;
 @end
 
 @implementation MyTicketController
@@ -32,8 +39,13 @@
     self.tableView.backgroundColor = COLORWITHRGB(238, 238, 238);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navBar.isAppearLineView = YES;
+    self.touchType = allType;
     [self.navBar configNavBarTitle:@"我的券" WithLeftView:@"back" WithRigthView:nil];
     [self addBarButton];
+    _textArr = @[@"3.8女神节，情侣可免费多得一杯哦~另外，单身狗可享6折星巴克女神的眷顾哦，时不待人你还等什么？",
+                 @"3.8女神节，情侣可免费多得一杯哦~另外，单身狗可享6折星巴克女神的眷顾哦，时不待人你还等什么？",
+                 @"肯德基2017年3月会员独享优惠券，优惠码M5，凭券享新奥尔良烤鸡腿堡+香辣鸡腿堡+小食拼盘+九珍果汁饮料2杯 优惠价73元，优惠仅限肯德基WOW会员餐厅堂食享受。",
+                 @".kjsgkshrtgjirkthsh"];
 }
 //添加列表头视图
 - (void)addBarButton{
@@ -66,21 +78,56 @@
     [UIView animateWithDuration:0.3 animations:^{
         _lineView.center = CGPointMake(btn.center.x, btn.center.y+11+3+1);
     }];
+    [self changeBtnTypeWithBtnTag:btn.tag];
     [_lastBtn setTitleColor:COLORWITHRGB(74, 74, 74) forState:UIControlStateNormal];
     [btn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
     _lastBtn = btn;
 }
+- (void)changeBtnTypeWithBtnTag:(NSInteger)tag{
+    switch (tag) {
+        case 0:
+            _touchType = allType;
+            break;
+        case 1:
+            _touchType = hasChangeType;
+            break;
+        case 2:
+            _touchType = notChangeType;
+            break;
+        default:
+            break;
+    }
+    
+}
 #pragma mark--UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 4;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyTicketCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyTicketCell"];
+    cell.ticketInfo.text = _textArr[indexPath.row];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGRect rect = [self getLableRectWithText:_textArr[indexPath.row]];
+    if (rect.size.height < 40) {
+        return 200;
+    }else{
+        return 200+rect.size.height-40;
+    }
+    return 0;
+}
+
+- (CGRect)getLableRectWithText:(NSString *)str{
+    CGRect rect = [str boundingRectWithSize:CGSizeMake(DWIDTH-121, MAXFLOAT)
+                                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+                                                     context:nil];
+    return rect;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -17,6 +17,10 @@
     self.backView.backgroundColor = [UIColor whiteColor];
     self.backView.layer.masksToBounds = YES;
     self.backView.layer.cornerRadius = 5;
+    [self peiCell];
+}
+- (void)peiCell{
+//    self.ticketInfo.text = @"sgkhdskjfsdhlkghdskfghklsdfhgjk";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
