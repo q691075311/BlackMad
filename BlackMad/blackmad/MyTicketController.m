@@ -7,14 +7,18 @@
 //
 
 #import "MyTicketController.h"
+#import "MyTicketCell.h"
+
 
 #define BTN_HIGTH 22
 #define BTN_WIDTH 50
 #define BTN_DISTANTS (DWIDTH-(BTN_WIDTH*3))/6
 
-@interface MyTicketController ()
+@interface MyTicketController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (nonatomic,strong) UIView * lineView;
+@property (nonatomic,strong) UIButton * lastBtn;//记录上一个Btn
 @end
 
 @implementation MyTicketController
@@ -23,10 +27,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = COLORWITHRGB(235, 235, 235);
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = COLORWITHRGB(238, 238, 238);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navBar.isAppearLineView = YES;
     [self.navBar configNavBarTitle:@"我的券" WithLeftView:@"back" WithRigthView:nil];
     [self addBarButton];
 }
+//添加列表头视图
 - (void)addBarButton{
     NSArray * titleArr = @[@"全部",
                            @"已兑换",
@@ -38,9 +47,11 @@
         btn.tag = i;
         btn.titleLabel.font = [UIFont systemFontOfSize:16];
         [btn addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
+        [btn setTitleColor:COLORWITHRGB(74, 74, 74) forState:UIControlStateNormal];
         [btn setTitle:titleArr[i] forState:UIControlStateNormal];
         if (i == 0) {
+            _lastBtn = btn;
+            [btn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
             _lineView = [[UIView alloc] init];
             _lineView.bounds = CGRectMake(0, 0, 20, 2);
             _lineView.backgroundColor = COLORWITHRGB(203, 50, 50);
@@ -49,16 +60,28 @@
         }
         [_headView addSubview:btn];
     }
-    
-    
 }
-
+//改变btn的状态
 - (void)chooseType:(UIButton *)btn{
     [UIView animateWithDuration:0.3 animations:^{
         _lineView.center = CGPointMake(btn.center.x, btn.center.y+11+3+1);
     }];
+    [_lastBtn setTitleColor:COLORWITHRGB(74, 74, 74) forState:UIControlStateNormal];
+    [btn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
+    _lastBtn = btn;
 }
-
+#pragma mark--UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MyTicketCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyTicketCell"];
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

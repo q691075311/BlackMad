@@ -12,6 +12,7 @@
 		4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2E21E702F4A0084ADF6 /* MainheadView.m */; };
 		4B3D9AB61E73AB6600FD5314 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D9AB31E73AB6600FD5314 /* SVProgressHUD.bundle */; };
 		4B3D9AB71E73AB6600FD5314 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3D9AB51E73AB6600FD5314 /* SVProgressHUD.m */; };
+		4B7F2D861E77FA0D00832821 /* MyTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F2D851E77FA0D00832821 /* MyTicketCell.m */; };
 		4B7F8C4C1E6FBF6100686040 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C4B1E6FBF6100686040 /* main.m */; };
 		4B7F8C4F1E6FBF6100686040 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C4E1E6FBF6100686040 /* AppDelegate.m */; };
 		4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C511E6FBF6100686040 /* ViewController.m */; };
@@ -79,6 +80,8 @@
 		4B3D9AB31E73AB6600FD5314 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		4B3D9AB41E73AB6600FD5314 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		4B3D9AB51E73AB6600FD5314 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		4B7F2D841E77FA0D00832821 /* MyTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketCell.h; sourceTree = "<group>"; };
+		4B7F2D851E77FA0D00832821 /* MyTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketCell.m; sourceTree = "<group>"; };
 		4B7F8C471E6FBF6100686040 /* blackmad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blackmad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7F8C4B1E6FBF6100686040 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4B7F8C4D1E6FBF6100686040 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -488,6 +491,8 @@
 				4B8EA2081E72440C0051EC5A /* UserInfoCell.m */,
 				4BA157141E7636BB0087D279 /* InterestCell.h */,
 				4BA157151E7636BB0087D279 /* InterestCell.m */,
+				4B7F2D841E77FA0D00832821 /* MyTicketCell.h */,
+				4B7F2D851E77FA0D00832821 /* MyTicketCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -704,6 +709,7 @@
 				4BCC61C31E7793AC002C7FF9 /* FMDatabaseQueue.m in Sources */,
 				4BA1F02F1E731BA500B4EED4 /* IQNSArray+Sort.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
+				4B7F2D861E77FA0D00832821 /* MyTicketCell.m in Sources */,
 				4BA1F0351E731BA500B4EED4 /* IQKeyboardManager.m in Sources */,
 				4BCC61AD1E77934C002C7FF9 /* AddressView.m in Sources */,
 				4BB0762B1E71427100D8DF4B /* UserInfoController.m in Sources */,
