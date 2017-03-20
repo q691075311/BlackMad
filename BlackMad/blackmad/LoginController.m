@@ -121,6 +121,12 @@ typedef enum :NSUInteger{
     if (_type == userType_Login) {
         //登录成功
 //        [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+        [AFNRequest requestWithDataURL:nil
+                          WithUserName:self.loginPhone.text
+                              WithPwsd:self.pwdField.text
+                          WithComplete:^(NSArray *arr) {
+                              
+                          }];
         [self pushToController:@"InterestController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
     }else if (_type == userType_Registered){
         //注册成功
