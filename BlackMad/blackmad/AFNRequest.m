@@ -15,10 +15,15 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString * str = @"http://116.62.7.43/d/phone/register";
     NSString * url = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSDictionary * dic = @{@"username":userName,
-                           @"password":pwd,
-                           @"regDevice":@"ios"};
-    [manager POST:url parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+    
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:userName forKey:@"username"];
+    [dic setValue:pwd forKey:@"password"];
+    [dic setValue:@"ios" forKey:@"regDevice"];
+    
+    NSString * url1 = [self dictionaryToJson:dic];
+
+    [manager POST:url parameters:url1 progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"%@",uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray * arr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
@@ -27,6 +32,20 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
     }];
+}
+
+//字典转为Json字符串
++ (NSString *)dictionaryToJson:(NSMutableDictionary *)dic
+{
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
+    NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    NSRange range = {0,jsonString.length};
+    [mutStr replaceOccurrencesOfString:@" "withString:@""options:NSLiteralSearch range:range];
+    NSRange range2 = {0,mutStr.length};
+    [mutStr replaceOccurrencesOfString:@"\n"withString:@""options:NSLiteralSearch range:range2];
+    return mutStr;
 }
 
 @end
