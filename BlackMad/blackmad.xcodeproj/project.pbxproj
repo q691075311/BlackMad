@@ -75,6 +75,8 @@
 		4BBB663A1E7FBDFE0076201D /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66231E7FBDFE0076201D /* UIImageView+WebCache.m */; };
 		4BBB663B1E7FBDFE0076201D /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66251E7FBDFE0076201D /* UIView+WebCacheOperation.m */; };
 		4BBB66761E7FC1FC0076201D /* AFNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66751E7FC1FC0076201D /* AFNRequest.m */; };
+		4BBB668B1E7FD15F0076201D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BBB66881E7FD15F0076201D /* SVProgressHUD.bundle */; };
+		4BBB668C1E7FD15F0076201D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */; };
 		4BCC61A11E7792E7002C7FF9 /* AddressItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC61A01E7792E7002C7FF9 /* AddressItem.m */; };
 		4BCC61AB1E77934C002C7FF9 /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC61A51E77934C002C7FF9 /* AddressTableViewCell.m */; };
 		4BCC61AC1E77934C002C7FF9 /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BCC61A61E77934C002C7FF9 /* AddressTableViewCell.xib */; };
@@ -227,6 +229,9 @@
 		4BBB66251E7FBDFE0076201D /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		4BBB66741E7FC1FC0076201D /* AFNRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNRequest.h; sourceTree = "<group>"; };
 		4BBB66751E7FC1FC0076201D /* AFNRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNRequest.m; sourceTree = "<group>"; };
+		4BBB66881E7FD15F0076201D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		4BBB66891E7FD15F0076201D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		4BCC619F1E7792E7002C7FF9 /* AddressItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressItem.h; sourceTree = "<group>"; };
 		4BCC61A01E7792E7002C7FF9 /* AddressItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressItem.m; sourceTree = "<group>"; };
 		4BCC61A41E77934C002C7FF9 /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
@@ -271,6 +276,7 @@
 		4B00A2DA1E702DFC0084ADF6 /* 第三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				4BBB66871E7FD15F0076201D /* SVProgressHUD */,
 				4BBB65F61E7FBDFD0076201D /* AFNetworking */,
 				4BA1F00A1E731BA500B4EED4 /* IQKeyboardManager */,
 				4B00A2DB1E702E1E0084ADF6 /* XRCarouselView */,
@@ -635,6 +641,16 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		4BBB66871E7FD15F0076201D /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				4BBB66881E7FD15F0076201D /* SVProgressHUD.bundle */,
+				4BBB66891E7FD15F0076201D /* SVProgressHUD.h */,
+				4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		4BCC619E1E7792E7002C7FF9 /* AdressModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,6 +789,7 @@
 				4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */,
 				4B8EA2061E7240290051EC5A /* UserInfoView.xib in Resources */,
 				4BCC61AC1E77934C002C7FF9 /* AddressTableViewCell.xib in Resources */,
+				4BBB668B1E7FD15F0076201D /* SVProgressHUD.bundle in Resources */,
 				4B7F8C571E6FBF6100686040 /* Assets.xcassets in Resources */,
 				4BCC61C51E7793AC002C7FF9 /* Info.plist in Resources */,
 				4BA1F03D1E731BA500B4EED4 /* IQKeyboardManager.bundle in Resources */,
@@ -828,6 +845,7 @@
 				4BCC61A11E7792E7002C7FF9 /* AddressItem.m in Sources */,
 				4BCC61C21E7793AC002C7FF9 /* FMDatabasePool.m in Sources */,
 				4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */,
+				4BBB668C1E7FD15F0076201D /* SVProgressHUD.m in Sources */,
 				4B8EA2121E7282940051EC5A /* LoginController.m in Sources */,
 				4BA157291E769BB60087D279 /* ChooseGenderView.m in Sources */,
 				4BBB66271E7FBDFE0076201D /* AFNetworkReachabilityManager.m in Sources */,

@@ -13,7 +13,7 @@
 + (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void (^)(NSArray *))block{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSString * str = @"http://116.62.7.43/d/xx/phone/register";
+    NSString * str = @"http://116.62.7.43/d/phone/register";
     NSString * url = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSDictionary * dic = @{@"username":userName,
                            @"password":pwd,
@@ -25,7 +25,7 @@
         NSLog(@"%@",arr);
         block(arr);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        NSLog(@"%@",error.userInfo);
     }];
 }
 
