@@ -125,15 +125,14 @@ typedef enum :NSUInteger{
         [self pushToController:@"InterestController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
     }else if (_type == userType_Registered){
         [SVProgressHUD show];
-        [AFNRequest requestWithDataURL:nil
+        [AFNRequest requestWithDataURL:registered
                           WithUserName:self.loginPhone.text
                               WithPwsd:self.pwdField.text
                           WithComplete:^(NSArray *arr) {
-                              dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                  [SVProgressHUD dismiss];
-                              });
-                              
+                              NSLog(@"%@",arr);
+                              [SVProgressHUD dismiss];
                           }];
+         
         //注册成功
         _type = userType_Login;
         [self initUI];

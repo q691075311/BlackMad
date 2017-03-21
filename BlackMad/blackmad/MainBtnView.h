@@ -10,11 +10,12 @@
 
 @protocol MainBtnViewDelegate <NSObject>
 
-- (void)touchBtnWithBtn:(UIButton *)btn;
+- (void)touchBtnWithBtn:(UIButton *)btn WithProductID:(int)productID;
 
 @end
 
 @interface MainBtnView : UIView
 @property (nonatomic,assign) id<MainBtnViewDelegate>delegate;
+- (instancetype)initWithFrame:(CGRect)frame WithProductID:(NSArray *)productID WithProductImage:(NSArray *)productImageArr WithProductTitleArr:(NSArray *)productTitleArr;
 
 @end

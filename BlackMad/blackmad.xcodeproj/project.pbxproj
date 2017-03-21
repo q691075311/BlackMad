@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B009CE71E80FC5300BB5B80 /* MainBtnListModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B009CE61E80FC5300BB5B80 /* MainBtnListModle.m */; };
+		4B009CEA1E81258000BB5B80 /* BannerListModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B009CE91E81258000BB5B80 /* BannerListModle.m */; };
 		4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2DD1E702E1E0084ADF6 /* XRCarouselView.m */; };
 		4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */; };
 		4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2E21E702F4A0084ADF6 /* MainheadView.m */; };
@@ -97,6 +99,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B009CE51E80FC5300BB5B80 /* MainBtnListModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainBtnListModle.h; sourceTree = "<group>"; };
+		4B009CE61E80FC5300BB5B80 /* MainBtnListModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainBtnListModle.m; sourceTree = "<group>"; };
+		4B009CE81E81258000BB5B80 /* BannerListModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerListModle.h; sourceTree = "<group>"; };
+		4B009CE91E81258000BB5B80 /* BannerListModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerListModle.m; sourceTree = "<group>"; };
 		4B00A2DC1E702E1E0084ADF6 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		4B00A2DD1E702E1E0084ADF6 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XRPlaceholder.png; sourceTree = "<group>"; };
@@ -375,6 +381,10 @@
 		4B7F8C631E6FE08B00686040 /* Modle */ = {
 			isa = PBXGroup;
 			children = (
+				4B009CE51E80FC5300BB5B80 /* MainBtnListModle.h */,
+				4B009CE61E80FC5300BB5B80 /* MainBtnListModle.m */,
+				4B009CE81E81258000BB5B80 /* BannerListModle.h */,
+				4B009CE91E81258000BB5B80 /* BannerListModle.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -823,6 +833,7 @@
 				4BE874661E80C415004F174E /* UIImage+MultiFormat.m in Sources */,
 				4BA157131E762E2E0087D279 /* InterestController.m in Sources */,
 				4BCC61C11E7793AC002C7FF9 /* FMDatabaseAdditions.m in Sources */,
+				4B009CE71E80FC5300BB5B80 /* MainBtnListModle.m in Sources */,
 				4BCC61AE1E77934C002C7FF9 /* ChooseLocationView.m in Sources */,
 				4BCC61C01E7793AC002C7FF9 /* FMDatabase.m in Sources */,
 				4BBB66291E7FBDFE0076201D /* AFURLRequestSerialization.m in Sources */,
@@ -866,6 +877,7 @@
 				4BE8745F1E80C415004F174E /* SDWebImageDecoder.m in Sources */,
 				4BE8746A1E80C415004F174E /* UIView+WebCacheOperation.m in Sources */,
 				4BCC61C31E7793AC002C7FF9 /* FMDatabaseQueue.m in Sources */,
+				4B009CEA1E81258000BB5B80 /* BannerListModle.m in Sources */,
 				4BA1F02F1E731BA500B4EED4 /* IQNSArray+Sort.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
 				4B7F2D861E77FA0D00832821 /* MyTicketCell.m in Sources */,
