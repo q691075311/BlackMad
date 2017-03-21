@@ -76,8 +76,8 @@
 		4BCC61C91E7793DB002C7FF9 /* CitiesDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC61C81E7793DB002C7FF9 /* CitiesDataTool.m */; };
 		4BCC61CB1E779492002C7FF9 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCC61CA1E779492002C7FF9 /* libsqlite3.0.tbd */; };
 		4BCC61CD1E779538002C7FF9 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BCC61CC1E779538002C7FF9 /* Cities.json */; };
-		4BE872DD1E80BF3A004F174E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE872DC1E80BF3A004F174E /* MapKit.framework */; };
-		4BE872DF1E80BF4B004F174E /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE872DE1E80BF4B004F174E /* ImageIO.framework */; };
+		4BE874371E80C27A004F174E /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE872DE1E80BF4B004F174E /* ImageIO.framework */; };
+		4BE874381E80C282004F174E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE872DC1E80BF3A004F174E /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -221,8 +221,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BE872DF1E80BF4B004F174E /* ImageIO.framework in Frameworks */,
-				4BE872DD1E80BF3A004F174E /* MapKit.framework in Frameworks */,
+				4BE874381E80C282004F174E /* MapKit.framework in Frameworks */,
+				4BE874371E80C27A004F174E /* ImageIO.framework in Frameworks */,
 				4BCC61CB1E779492002C7FF9 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -894,7 +894,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/blackmad/PrefixHeader.pch";
 				INFOPLIST_FILE = blackmad/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blackmad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -911,7 +911,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/blackmad/PrefixHeader.pch";
 				INFOPLIST_FILE = blackmad/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blackmad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
