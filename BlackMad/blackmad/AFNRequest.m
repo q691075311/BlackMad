@@ -15,12 +15,15 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     //请求URL
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSDictionary * dic = @{@"username":userName,
+                           @"password":pwd,
+                          @"regDevice":@"ios"};
+    NSString * parameter = [self dictionaryToJson:dic];
     //发起请求
-    [manager POST:url parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:url parameters:parameter progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray * arr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",arr);
         block(arr);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
@@ -63,7 +66,7 @@
     
 }
 //字典转为Json字符串
-+ (NSString *)dictionaryToJson:(NSMutableDictionary *)dic
++ (NSString *)dictionaryToJson:(NSDictionary *)dic
 {
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];

@@ -35,5 +35,5 @@
  *
  *  @return
  */
-+ (NSString *)dictionaryToJson:(NSMutableDictionary *)dic;
++ (NSString *)dictionaryToJson:(NSDictionary *)dic;
 @end
