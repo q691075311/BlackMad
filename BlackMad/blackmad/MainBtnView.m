@@ -9,6 +9,14 @@
 #import "MainBtnView.h"
 #define VIEWWIDTH ([UIScreen mainScreen].bounds.size.width-4)/5
 #define VIEWHIGTH 88
+
+@interface MainBtnView()
+@property (nonatomic,copy)NSArray * productImageArr;//图片数组
+@property (nonatomic,copy)NSArray * productTitleArr;//Title数组
+@property (nonatomic,copy)NSArray * productIDArr;//产品类型ID
+@property (nonatomic,strong) UILabel * lastLabel;//记录最后点击的label
+@end
+
 @implementation MainBtnView
 
 /*
@@ -18,48 +26,57 @@
     // Drawing code
 }
 */
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame WithProductID:(NSArray *)productID WithProductImage:(NSArray *)productImageArr WithProductTitleArr:(NSArray *)productTitleArr{
     self = [super initWithFrame:frame];
     if (self) {
-        self.frame = frame;
+        _productIDArr = productID;
+        _productImageArr = productImageArr;
+        _productTitleArr = productTitleArr;
         [self loadViewBtn];
     }
     return self;
 }
 
-
 - (void)loadViewBtn{
-    for (int i = 0; i<5; i++) {
+    UIScrollView * scrollView = [self addScrollView];
+    for (int i = 0; i<_productTitleArr.count; i++) {
         UIView * view =[[UIView alloc] initWithFrame:CGRectMake(i*(VIEWWIDTH+1), 0, VIEWWIDTH, VIEWHIGTH)];
         view.backgroundColor = [UIColor whiteColor];
         [self addComponentWithView:view WithIndex:i];
-        [self addSubview:view];
+        [scrollView addSubview:view];
     }
 }
+- (UIScrollView *)addScrollView{
+    UIScrollView * scrollView = [[UIScrollView alloc] init];
+    scrollView.frame = CGRectMake(0, 0, DWIDTH, VIEWHIGTH);
+    scrollView.contentSize = CGSizeMake(VIEWWIDTH * _productImageArr.count + _productImageArr.count-1, VIEWHIGTH);
+    scrollView.bounces = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    [self addSubview:scrollView];
+    return scrollView;
+}
 - (void)addComponentWithView:(UIView *)view WithIndex:(int)i{
-    NSArray * titleArr = @[@"全部",
-                           @"银行金融",
-                           @"休闲娱乐",
-                           @"体育运动",
-                           @"其他"];
-    NSArray * imageArr = @[@"all",
-                           @"Finance",
-                           @"entertainment",
-                           @"sport",
-                           @"other"];
+    
     //添加image
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",imageArr[i]]]];
+    UIImageView * imageView = [[UIImageView alloc] init];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,_productImageArr[i]]]];
     imageView.bounds = CGRectMake(0, 0, 42, 42);
     imageView.center = CGPointMake(view.bounds.size.width/2, 31);
     [view addSubview:imageView];
     //添加lable
     UILabel * lable = [[UILabel alloc] init];
-    lable.text = titleArr[i];
+    lable.tag = 200+i;
+    lable.text = _productTitleArr[i];
     lable.center = CGPointMake(view.bounds.size.width/2, 68);
     lable.bounds = CGRectMake(0, 0, 60, 20);
     lable.textAlignment = NSTextAlignmentCenter;
     lable.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
-    lable.textColor = [UIColor colorWithRed:74/255.0 green:74/255.0 blue:74/255.0 alpha:1/1.0];
+    if (i == 0) {
+        lable.textColor = COLORWITHRGB(203, 50, 50);
+        _lastLabel = lable;
+    }else{
+        lable.textColor = COLORWITHRGB(74, 74, 74);
+    }
     [view addSubview:lable];
     //添加btn
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -71,8 +88,13 @@
     [view addSubview:btn];
 }
 - (void)clickBtn:(UIButton *)btn{
-    if (_delegate && [_delegate respondsToSelector:@selector(touchBtnWithBtn:)]) {
-        [_delegate touchBtnWithBtn:btn];
+    _lastLabel.textColor = COLORWITHRGB(74, 74, 74);
+    NSInteger tag = btn.tag+100;
+    UILabel * label = (UILabel *)[self viewWithTag:tag];
+    label.textColor = COLORWITHRGB(203, 50, 50);
+    _lastLabel = label;
+    if (_delegate && [_delegate respondsToSelector:@selector(touchBtnWithBtn:WithProductID:)]) {
+        [_delegate touchBtnWithBtn:btn WithProductID:_productIDArr[btn.tag-100]];
     }
 }
 

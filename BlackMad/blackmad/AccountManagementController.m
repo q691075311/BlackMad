@@ -22,7 +22,7 @@
     self.navBar.isAppearLineView = YES;
     [self.navBar configNavBarTitle:@"账户管理" WithLeftView:@"back" WithRigthView:nil];
     _outLoginBtn.layer.masksToBounds = YES;
-    _outLoginBtn.layer.cornerRadius = YES;
+    _outLoginBtn.layer.cornerRadius = 24;
     self.view.backgroundColor = COLORWITHRGB(237, 236, 237);
 }
 

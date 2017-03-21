@@ -11,6 +11,7 @@
 #import "BaseController.h"
 #import "SVProgressHUD.h"
 #import "AFNRequest.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 #define DWIDTH [UIScreen mainScreen].bounds.size.width
 #define DHIGTH [UIScreen mainScreen].bounds.size.height
 #define USERDEF [NSUserDefaults standardUserDefaults]
@@ -18,5 +19,27 @@
 #define COLORWITHRGB(R,G,B) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1]
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+/**
+ *  测试接口
+ */
+#define BASEURL @"http://116.62.7.43/d"
+//图片的URL
+#define IMAGEURL @"http://116.62.7.43"
+//注册
+#define registered @"/phone/register"
+//产品类型列表
+#define productList @"/phone/productType/list"
+//首页-banner产品列表
+#define banner @"/phone/product/bannerList"
+
+
+
+/**
+ *  生产接口
+ */
+
+
+
 
 #endif /* PrefixHeader_pch */

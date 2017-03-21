@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "30F88B9641FF472EC4CF0592CB4EB8A19950BAFF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "e196dc7c-fdc2-4e73-8866-b24c4a4871d1++4107" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "e196dc7c-fdc2-4e73-8866-b24c4a4871d1++4107" : 0,
+    "30F88B9641FF472EC4CF0592CB4EB8A19950BAFF" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "32C1CE9A-8BEF-408D-AF81-B9C7D68BD7DA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "e196dc7c-fdc2-4e73-8866-b24c4a4871d1++4107" : "BlackMad\/BlackMad\/blackmad\/AFNetworking\/SDWebImage\/",
+    "30F88B9641FF472EC4CF0592CB4EB8A19950BAFF" : "BlackMad\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "blackmad",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BlackMad\/blackmad.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/q691075311\/BlackMad.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "30F88B9641FF472EC4CF0592CB4EB8A19950BAFF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/192.168.6.236\/res",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "e196dc7c-fdc2-4e73-8866-b24c4a4871d1++4107"
+    }
+  ]
+}
