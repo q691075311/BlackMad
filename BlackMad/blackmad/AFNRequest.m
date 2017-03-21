@@ -15,15 +15,15 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString * str = @"http://116.62.7.43/d/phone/register";
     NSString * url = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    
+    //设置参数
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
     [dic setValue:userName forKey:@"username"];
     [dic setValue:pwd forKey:@"password"];
     [dic setValue:@"ios" forKey:@"regDevice"];
-    
-    NSString * url1 = [self dictionaryToJson:dic];
-
-    [manager POST:url parameters:url1 progress:^(NSProgress * _Nonnull uploadProgress) {
+    //字典转为Json字符串
+    NSString * parameters = [self dictionaryToJson:dic];
+    //发起请求
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"%@",uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray * arr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
@@ -32,6 +32,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
     }];
+    
 }
 
 //字典转为Json字符串
@@ -39,6 +40,7 @@
 {
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
+    //去除Json字符串中的换行和空格
     NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
     NSRange range = {0,jsonString.length};
