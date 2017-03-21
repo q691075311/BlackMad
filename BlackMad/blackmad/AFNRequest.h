@@ -15,4 +15,5 @@
  */
 + (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void(^)(NSArray *arr))block;
 
++ (NSString *)dictionaryToJson:(NSMutableDictionary *)dic;
 @end
