@@ -21,9 +21,9 @@
     [dic setValue:pwd forKey:@"password"];
     [dic setValue:@"ios" forKey:@"regDevice"];
     
-    NSString * url1 = [self dictionaryToJson:dic];
+    NSString * parameters = [self dictionaryToJson:dic];
 
-    [manager POST:url parameters:url1 progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"%@",uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray * arr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
