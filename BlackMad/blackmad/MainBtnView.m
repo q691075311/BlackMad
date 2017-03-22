@@ -7,8 +7,7 @@
 //
 
 #import "MainBtnView.h"
-#define VIEWWIDTH ([UIScreen mainScreen].bounds.size.width-4)/5
-#define VIEWHIGTH 88
+
 
 @interface MainBtnView()
 @property (nonatomic,copy)NSArray * productImageArr;//图片数组

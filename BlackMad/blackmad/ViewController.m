@@ -15,7 +15,7 @@
 #import "MainBtnListModle.h"
 #import "BannerListModle.h"
 #import "BlackWebController.h"
-#define VIEWWIDTH ([UIScreen mainScreen].bounds.size.width-4)/5
+
 @interface ViewController ()<MainBtnViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet XRCarouselView *XRCarouselView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
