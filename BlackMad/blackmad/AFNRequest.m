@@ -13,6 +13,7 @@
 + (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void (^)(NSArray *))block{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json;charset=utf-8"forHTTPHeaderField:@"Content-Type"];
     //请求URL
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSDictionary * dic = @{@"username":userName,
@@ -73,10 +74,6 @@
     //去除Json字符串中的换行和空格
     NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
-    NSRange range = {0,jsonString.length};
-    [mutStr replaceOccurrencesOfString:@" "withString:@""options:NSLiteralSearch range:range];
-    NSRange range2 = {0,mutStr.length};
-    [mutStr replaceOccurrencesOfString:@"\n"withString:@""options:NSLiteralSearch range:range2];
     return mutStr;
 }
 

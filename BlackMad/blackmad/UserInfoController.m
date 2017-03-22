@@ -69,6 +69,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 52;
 }
+
 //左边按钮
 - (void)touchLeftBtn{
     [self.navigationController popViewControllerAnimated:YES];

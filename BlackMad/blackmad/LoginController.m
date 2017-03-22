@@ -110,18 +110,21 @@ typedef enum :NSUInteger{
  *  @param sender
  */
 - (IBAction)login:(UIButton *)sender {
-//    if (_loginPhone.text.length != 11) {
-//        [SVProgressHUD showErrorWithStatus:@"输入正确的手机号"];
-//        return;
-//    }
-//    if (_pwdField.text.length < 6 || _pwdField.text.length > 18) {
-//        [SVProgressHUD showErrorWithStatus:@"请输入密码（6-18位字符）"];
-//        return;
-//    }
+    if (_loginPhone.text.length != 11) {
+        [SVProgressHUD showErrorWithStatus:@"输入正确的手机号"];
+        return;
+    }
+    if (_pwdField.text.length < 6 || _pwdField.text.length > 18) {
+        [SVProgressHUD showErrorWithStatus:@"请输入密码（6-18位字符）"];
+        return;
+    }
     if (_type == userType_Login) {
-        //登录成功
-//        [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
         
+        
+        
+        //登录成功跳首页
+        [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+        //登录成功跳兴趣爱好
         [self pushToController:@"InterestController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
     }else if (_type == userType_Registered){
         [SVProgressHUD show];

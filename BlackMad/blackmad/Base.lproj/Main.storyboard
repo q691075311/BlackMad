@@ -208,6 +208,40 @@
             </objects>
             <point key="canvasLocation" x="2384.5" y="1068.5"/>
         </scene>
+        <!--Black Web Controller-->
+        <scene sceneID="erd-Ra-l70">
+            <objects>
+                <viewController storyboardIdentifier="BlackWebController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jlg-9c-b24" customClass="BlackWebController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SHL-0S-vpr"/>
+                        <viewControllerLayoutGuide type="bottom" id="dkN-ow-6Jh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nha-qd-db8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOg-7w-Vw1">
+                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IOg-7w-Vw1" secondAttribute="trailing" id="Zlz-1p-K3K"/>
+                            <constraint firstItem="dkN-ow-6Jh" firstAttribute="top" secondItem="IOg-7w-Vw1" secondAttribute="bottom" id="eJP-gv-r1G"/>
+                            <constraint firstItem="IOg-7w-Vw1" firstAttribute="leading" secondItem="nha-qd-db8" secondAttribute="leading" id="qTS-pX-qG6"/>
+                            <constraint firstItem="IOg-7w-Vw1" firstAttribute="top" secondItem="SHL-0S-vpr" secondAttribute="bottom" constant="35" id="wiY-kN-4jb"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="webView" destination="IOg-7w-Vw1" id="erg-vF-6Qf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1c5-Tb-YsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2788.5" y="1068.5"/>
+        </scene>
         <!--Change User Info Container Controller-->
         <scene sceneID="adl-mQ-gmT">
             <objects>

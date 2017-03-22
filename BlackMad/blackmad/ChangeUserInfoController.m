@@ -10,7 +10,8 @@
 #import "ChooseGenderView.h"
 #import "ChooseBirthdayView.h"
 #import "ChooseAdressView.h"
-
+#import "ChooseHeadTypeView.h"
+#import <AVFoundation/AVFoundation.h>
 
 
 @interface ChangeUserInfoController ()
@@ -45,10 +46,10 @@
 
 @end
 
-@interface ChangeUserInfoContainerController()<UITableViewDelegate,UITableViewDataSource,ChooseGenderDelegate,ChooseBirthdayDelegate,UIGestureRecognizerDelegate>
+@interface ChangeUserInfoContainerController()<UITableViewDelegate,UITableViewDataSource,ChooseGenderDelegate,ChooseBirthdayDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ChooseHeadTypeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *footView;
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;//保存btn
-
+@property (nonatomic,strong) UIImagePickerController * imagePickController;
 
 @end
 
@@ -93,7 +94,43 @@
  *  选择头像
  */
 - (void)chooseHeadImage{
+    ChooseHeadTypeView * headTypeView = [[ChooseHeadTypeView alloc] initWithFrame:CGRectMake(0, 0, DWIDTH, DHIGTH)];
+    headTypeView.delegate = self;
+    [headTypeView show];
+    _imagePickController = [[UIImagePickerController alloc] init];
+    _imagePickController.delegate = self;
+    _imagePickController.allowsEditing= YES;
+}
+#pragma mark--ChooseHeadTypeViewDelegate
+//选择相机
+- (void)chooseImageForCamera{
+    NSString *mediaType = AVMediaTypeVideo;//读取媒体类型
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];//读取设备授权状态
+    if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied){
+        NSString *errorStr = @"应用相机权限受限,请在设置中启用";
+        [SVProgressHUD showErrorWithStatus:errorStr];
+        return;
+    }
     
+    _imagePickController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:_imagePickController animated:YES completion:^{
+        
+    }];
+}
+//选择图库
+- (void)chooseImageForPhotoLibrary{
+    _imagePickController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:_imagePickController animated:YES completion:^{
+        
+    }];
+}
+#pragma mark--UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [_imagePickController dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"%@",info);
+        // 获取点击的图片
+        _headImage.image = [info objectForKey:UIImagePickerControllerEditedImage];
+    }];
 }
 /**
  *  选择性别

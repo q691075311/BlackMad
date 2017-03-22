@@ -14,8 +14,8 @@
 #import "UserInfoController.h"
 #import "MainBtnListModle.h"
 #import "BannerListModle.h"
+#import "BlackWebController.h"
 
-#define VIEWWIDTH ([UIScreen mainScreen].bounds.size.width-4)/5
 @interface ViewController ()<MainBtnViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet XRCarouselView *XRCarouselView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -104,6 +104,13 @@
     _XRCarouselView.changeMode = ChangeModeDefault;
     _XRCarouselView.imageClickBlock = ^(NSInteger index){
         NSLog(@"点击了第%ld张图",(long)index);
+        BannerListModle * ban = _bannerListArr[index];
+        NSLog(@"%@",ban.bannerWapLink);
+        [self pushToController:@"BlackWebController"
+                WithStoyBordID:@"Main"
+                      WithForm:self
+                      WithInfo:@{@"webviewURL":ban.bannerWapLink}];
+        
     };
 }
 #pragma mark--UITableViewDataSource
