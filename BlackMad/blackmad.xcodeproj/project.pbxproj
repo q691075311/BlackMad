@@ -22,6 +22,7 @@
 		4B7F8C6D1E6FE1F700686040 /* NavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C6C1E6FE1F700686040 /* NavBar.m */; };
 		4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7F8C6E1E6FE2B400686040 /* NavBar.xib */; };
 		4B7F8C751E6FF51300686040 /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C741E6FF51300686040 /* BaseController.m */; };
+		4B8906A61E81676D006D9A4A /* AFNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66751E7FC1FC0076201D /* AFNRequest.m */; };
 		4B8EA2041E7240030051EC5A /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2031E7240030051EC5A /* UserInfoView.m */; };
 		4B8EA2061E7240290051EC5A /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B8EA2051E7240290051EC5A /* UserInfoView.xib */; };
 		4B8EA2091E72440C0051EC5A /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2081E72440C0051EC5A /* UserInfoCell.m */; };
@@ -60,7 +61,6 @@
 		4BBB66291E7FBDFE0076201D /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB65FF1E7FBDFD0076201D /* AFURLRequestSerialization.m */; };
 		4BBB662A1E7FBDFE0076201D /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66011E7FBDFD0076201D /* AFURLResponseSerialization.m */; };
 		4BBB662B1E7FBDFE0076201D /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66031E7FBDFD0076201D /* AFURLSessionManager.m */; };
-		4BBB66761E7FC1FC0076201D /* AFNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66751E7FC1FC0076201D /* AFNRequest.m */; };
 		4BBB668B1E7FD15F0076201D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BBB66881E7FD15F0076201D /* SVProgressHUD.bundle */; };
 		4BBB668C1E7FD15F0076201D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */; };
 		4BCC61A11E7792E7002C7FF9 /* AddressItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC61A01E7792E7002C7FF9 /* AddressItem.m */; };
@@ -829,7 +829,6 @@
 				4BCC61AB1E77934C002C7FF9 /* AddressTableViewCell.m in Sources */,
 				4BA1F03C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				4BA1F0391E731BA500B4EED4 /* IQPreviousNextView.m in Sources */,
-				4BBB66761E7FC1FC0076201D /* AFNRequest.m in Sources */,
 				4BE874661E80C415004F174E /* UIImage+MultiFormat.m in Sources */,
 				4BA157131E762E2E0087D279 /* InterestController.m in Sources */,
 				4BCC61C11E7793AC002C7FF9 /* FMDatabaseAdditions.m in Sources */,
@@ -838,6 +837,7 @@
 				4BCC61C01E7793AC002C7FF9 /* FMDatabase.m in Sources */,
 				4BBB66291E7FBDFE0076201D /* AFURLRequestSerialization.m in Sources */,
 				4BCC61C41E7793AC002C7FF9 /* FMResultSet.m in Sources */,
+				4B8906A61E81676D006D9A4A /* AFNRequest.m in Sources */,
 				4BE874651E80C415004F174E /* UIImage+GIF.m in Sources */,
 				4B8EA20D1E7278200051EC5A /* LaunchController.m in Sources */,
 				4BA1572F1E769BEA0087D279 /* ChooseAdressView.m in Sources */,
