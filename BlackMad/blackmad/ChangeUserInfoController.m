@@ -12,7 +12,7 @@
 #import "ChooseAdressView.h"
 #import "ChooseHeadTypeView.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "UserInfo.h"
 
 @interface ChangeUserInfoController ()
 @property (nonatomic,strong) ChangeUserInfoContainerController * containaVC;

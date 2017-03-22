@@ -9,7 +9,8 @@
 #import "LoginController.h"
 #import "IQKeyboardReturnKeyHandler.h"
 #import "ViewController.h"
-
+#import "UserInfo.h"
+#import "LoginUser.h"
 
 typedef enum :NSUInteger{
     userType_Login,
@@ -110,42 +111,87 @@ typedef enum :NSUInteger{
  *  @param sender
  */
 - (IBAction)login:(UIButton *)sender {
-    if (_loginPhone.text.length != 11) {
+    if (_loginPhone.text.length != 11 || _loginPhone.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"输入正确的手机号"];
         return;
     }
-    if (_pwdField.text.length < 6 || _pwdField.text.length > 18) {
+    if (_pwdField.text.length < 6 || _pwdField.text.length > 18 || _pwdField.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请输入密码（6-18位字符）"];
         return;
     }
     if (_type == userType_Login) {
-        
-        
-        
-        //登录成功跳首页
-        [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
-        //登录成功跳兴趣爱好
-        [self pushToController:@"InterestController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+        [self loginRequest];
     }else if (_type == userType_Registered){
-        [SVProgressHUD show];
-        [AFNRequest requestWithDataURL:registered
-                          WithUserName:self.loginPhone.text
-                              WithPwsd:self.pwdField.text
-                          WithComplete:^(NSArray *arr) {
-                              NSLog(@"%@",arr);
-                              [SVProgressHUD dismiss];
-                          }];
-         
-        //注册成功
-        _type = userType_Login;
-        [self initUI];
-        _loginPhone.text = @"";
-        _pwdField.text = @"";
-        [self.view endEditing:YES];
+        [self regRequest];
     }
 }
+//注册请求
+- (void)regRequest{
+    [SVProgressHUD show];
+    [AFNRequest requestWithDataURL:registered
+                      WithUserName:self.loginPhone.text
+                          WithPwsd:self.pwdField.text
+                      WithComplete:^(NSDictionary *dic) {
+                          [SVProgressHUD dismiss];
+                          [SVProgressHUD showSuccessWithStatus:@"注册成功"];
+                          //注册成功
+                          _type = userType_Login;
+                          [self initUI];
+                          _loginPhone.text = @"";
+                          _pwdField.text = @"";
+                          [self.view endEditing:YES];
+                      }];
+}
+//登录请求
+- (void)loginRequest{
+    [AFNRequest requestLoginWithURL:loginURL
+                       WithUserName:self.loginPhone.text
+                           WithPwsd:self.pwdField.text
+                       WithComplete:^(NSDictionary *dic) {
+                           [SVProgressHUD dismiss];
+                           NSLog(@"%@",dic);
+                           NSDictionary * dic1 = dic[@"attribute"];
+                           //判断返回的状态码statusCode
+                           //0--登录成功
+                           //4301--用户不存在
+                           //4302--用户密码错误
+                           if (![dic[@"statusCode"] isEqualToString:@"0"]) {
+                               NSString * errorStr = dic[@"statusMessage"];
+                               [SVProgressHUD showErrorWithStatus:errorStr];
+                           }else{
+                               //清空用户信息
+                               [LoginUser shareUser].user = nil;
+                               [LoginUser shareUser].token = nil;
+                               
+                               [LoginUser shareUser].uid = (long)dic1[@"uid"];
+                               [LoginUser shareUser].token = (NSString *)dic1[@"token"];
+                               [LoginUser shareUser].isSelectInterest = (BOOL)dic1[@"isSelectInterest "];
+                               //获取用户信息
+                               [self getUserInfoRequest];
+                               
+                           }
+                       }];
+}
+//获取用户信息的请求
+- (void)getUserInfoRequest{
+    long uid = [LoginUser shareUser].uid;
+    NSNumber *num = [NSNumber numberWithLong:uid];
+    [AFNRequest requestUserInfoWithURL:userinfo
+                             WithToken:[LoginUser shareUser].token
+                               WithUid:[NSString stringWithFormat:@"%@",num]
+                          WithComplete:^(NSDictionary *dic) {
+                              //判断是否跳转兴趣页面
+                              if ([LoginUser shareUser].isSelectInterest == NO) {
+                                  //登录成功跳兴趣爱好
+                                  [self pushToController:@"InterestController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+                              }else{
+                                  //登录成功跳首页
+                                  [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+                              }
+                          }];
+}
 /**
- *  注册
+ *  切换注册登录页面
  *
  *  @param sender
  */

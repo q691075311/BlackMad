@@ -13,7 +13,16 @@
 /**
  *  发送注册请求
  */
-+ (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void(^)(NSArray *arr))block;
++ (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void(^)(NSDictionary *dic))block;
+/**
+ *  发送登录请求
+ */
++ (void)requestLoginWithURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void(^)(NSDictionary *dic))block;
+/**
+ *  发送用户信息请求
+ */
++ (void)requestUserInfoWithURL:(NSString *)URL WithToken:(NSString *)token WithUid:(NSString *)uid WithComplete:(void(^)(NSDictionary *dic))block;
+
 /**
  *  发送产品类型请求
  *

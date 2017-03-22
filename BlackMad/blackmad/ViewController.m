@@ -50,13 +50,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = _headView;
     self.navigationController.navigationBar.hidden = YES;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self netWorkRequest];
-    
 }
 
 //加载首页btn的view

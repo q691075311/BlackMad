@@ -97,6 +97,7 @@
             NSLog(@"%@",str);
         }
     }
+    [LoginUser shareUser].isSelectInterest = YES;
     [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
 }
 

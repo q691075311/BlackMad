@@ -12,6 +12,8 @@
 		4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2DD1E702E1E0084ADF6 /* XRCarouselView.m */; };
 		4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */; };
 		4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2E21E702F4A0084ADF6 /* MainheadView.m */; };
+		4B407C101E828F31004B94A6 /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C0F1E828F31004B94A6 /* LoginUser.m */; };
+		4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C121E82AAC6004B94A6 /* UserInfo.m */; };
 		4B7F2D861E77FA0D00832821 /* MyTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F2D851E77FA0D00832821 /* MyTicketCell.m */; };
 		4B7F8C4C1E6FBF6100686040 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C4B1E6FBF6100686040 /* main.m */; };
 		4B7F8C4F1E6FBF6100686040 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C4E1E6FBF6100686040 /* AppDelegate.m */; };
@@ -110,6 +112,10 @@
 		4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XRPlaceholder.png; sourceTree = "<group>"; };
 		4B00A2E11E702F4A0084ADF6 /* MainheadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainheadView.h; sourceTree = "<group>"; };
 		4B00A2E21E702F4A0084ADF6 /* MainheadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainheadView.m; sourceTree = "<group>"; };
+		4B407C0E1E828F31004B94A6 /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
+		4B407C0F1E828F31004B94A6 /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
+		4B407C111E82AAC6004B94A6 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		4B407C121E82AAC6004B94A6 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		4B7F2D841E77FA0D00832821 /* MyTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketCell.h; sourceTree = "<group>"; };
 		4B7F2D851E77FA0D00832821 /* MyTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketCell.m; sourceTree = "<group>"; };
 		4B7F8C471E6FBF6100686040 /* blackmad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blackmad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -313,6 +319,17 @@
 			path = XRCarouselView;
 			sourceTree = "<group>";
 		};
+		4B407C0D1E828F12004B94A6 /* 用户信息 */ = {
+			isa = PBXGroup;
+			children = (
+				4B407C0E1E828F31004B94A6 /* LoginUser.h */,
+				4B407C0F1E828F31004B94A6 /* LoginUser.m */,
+				4B407C111E82AAC6004B94A6 /* UserInfo.h */,
+				4B407C121E82AAC6004B94A6 /* UserInfo.m */,
+			);
+			name = "用户信息";
+			sourceTree = "<group>";
+		};
 		4B7F8C3E1E6FBF6100686040 = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +405,7 @@
 		4B7F8C631E6FE08B00686040 /* Modle */ = {
 			isa = PBXGroup;
 			children = (
+				4B407C0D1E828F12004B94A6 /* 用户信息 */,
 				4B009CE51E80FC5300BB5B80 /* MainBtnListModle.h */,
 				4B009CE61E80FC5300BB5B80 /* MainBtnListModle.m */,
 				4B009CE81E81258000BB5B80 /* BannerListModle.h */,
@@ -890,7 +908,9 @@
 				4BE8745E1E80C415004F174E /* SDWebImageCompat.m in Sources */,
 				4BAF8F2A1E821CDE009FE028 /* BlackWebController.m in Sources */,
 				4BA1F0361E731BA500B4EED4 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				4B407C101E828F31004B94A6 /* LoginUser.m in Sources */,
 				4BA157161E7636BB0087D279 /* InterestCell.m in Sources */,
+				4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */,
 				4BA1F0381E731BA500B4EED4 /* IQBarButtonItem.m in Sources */,
 				4BA1572C1E769BD70087D279 /* ChooseBirthdayView.m in Sources */,
 				4BBB66261E7FBDFE0076201D /* AFHTTPSessionManager.m in Sources */,
