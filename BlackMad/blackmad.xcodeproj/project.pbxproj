@@ -51,6 +51,7 @@
 		4BA1F03B1E731BA500B4EED4 /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1F02A1E731BA500B4EED4 /* IQToolbar.m */; };
 		4BA1F03C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1F02C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m */; };
 		4BA1F03D1E731BA500B4EED4 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BA1F02E1E731BA500B4EED4 /* IQKeyboardManager.bundle */; };
+		4BAF8F2A1E821CDE009FE028 /* BlackWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF8F291E821CDE009FE028 /* BlackWebController.m */; };
 		4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */; };
 		4BB0761F1E70EAA100D8DF4B /* MainBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */; };
 		4BB076231E712DD300D8DF4B /* MainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB076221E712DD300D8DF4B /* MainCell.m */; };
@@ -182,6 +183,8 @@
 		4BA1F02B1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
 		4BA1F02C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		4BA1F02E1E731BA500B4EED4 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		4BAF8F281E821CDE009FE028 /* BlackWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackWebController.h; sourceTree = "<group>"; };
+		4BAF8F291E821CDE009FE028 /* BlackWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackWebController.m; sourceTree = "<group>"; };
 		4BB0761B1E70EA8E00D8DF4B /* MainBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainBtnView.h; sourceTree = "<group>"; };
 		4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainBtnView.m; sourceTree = "<group>"; };
 		4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainBtnView.xib; sourceTree = "<group>"; };
@@ -336,9 +339,9 @@
 				4B7F8C611E6FE08100686040 /* Controller */,
 				4B7F8C4D1E6FBF6100686040 /* AppDelegate.h */,
 				4B7F8C4E1E6FBF6100686040 /* AppDelegate.m */,
-				4BCC61CC1E779538002C7FF9 /* Cities.json */,
 				4B7F8C531E6FBF6100686040 /* Main.storyboard */,
 				4B7F8C561E6FBF6100686040 /* Assets.xcassets */,
+				4BCC61CC1E779538002C7FF9 /* Cities.json */,
 				4B7F8C581E6FBF6100686040 /* LaunchScreen.storyboard */,
 				4B7F8C5B1E6FBF6100686040 /* Info.plist */,
 				4B7F8C761E6FFDFD00686040 /* PrefixHeader.pch */,
@@ -358,6 +361,7 @@
 		4B7F8C611E6FE08100686040 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4BAF8F1E1E82112E009FE028 /* UIWebView */,
 				4B8EA20E1E72823D0051EC5A /* 登录页面 */,
 				4B8EA20A1E7277930051EC5A /* 启动页面 */,
 				4BB076251E713F6F00D8DF4B /* 个人中心 */,
@@ -544,6 +548,15 @@
 				4BA1F02E1E731BA500B4EED4 /* IQKeyboardManager.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4BAF8F1E1E82112E009FE028 /* UIWebView */ = {
+			isa = PBXGroup;
+			children = (
+				4BAF8F281E821CDE009FE028 /* BlackWebController.h */,
+				4BAF8F291E821CDE009FE028 /* BlackWebController.m */,
+			);
+			name = UIWebView;
 			sourceTree = "<group>";
 		};
 		4BB076191E70EA3800D8DF4B /* 首页头视图 */ = {
@@ -869,6 +882,7 @@
 				4BA157201E766C580087D279 /* AccountManagementController.m in Sources */,
 				4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */,
 				4BE8745E1E80C415004F174E /* SDWebImageCompat.m in Sources */,
+				4BAF8F2A1E821CDE009FE028 /* BlackWebController.m in Sources */,
 				4BA1F0361E731BA500B4EED4 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				4BA157161E7636BB0087D279 /* InterestCell.m in Sources */,
 				4BA1F0381E731BA500B4EED4 /* IQBarButtonItem.m in Sources */,
@@ -1012,7 +1026,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/blackmad/PrefixHeader.pch";
 				INFOPLIST_FILE = blackmad/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blackmad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1029,7 +1043,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/blackmad/PrefixHeader.pch";
 				INFOPLIST_FILE = blackmad/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blackmad;
 				PRODUCT_NAME = "$(TARGET_NAME)";

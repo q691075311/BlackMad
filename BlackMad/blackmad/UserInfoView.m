@@ -22,6 +22,7 @@
     if (self) {
         UserInfoView * view = [[[NSBundle mainBundle] loadNibNamed:@"UserInfoView" owner:self options:nil] lastObject];
         self.frame = frame;
+        view.autoresizingMask = self.autoresizingMask;
         return view;
     }
     return self;
