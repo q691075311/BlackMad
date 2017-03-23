@@ -31,17 +31,14 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     self.userName.font = [UIFont fontWithName:@"PingFangSC-Regular" size:17];
-    self.userName.textColor = [UIColor colorWithRed:253/255.0 green:253/255.0 blue:253/255.0 alpha:1/1.0];
+    self.userName.textColor = COLORWITHRGB(253, 253, 253);
     
     self.userPhone.font = [UIFont fontWithName:@"PingFangSC-Regular" size:17];
-    self.userPhone.textColor = [UIColor colorWithRed:253/255.0 green:253/255.0 blue:253/255.0 alpha:1/1.0];
+    self.userPhone.textColor = COLORWITHRGB(253, 253, 253);
     
     self.userImage.layer.masksToBounds = YES;
     self.userImage.layer.cornerRadius = 40;
     
-    self.userImage.image = [UIImage imageNamed:@"XRPlaceholder"];
-    self.userName.text = @"22222";
-    self.userPhone.text = @"333333";
 }
 
 @end

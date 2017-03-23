@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,copy) NSArray *titleArr;
 @property (nonatomic,copy) NSArray *imageArr;
+@property (nonatomic,strong) UserInfoView *headView;
 @end
 
 @implementation UserInfoController
@@ -22,11 +23,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navBar configNavBarTitle:@"个人中心" WithLeftView:@"back" WithRigthView:nil];
+    _headView = [[UserInfoView alloc] initWithFrame:CGRectMake(0, 0, DWIDTH, 140)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1];
-    UserInfoView * headView = [[UserInfoView alloc] initWithFrame:CGRectMake(0, 0, DWIDTH, 140)];
-    _tableView.tableHeaderView = headView;
+    _tableView.tableHeaderView = _headView;
     _tableView.tableFooterView.frame = CGRectZero;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _titleArr = @[@"完善个人信息",
@@ -35,21 +36,16 @@
     _imageArr= @[@"userinfo",
                           @"myjuan",
                           @"userguanli"];
-    
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getUserInfoRequest];
 }
 #pragma mark--UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    /**
-     *  假数据
-     */
-    
-    
-    /**
-     *  假数据
-     */
     UserInfoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UserInfoCell" forIndexPath:indexPath];
     cell.setTitle.text = _titleArr[indexPath.row];
     cell.setImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",_imageArr[indexPath.row]]];
@@ -64,7 +60,6 @@
             WithStoyBordID:@"Main"
                   WithForm:self
                   WithInfo:@{}];
-    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 52;
@@ -73,6 +68,26 @@
 //左边按钮
 - (void)touchLeftBtn{
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark--网络请求
+//获取用户信息的请求
+- (void)getUserInfoRequest{
+    
+    [AFNRequest requestUserInfoWithURL:userinfo
+                             WithToken:[LoginUser shareUser].token
+                               WithUid:[LoginUser shareUser].uid
+                          WithComplete:^(NSDictionary *dic) {
+                              NSLog(@"%@",dic);
+                              NSDictionary * dic1 = dic[@"attribute"];
+                              NSDictionary * dic2 = dic1[@"item"];
+                              UserInfo * user = [[UserInfo alloc] initWithDic:dic2];
+                              [LoginUser shareUser].user = user;
+                              NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,[LoginUser shareUser].user.headImage]];
+                              //设置头像 昵称  电话
+                              [_headView.userImage sd_setImageWithURL:headURL placeholderImage:[UIImage imageNamed:@"headimage"]];
+                              _headView.userName.text = [LoginUser shareUser].user.nickname;
+                              _headView.userPhone.text = [USERDEF objectForKey:@"username"];
+                          }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

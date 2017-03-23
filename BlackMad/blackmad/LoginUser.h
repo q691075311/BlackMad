@@ -20,11 +20,11 @@
 /**
  *  用户的ID
  */
-@property (nonatomic,assign) long uid;
+@property (nonatomic,copy) NSString * uid;
 /**
  *  用户是否需要兴趣调查
  */
-@property (nonatomic,assign) BOOL isSelectInterest ;
+@property (nonatomic,strong) NSNumber * isSelectInterest ;
 
 + (LoginUser *)shareUser;
 

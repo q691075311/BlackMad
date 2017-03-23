@@ -33,8 +33,8 @@ static LoginUser * loginUser = nil;
     if (self) {
         self.user = [[UserInfo alloc] init];
         self.token = [[NSString alloc] init];
-        self.uid = -1;
-        self.isSelectInterest = NO;
+        self.uid = [[NSString alloc] init];
+        self.isSelectInterest = [[NSNumber alloc] init];
     }
     return self;
 }
