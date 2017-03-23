@@ -67,12 +67,31 @@
     self.tableView.tableFooterView = self.footView;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.headImage.layer.masksToBounds = YES;
+    self.headImage.layer.cornerRadius = 26;
     
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self getUserInfoRequest];
     
-    
+}
+//更新界面内容
+- (void)updataUI{
+    NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,[LoginUser shareUser].user.headImage]];
+    NSString * gender;
+    if ([[LoginUser shareUser].user.sex isEqualToString:@"1"]) {
+        gender = @"男";
+    }else if ([[LoginUser shareUser].user.sex isEqualToString:@"2"]){
+        gender = @"女";
+    }else{
+        gender = @"保密";
+    }
+    [_headImage sd_setImageWithURL:headURL placeholderImage:[UIImage imageNamed:@"headimage"]];
+    _nickName.text = [LoginUser shareUser].user.nickname;
+    _gender.text = gender;
+    _birthday.text = [LoginUser shareUser].user.birthday;
+    _adress.text = [LoginUser shareUser].user.city;
 }
 #pragma mark--UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -228,7 +247,21 @@
 }
 
 #pragma mark--网络请求
-
+//获取用户信息的请求
+- (void)getUserInfoRequest{
+    [AFNRequest requestUserInfoWithURL:userinfo
+                             WithToken:[LoginUser shareUser].token
+                               WithUid:[LoginUser shareUser].uid
+                          WithComplete:^(NSDictionary *dic) {
+                              NSLog(@"%@",dic);
+                              NSDictionary * dic1 = dic[@"attribute"];
+                              NSDictionary * dic2 = dic1[@"item"];
+                              UserInfo * user = [[UserInfo alloc] initWithDic:dic2];
+                              [LoginUser shareUser].user = user;
+                              //设置页面属性
+                              [self updataUI];
+                          }];
+}
 
 
 @end
