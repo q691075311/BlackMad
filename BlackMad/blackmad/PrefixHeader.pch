@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 #import "AFNRequest.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "LoginUser.h"
 #define DWIDTH [UIScreen mainScreen].bounds.size.width
 #define DHIGTH [UIScreen mainScreen].bounds.size.height
 #define USERDEF [NSUserDefaults standardUserDefaults]
@@ -30,11 +31,14 @@
 #define IMAGEURL @"http://116.62.7.43"
 //注册
 #define registered @"/phone/register"
+//登录
+#define loginURL @"/phone/login"
 //产品类型列表
 #define productList @"/phone/productType/list"
 //首页-banner产品列表
 #define banner @"/phone/product/bannerList"
-
+//获取用户信息
+#define userinfo @"/phone/user/detail"
 
 
 /**
