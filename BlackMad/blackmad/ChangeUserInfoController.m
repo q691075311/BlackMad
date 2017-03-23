@@ -69,6 +69,11 @@
     self.tableView.dataSource = self;
     
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    
+}
 #pragma mark--UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 72;
@@ -174,10 +179,8 @@
 #pragma mark--UIGestureRecognizerDelegate
 //return YES to allow both to recognize simultaneously同时
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    
     // locationInView 获取到的是手指点击屏幕实时的坐标点
     CGPoint point = [gestureRecognizer locationInView:gestureRecognizer.view];
-    
     //BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);判断一个CGPoint 是否包含再另一个UIView的CGRect里面,常用与测试给定的对象之间是否重叠
     if (CGRectContainsPoint(_chooseLocationView.frame, point)){
         return NO;
@@ -223,5 +226,10 @@
     }
     return _cover;
 }
+
+#pragma mark--网络请求
+
+
+
 @end
 

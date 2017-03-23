@@ -23,7 +23,22 @@
     [self.navBar configNavBarTitle:@"账户管理" WithLeftView:@"back" WithRigthView:nil];
     _outLoginBtn.layer.masksToBounds = YES;
     _outLoginBtn.layer.cornerRadius = 24;
+    _userAccount.text = [USERDEF objectForKey:@"username"];
     self.view.backgroundColor = COLORWITHRGB(237, 236, 237);
+    
+}
+- (IBAction)outLogin:(UIButton *)sender {
+    [LoginUser shareUser].user = nil;
+    [LoginUser shareUser].uid = nil;
+    [LoginUser shareUser].token = nil;
+    [LoginUser shareUser].isSelectInterest = nil;
+    [USERDEF removeObjectForKey:@"username"];
+    [USERDEF removeObjectForKey:@"pwd"];
+    [USERDEF synchronize];
+    [self pushToController:@"LoginController"
+            WithStoyBordID:@"Main"
+                  WithForm:self
+                  WithInfo:@{}];
 }
 
 - (void)didReceiveMemoryWarning {

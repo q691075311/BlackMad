@@ -41,6 +41,13 @@ typedef enum :NSUInteger{
     [self initUI];
     
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if ([USERDEF objectForKey:@"username"]) {
+        self.loginPhone.text = [USERDEF objectForKey:@"username"];
+        self.pwdField.text = [USERDEF objectForKey:@"pwd"];
+    }
+}
 - (void)initUI{
     if (_type == userType_Login) {
         [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
@@ -151,37 +158,41 @@ typedef enum :NSUInteger{
                            [SVProgressHUD dismiss];
                            NSLog(@"%@",dic);
                            NSDictionary * dic1 = dic[@"attribute"];
-                           //判断返回的状态码statusCode
-                           //0--登录成功
-                           //4301--用户不存在
-                           //4302--用户密码错误
-                           if (![dic[@"statusCode"] isEqualToString:@"0"]) {
-                               NSString * errorStr = dic[@"statusMessage"];
-                               [SVProgressHUD showErrorWithStatus:errorStr];
+                           
+                           
+                           //清空用户信息
+                           [LoginUser shareUser].user = nil;
+                           [LoginUser shareUser].token = nil;
+                           //存储账号密码
+                           [USERDEF setObject:self.loginPhone.text forKey:@"username"];
+                           [USERDEF setObject:self.pwdField.text forKey:@"pwd"];
+                           [USERDEF synchronize];
+                           [LoginUser shareUser].uid = [NSString stringWithFormat:@"%@",dic1[@"uid"]];
+                           [LoginUser shareUser].token = (NSString *)dic1[@"token"];
+                           if ([dic1[@"isSelectInterest"] isEqual:@(0)]) {
+                               //没有接受兴趣调查
+                               [LoginUser shareUser].isSelectInterest = @(0);
                            }else{
-                               //清空用户信息
-                               [LoginUser shareUser].user = nil;
-                               [LoginUser shareUser].token = nil;
-                               
-                               [LoginUser shareUser].uid = (long)dic1[@"uid"];
-                               [LoginUser shareUser].token = (NSString *)dic1[@"token"];
-                               [LoginUser shareUser].isSelectInterest = (BOOL)dic1[@"isSelectInterest "];
-                               //获取用户信息
-                               [self getUserInfoRequest];
-                               
+                               [LoginUser shareUser].isSelectInterest = @(1);
                            }
+                           [self getUserInfoRequest];
                        }];
 }
+
 //获取用户信息的请求
 - (void)getUserInfoRequest{
-    long uid = [LoginUser shareUser].uid;
-    NSNumber *num = [NSNumber numberWithLong:uid];
+    
     [AFNRequest requestUserInfoWithURL:userinfo
                              WithToken:[LoginUser shareUser].token
-                               WithUid:[NSString stringWithFormat:@"%@",num]
+                               WithUid:[LoginUser shareUser].uid
                           WithComplete:^(NSDictionary *dic) {
+                              NSLog(@"%@",dic);
+                              NSDictionary * dic1 = dic[@"attribute"];
+                              NSDictionary * dic2 = dic1[@"item"];
+                              UserInfo * user = [[UserInfo alloc] initWithDic:dic2];
+                              [LoginUser shareUser].user = user;
                               //判断是否跳转兴趣页面
-                              if ([LoginUser shareUser].isSelectInterest == NO) {
+                              if ([[LoginUser shareUser].isSelectInterest isEqual:@(0)]) {
                                   //登录成功跳兴趣爱好
                                   [self pushToController:@"InterestController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
                               }else{

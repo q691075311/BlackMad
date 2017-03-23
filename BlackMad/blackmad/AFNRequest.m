@@ -46,13 +46,42 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        block(dic);
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
     }];
 }
 //发送用户信息请求
 + (void)requestUserInfoWithURL:(NSString *)URL WithToken:(NSString *)token WithUid:(NSString *)uid WithComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json;charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+    //请求URL
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //设置请求头
+    
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:uid forHTTPHeaderField:@"uid"];
+    //发起请求
+    [manager POST:url parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+//发送兴趣列表请求
++ (void)requestInterestWithUrl:(NSString *)URL WithToken:(NSString *)token WithUid:(NSString *)uid WithComplete:(void (^)(NSDictionary * dic))block{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager.requestSerializer setValue:@"application/json;charset=utf-8"forHTTPHeaderField:@"Content-Type"];
@@ -66,11 +95,40 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        block(dic);
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
     }];
     
+}
+//发送保存兴趣的请求
++ (void)requestSaveInterestWithUrl:(NSString *)URL WithToken:(NSString *)token WithUid:(NSString *)uid WithBody:(NSString *)requestBody WithComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    //请求URL
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //设置请求头
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:uid forHTTPHeaderField:@"uid"];
+    //设置请求body
+    NSDictionary * body = @{@"interest":requestBody};
+    NSString * parameters = [self dictionaryToJson:body];
+    //发起请求
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
 }
 //发送产品类型请求
 + (void)requestWithDataURL:(NSString *)URL WithComplete:(void (^)(NSDictionary *dic))block{
@@ -83,8 +141,11 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",dic);
-        block(dic);
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
     }];
@@ -100,8 +161,11 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",dic);
-        block(dic);
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
     }];
@@ -117,5 +181,25 @@
     NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
     return mutStr;
 }
-
+//返回状态判断
++ (BOOL)judgeStatusCodeWithDic:(NSDictionary *)dic{
+    //判断返回的状态码statusCode
+    //0--登录成功
+    //4301--用户不存在
+    //4302--用户密码错误
+    if (![dic[@"statusCode"] isEqualToString:@"0"]) {
+        [SVProgressHUD dismiss];
+        NSString * errorStr = dic[@"statusMessage"];
+        [SVProgressHUD showErrorWithStatus:errorStr];
+        return NO;
+    }else{
+        return YES;
+    }
+}
++ (AFHTTPSessionManager *)getHttpManager{
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager.requestSerializer setValue:@"application/json;charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+    return manager;
+}
 @end

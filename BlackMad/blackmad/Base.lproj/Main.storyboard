@@ -784,6 +784,9 @@
                                 <state key="normal" title="退出登录">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="outLogin:" destination="uBQ-yj-0cy" eventType="touchUpInside" id="KFD-Wf-gR2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
