@@ -69,7 +69,7 @@
     lable.center = CGPointMake(view.bounds.size.width/2, 68);
     lable.bounds = CGRectMake(0, 0, 60, 20);
     lable.textAlignment = NSTextAlignmentCenter;
-    lable.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+    lable.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     if (i == 0) {
         lable.textColor = COLORWITHRGB(203, 50, 50);
         _lastLabel = lable;

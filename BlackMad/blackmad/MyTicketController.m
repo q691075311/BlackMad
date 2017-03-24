@@ -47,6 +47,12 @@ typedef enum: NSUInteger{
                  @"肯德基2017年3月会员独享优惠券，优惠码M5，凭券享新奥尔良烤鸡腿堡+香辣鸡腿堡+小食拼盘+九珍果汁饮料2杯 优惠价73元，优惠仅限肯德基WOW会员餐厅堂食享受。",
                  @".kjsgkshrtgjirkthsh"];
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestMyTicketWithPageNum:@"1"];
+    
+}
 //添加列表头视图
 - (void)addBarButton{
     NSArray * titleArr = @[@"全部",
@@ -129,6 +135,18 @@ typedef enum: NSUInteger{
                                                      context:nil];
     return rect;
 }
+
+#pragma mark--网络请求
+- (void)requestMyTicketWithPageNum:(NSString *)pageNum{
+    [AFNRequest requestMyTicketWithURL:MyTicketURL
+                           WithpageNum:pageNum
+                             WithToken:[LoginUser shareUser].token
+                               WithUID:[LoginUser shareUser].uid
+                          WithComplete:^(NSDictionary *dic) {
+                              NSLog(@"%@",dic);
+                          }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

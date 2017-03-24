@@ -30,7 +30,22 @@
  *  发送保存兴趣的请求
  */
 + (void)requestSaveInterestWithUrl:(NSString *)URL WithToken:(NSString *)token WithUid:(NSString *)uid WithBody:(NSString *)requestBody WithComplete:(void(^)(NSDictionary *dic))block;
-
+/**
+ *  发送产品列表的请求
+ */
++ (void)requestProductListWithURL:(NSString *)URL WithCurrentPage:(NSString *)currentPage WithProductTypeId:(NSString *)productTypeId WithComplete:(void(^)(NSDictionary *dic))block;
+/**
+ *  发送我的券的请求
+ */
++ (void)requestMyTicketWithURL:(NSString *)URL WithpageNum:(NSString *)pageNum WithToken:(NSString *)token WithUID:(NSString *)uid WithComplete:(void (^)(NSDictionary *dic))block;
+/**
+ *  发送保存用户信息的请求
+ */
++ (void)requestSaveUserInfoWithURL:(NSString *)URL WithUserInfo:(NSDictionary *)InfoDic WithComplete:(void (^)(NSDictionary *dic))block;
+/**
+ *  发送上传头像的请求
+ */
++ (void)requestUpheadImageWithURL:(NSString *)URL WithImage:(UIImage *)image WithComplete:(void(^)(NSDictionary *dic))block;
 /**
  *  发送产品类型请求
  */

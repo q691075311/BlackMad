@@ -20,7 +20,7 @@
 /**
  *  bannerID
  */
-@property (nonatomic,assign) int bannerID;
+@property (nonatomic,strong) NSNumber * bannerID;
 /**
  *  banner名字
  */

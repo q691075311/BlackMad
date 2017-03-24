@@ -55,6 +55,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self netWorkRequest];
+    [self requestBannerProductType];
 }
 
 //加载首页btn的view
@@ -63,7 +64,7 @@
     [_productTitleArr removeAllObjects];
     [_productIDArr removeAllObjects];
     for (MainBtnListModle * modle in _mainBtnListArr) {
-        [_productIDArr addObject:@(modle.productListID)];
+        [_productIDArr addObject:modle.productListID];
         [_productTitleArr addObject:modle.productListTitle];
         [_productImageArr addObject:modle.productListImage];
     }
@@ -81,7 +82,11 @@
     [_headView addSubview:_lineView];
 }
 #pragma mark--MainBtnViewDelegate
-- (void)touchBtnWithBtn:(UIButton *)btn WithProductID:(int)productID{
+- (void)touchBtnWithBtn:(UIButton *)btn WithProductID:(NSNumber *)productID{
+    NSLog(@"产品类型的ID%@",productID);
+    //获取产品列表信息
+    [self requestProductListWithCurrentPage:@"1"
+                          WithProductTypeId:[NSString stringWithFormat:@"%@",productID]];
     [self starAnimateWithBtnTag:btn.tag-100];
 }
 - (void)starAnimateWithBtnTag:(long)i{
@@ -139,7 +144,7 @@
 
 - (void)netWorkRequest{
     //请求产品类型列表
-    [AFNRequest requestWithDataURL:productList
+    [AFNRequest requestWithDataURL:productTypeList
                       WithComplete:^(NSDictionary *dic) {
                           [_mainBtnListArr removeAllObjects];
                           NSDictionary * mainDic = dic[@"attribute"];
@@ -148,10 +153,16 @@
                               MainBtnListModle * modle = [[MainBtnListModle alloc] initWithDic:dic1];
                               [_mainBtnListArr addObject:modle];
                           }
-                          
+                          MainBtnListModle * modle = _mainBtnListArr[0];
                           [self loadMainBtnView];
+                          [self requestProductListWithCurrentPage:@"1"
+                                                WithProductTypeId:[NSString stringWithFormat:@"%@",modle.productListID]];
                       }];
-    //请求banner产品的列表
+    
+    
+}
+//请求banner产品的列表
+- (void)requestBannerProductType{
     [AFNRequest requestWithBannerURL:banner
                         WithComplete:^(NSDictionary *dic) {
                             [_bannerListArr removeAllObjects];
@@ -164,6 +175,18 @@
                             [self loadXRCarouselView];
                         }];
 }
+//请求产品的列表内容
+- (void)requestProductListWithCurrentPage:(NSString *)currentPage WithProductTypeId:(NSString *)productTypeId{
+    [AFNRequest requestProductListWithURL:ProductList
+                          WithCurrentPage:currentPage
+                        WithProductTypeId:productTypeId
+                             WithComplete:^(NSDictionary *dic) {
+                                 NSLog(@"%@",dic);
+                                 
+                             }];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

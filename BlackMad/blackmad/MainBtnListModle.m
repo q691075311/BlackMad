@@ -14,7 +14,7 @@
 - (instancetype)initWithDic:(NSDictionary *)dic{
     self = [super init];
     if (self) {
-        self.productListID = (int)dic[@"id"];
+        self.productListID = dic[@"id"];
         self.productListImage = dic[@"pictureAddress"];
         self.productListTitle = dic[@"typeName"];
     }
