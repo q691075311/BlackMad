@@ -84,8 +84,10 @@
         gender = @"男";
     }else if ([[LoginUser shareUser].user.sex isEqualToString:@"2"]){
         gender = @"女";
-    }else{
+    }else if ([[LoginUser shareUser].user.sex isEqualToString:@"3"]){
         gender = @"保密";
+    }else{
+        gender = @"";
     }
     [_headImage sd_setImageWithURL:headURL placeholderImage:[UIImage imageNamed:@"headimage"]];
     _nickName.text = [LoginUser shareUser].user.nickname;
