@@ -25,7 +25,11 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        block(dic);
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
     }];
@@ -130,10 +134,35 @@
         NSLog(@"%@",error.userInfo);
     }];
 }
+//发送产品列表的请求
++ (void)requestProductListWithURL:(NSString *)URL WithCurrentPage:(NSString *)currentPage WithProductTypeId:(NSString *)productTypeId WithComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    //请求URL
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //设置请求body
+    NSDictionary * dic = @{@"currentPage":currentPage};
+    NSDictionary * body = @{@"page":dic,
+                            @"orderGuize":@"create_datedesc",
+                            @"productTypeId":productTypeId};
+    NSString * parameters = [self dictionaryToJson:body];
+    //发起请求
+    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+
 //发送产品类型请求
 + (void)requestWithDataURL:(NSString *)URL WithComplete:(void (^)(NSDictionary *dic))block{
-    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFHTTPSessionManager * manager = [self getHttpManager];
     //请求URL
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     //发起请求
@@ -152,8 +181,7 @@
 }
 //发送banber产品列表
 + (void)requestWithBannerURL:(NSString *)URL WithComplete:(void (^)(NSDictionary * dic))block{
-    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFHTTPSessionManager * manager = [self getHttpManager];
     //请求URL
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     //发起请求
@@ -170,6 +198,89 @@
         NSLog(@"%@",error.userInfo);
     }];
     
+}
+
+//发送我的券的请求
++ (void)requestMyTicketWithURL:(NSString *)URL WithpageNum:(NSString *)pageNum WithToken:(NSString *)token WithUID:(NSString *)uid WithComplete:(void (^)(NSDictionary *dic))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    //请求URL
+    [manager.requestSerializer setValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //设置请求头
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:uid forHTTPHeaderField:@"uid"];
+    //设置请求body
+    NSInteger intter = [pageNum integerValue];
+    NSDictionary * dic = @{@"currentPage":@(intter)};
+    NSDictionary * parameterDic = @{@"page":dic};
+    NSString * parameterStr = [self dictionaryToJson:parameterDic];
+    //发起请求
+    [manager POST:url parameters:parameterStr progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];;
+}
+//发送保存用户信息的请求
++ (void)requestSaveUserInfoWithURL:(NSString *)URL WithUserInfo:(NSDictionary *)InfoDic WithComplete:(void (^)(NSDictionary *dic))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    //请求URL
+    [manager.requestSerializer setValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //设置请求头
+    [manager.requestSerializer setValue:[LoginUser shareUser].token forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[LoginUser shareUser].uid forHTTPHeaderField:@"uid"];
+    //设置请求body
+    NSString * parameterStr = [self dictionaryToJson:InfoDic];
+    [manager POST:url
+       parameters:parameterStr
+         progress:^(NSProgress * _Nonnull uploadProgress) {
+             
+         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+             if ([self judgeStatusCodeWithDic:dic]) {
+                 block(dic);
+             }else{
+                 return;
+             }
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             
+         }];
+}
+
+//发送上传头像的请求
++ (void)requestUpheadImageWithURL:(NSString *)URL WithImage:(UIImage *)image WithComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    [manager.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+    NSData * imageData = UIImageJPEGRepresentation(image, 1);
+    //请求URL
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [manager POST:url
+       parameters:nil
+constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [formData appendPartWithFormData:imageData name:@"fileType"];
+}
+         progress:^(NSProgress * _Nonnull uploadProgress) {
+             
+         }
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+              if ([self judgeStatusCodeWithDic:dic]) {
+                  block(dic);
+              }else{
+                  return;
+              }
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              
+          }];
 }
 //字典转为Json字符串
 + (NSString *)dictionaryToJson:(NSDictionary *)dic
@@ -199,7 +310,7 @@
 + (AFHTTPSessionManager *)getHttpManager{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager.requestSerializer setValue:@"application/json;charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
     return manager;
 }
 @end

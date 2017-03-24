@@ -12,7 +12,7 @@
 /**
  *  产品列表ID
  */
-@property (nonatomic,assign) int productListID;
+@property (nonatomic,strong) NSNumber *productListID;
 /**
  *  产品列表图片
  */

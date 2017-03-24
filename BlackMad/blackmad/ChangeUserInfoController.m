@@ -13,6 +13,7 @@
 #import "ChooseHeadTypeView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UserInfo.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface ChangeUserInfoController ()
 @property (nonatomic,strong) ChangeUserInfoContainerController * containaVC;
@@ -26,6 +27,7 @@
     // Do any additional setup after loading the view.
     self.navBar.isAppearLineView = YES;
     [self.navBar configNavBarTitle:@"完善个人信息" WithLeftView:@"back" WithRigthView:nil];
+    
     
 }
 
@@ -49,6 +51,7 @@
 @interface ChangeUserInfoContainerController()<UITableViewDelegate,UITableViewDataSource,ChooseGenderDelegate,ChooseBirthdayDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ChooseHeadTypeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *footView;
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;//保存btn
+@property (nonatomic,assign) BOOL isGetUserInfo;//是否获取到用户信息
 @property (nonatomic,strong) UIImagePickerController * imagePickController;
 
 @end
@@ -61,7 +64,7 @@
     //获取城市
     [[CitiesDataTool sharedManager] requestGetData];
     [WINDOWS addSubview:self.cover];
-    
+    _isGetUserInfo = NO;
     self.saveBtn.layer.masksToBounds = YES;
     self.saveBtn.layer.cornerRadius = 24;
     self.tableView.tableFooterView = self.footView;
@@ -153,7 +156,11 @@
     [_imagePickController dismissViewControllerAnimated:YES completion:^{
         NSLog(@"%@",info);
         // 获取点击的图片
-        _headImage.image = [info objectForKey:UIImagePickerControllerEditedImage];
+        UIImage * image = [info objectForKey:UIImagePickerControllerEditedImage];
+        //上传头像
+        [self upHeadImageWith:image];
+        //将图片存入沙盒
+        [self saveImage:image withName:@"head.jpg"];
     }];
 }
 /**
@@ -184,7 +191,25 @@
 }
 #pragma mark--保存
 - (IBAction)saveBtn:(UIButton *)sender {
+//    {"birthday":"2017-03-12","city":"上海","country":"中国",
+//        "headImage":"","id":0,"nickname":"木子","realName":"李苏","sex":"3"}
+    NSString * gender = @"";
+    if ([_gender.text isEqualToString:@"男"]) {
+        gender = @"1";
+    }else if ([_gender.text isEqualToString:@"女"]){
+        gender = @"2";
+    }
     NSLog(@"%@%@%@%@",_nickName.text,_gender.text,_birthday.text,_adress.text);
+    NSMutableDictionary * mutableDic = [[NSMutableDictionary alloc] init];
+    [mutableDic setValue:_birthday.text forKey:@"birthday"];
+    [mutableDic setValue:_adress.text forKey:@"city"];
+    [mutableDic setValue:@"中国" forKey:@"country"];
+    [mutableDic setValue:@"" forKey:@"headImage"];
+    [mutableDic setValue:_nickName.text forKey:@"nickname"];
+    [mutableDic setValue:@"" forKey:@"realName"];
+    [mutableDic setValue:gender forKey:@"sex"];
+    NSDictionary * dic = @{@"item":mutableDic};
+    [self saveUserInfoWith:dic];
 }
 #pragma mark--ChooseGenderDelegate
 - (void)selectWithGender:(NSString *)gender{
@@ -245,7 +270,17 @@
     }
     return _cover;
 }
-
+#pragma mark - 保存图片至沙盒
+- (void)saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+{
+    NSData *imageData = UIImageJPEGRepresentation(currentImage, 1);
+    // 获取沙盒目录
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    // 将图片写入文件
+    [imageData writeToFile:fullPath atomically:NO];
+    UIImage *image = [UIImage imageWithContentsOfFile:fullPath];
+    _headImage.image = image;
+}
 #pragma mark--网络请求
 //获取用户信息的请求
 - (void)getUserInfoRequest{
@@ -260,9 +295,23 @@
                               [LoginUser shareUser].user = user;
                               //设置页面属性
                               [self updataUI];
+                              _isGetUserInfo = YES;
                           }];
 }
-
+//上传头像的请求
+- (void)upHeadImageWith:(UIImage *)image{
+    [AFNRequest requestUpheadImageWithURL:upImageURL
+                                WithImage:image
+                             WithComplete:^(NSDictionary *dic) {
+                                 NSLog(@"%@",dic);
+                             }];
+}
+//保存用户信息
+- (void)saveUserInfoWith:(NSDictionary *)dic{
+    [AFNRequest requestSaveUserInfoWithURL:SaveInfoURL WithUserInfo:dic WithComplete:^(NSDictionary *dic) {
+        NSLog(@"%@",dic);
+    }];
+}
 
 @end
 

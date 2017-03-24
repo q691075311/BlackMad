@@ -10,7 +10,7 @@
 
 @protocol MainBtnViewDelegate <NSObject>
 
-- (void)touchBtnWithBtn:(UIButton *)btn WithProductID:(int)productID;
+- (void)touchBtnWithBtn:(UIButton *)btn WithProductID:(NSNumber *)productID;
 
 @end
 

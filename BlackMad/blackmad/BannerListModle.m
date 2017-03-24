@@ -14,7 +14,7 @@
     if (self) {
         self.bannerEndDate = dic[@"activityEndDate"];
         self.bannerStartDate = dic[@"activityStartDate"];
-        self.bannerID = (int)dic[@"id"];
+        self.bannerID = dic[@"id"];
         self.bannerName = dic[@"productName"];
         self.bannerSubject = dic[@"productSubject"];
         self.bannerPicturePath = dic[@"promotionalPicturePath"];
