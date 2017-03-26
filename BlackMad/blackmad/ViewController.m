@@ -15,6 +15,7 @@
 #import "MainBtnListModle.h"
 #import "BannerListModle.h"
 #import "BlackWebController.h"
+#import "MJRefresh.h"
 
 @interface ViewController ()<MainBtnViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet XRCarouselView *XRCarouselView;
@@ -39,19 +40,28 @@
     self.navigationController.navigationBar.hidden = YES;
     [self.navBar configNavBarTitle:@"疯趣" WithLeftView:@"mainLeft" WithRigthView:nil];
     [self setFristLineView];
+    self.view.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
+    [self setMJRefreshFooter];
     _mainBtnListArr = [[NSMutableArray alloc] init];
     _productImageArr = [[NSMutableArray alloc] init];
     _productTitleArr = [[NSMutableArray alloc] init];
     _productIDArr = [[NSMutableArray alloc] init];
     _bannerListArr = [[NSMutableArray alloc] init];
-    self.view.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = _headView;
     self.navigationController.navigationBar.hidden = YES;
 }
-
+- (void)setMJRefreshFooter{
+    __weak __typeof(self) weakSelf = self;
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        NSLog(@"s上拉获取新数据");
+        static int i = 2;
+        
+        [self requestProductListWithCurrentPage:[NSString stringWithFormat:@"%d",i] WithProductTypeId:<#(NSString *)#>];
+    }];
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self netWorkRequest];
