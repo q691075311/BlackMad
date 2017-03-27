@@ -31,9 +31,14 @@ typedef enum :NSUInteger{
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _type = userType_Login;
-    self.navigationController.navigationBar.hidden = YES;
+    if ([self.fromFlag isEqualToString:@"ad"]) {
+        _type = userType_Registered;
+    }else{
+        _type = userType_Login;
+    }
     
+    
+    self.navigationController.navigationBar.hidden = YES;
     _loginPhone.delegate = self;
     _pwdField.delegate = self;
     IQKeyboardReturnKeyHandler * returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] init];

@@ -9,5 +9,9 @@
 #import "BaseController.h"
 
 @interface LoginController : BaseController
+/**
+ *  跳转来源 （@"ad"为广告页跳转）
+ */
+@property (nonatomic,copy) NSString * fromFlag;
 
 @end

@@ -7,7 +7,9 @@
 //
 
 #import "LaunchController.h"
-#import "ViewController.h"
+#import "LoginController.h"
+
+
 @interface LaunchController ()
 @property (nonatomic,copy) NSArray * launchImageArr;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -52,7 +54,8 @@
         self.scrollView.alpha = 0;
     } completion:^(BOOL finished) {
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+        LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
+        vc.fromFlag = @"ad";
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
         UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
         window.rootViewController = nav;

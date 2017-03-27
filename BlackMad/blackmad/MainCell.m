@@ -30,9 +30,8 @@
 }
 
 - (void)setProductModle:(MainProductModle *)productModle{
-    self.title.text = productModle.productSubject;
+    self.title.text = productModle.productName;
     self.time.text = [NSString stringWithFormat:@"活动时间：%@-%@",productModle.activityStartDate,productModle.activityEndDate];
-    
     [self.image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,productModle.promotionalPicturePath]] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
 }
 

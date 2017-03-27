@@ -24,16 +24,15 @@
     // Override point for customization after application launch.
     NSLog(@"%@",NSHomeDirectory());
     [self initIQKeyboard];
-//    NSDictionary * dic = [[NSBundle mainBundle] infoDictionary];
-//    if ([dic[@"CFBundleVersion"] isEqualToString:[USERDEF objectForKey:@"version"]]) {
-//        //不是第一次启动
-//        [self everLaunch];
-//    }else{
-//        [USERDEF setObject:dic[@"CFBundleVersion"] forKey:@"version"];
-//        [USERDEF synchronize];
-//        [self firstLaunch];
-//    }
-    [self firstLaunch];
+    NSDictionary * dic = [[NSBundle mainBundle] infoDictionary];
+    if ([dic[@"CFBundleVersion"] isEqualToString:[USERDEF objectForKey:@"version"]]) {
+        //不是第一次启动
+        [self everLaunch];
+    }else{
+        [USERDEF setObject:dic[@"CFBundleVersion"] forKey:@"version"];
+        [USERDEF synchronize];
+        [self firstLaunch];
+    }
     [self.window makeKeyAndVisible];
     return YES;
 }
