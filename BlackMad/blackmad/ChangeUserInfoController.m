@@ -76,6 +76,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [SVProgressHUD show];
     [self getUserInfoRequest];
     
 }
@@ -87,8 +88,10 @@
         gender = @"男";
     }else if ([[LoginUser shareUser].user.sex isEqualToString:@"2"]){
         gender = @"女";
-    }else{
+    }else if ([[LoginUser shareUser].user.sex isEqualToString:@"3"]){
         gender = @"保密";
+    }else{
+        gender = @"";
     }
     [_headImage sd_setImageWithURL:headURL placeholderImage:[UIImage imageNamed:@"headimage"]];
     _nickName.text = [LoginUser shareUser].user.nickname;
@@ -191,8 +194,12 @@
 }
 #pragma mark--保存
 - (IBAction)saveBtn:(UIButton *)sender {
-//    {"birthday":"2017-03-12","city":"上海","country":"中国",
-//        "headImage":"","id":0,"nickname":"木子","realName":"李苏","sex":"3"}
+    [SVProgressHUD show];
+    //校验信息
+    if (_adress.text == nil) {
+        _adress.text = @"";
+    }
+    
     NSString * gender = @"";
     if ([_gender.text isEqualToString:@"男"]) {
         gender = @"1";
@@ -296,6 +303,7 @@
                               //设置页面属性
                               [self updataUI];
                               _isGetUserInfo = YES;
+                              [SVProgressHUD dismiss];
                           }];
 }
 //上传头像的请求
@@ -310,6 +318,8 @@
 - (void)saveUserInfoWith:(NSDictionary *)dic{
     [AFNRequest requestSaveUserInfoWithURL:SaveInfoURL WithUserInfo:dic WithComplete:^(NSDictionary *dic) {
         NSLog(@"%@",dic);
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showSuccessWithStatus:@"保存成功！"];
     }];
 }
 
