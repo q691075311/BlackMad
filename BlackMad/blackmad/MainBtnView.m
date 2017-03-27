@@ -58,7 +58,11 @@
     
     //添加image
     UIImageView * imageView = [[UIImageView alloc] init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,_productImageArr[i]]]];
+    if (i == 0) {
+        imageView.image = [UIImage imageNamed:@"all"];
+    }else{
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,_productImageArr[i]]]];
+    }
     imageView.bounds = CGRectMake(0, 0, 42, 42);
     imageView.center = CGPointMake(view.bounds.size.width/2, 31);
     [view addSubview:imageView];

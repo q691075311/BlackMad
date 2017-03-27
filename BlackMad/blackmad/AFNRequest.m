@@ -140,6 +140,9 @@
     //请求URL
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     //设置请求body
+    if ([productTypeId isEqualToString:@"-1"]) {
+        productTypeId = @"";
+    }
     NSDictionary * dic = @{@"currentPage":currentPage};
     NSDictionary * body = @{@"page":dic,
                             @"orderGuize":@"create_datedesc",

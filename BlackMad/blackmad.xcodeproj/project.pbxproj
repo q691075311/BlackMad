@@ -31,6 +31,7 @@
 		4B8EA2091E72440C0051EC5A /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2081E72440C0051EC5A /* UserInfoCell.m */; };
 		4B8EA20D1E7278200051EC5A /* LaunchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA20C1E7278200051EC5A /* LaunchController.m */; };
 		4B8EA2121E7282940051EC5A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2111E7282940051EC5A /* LoginController.m */; };
+		4B91F7591E88A0B00047F5E8 /* MainProductModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B91F7581E88A0B00047F5E8 /* MainProductModle.m */; };
 		4B9E44351E8643CD00B4FABD /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E44091E8643CD00B4FABD /* MJRefreshAutoFooter.m */; };
 		4B9E44361E8643CD00B4FABD /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E440B1E8643CD00B4FABD /* MJRefreshBackFooter.m */; };
 		4B9E44371E8643CD00B4FABD /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E440D1E8643CD00B4FABD /* MJRefreshComponent.m */; };
@@ -166,6 +167,8 @@
 		4B8EA20C1E7278200051EC5A /* LaunchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchController.m; sourceTree = "<group>"; };
 		4B8EA2101E7282940051EC5A /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		4B8EA2111E7282940051EC5A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		4B91F7571E88A0B00047F5E8 /* MainProductModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductModle.h; sourceTree = "<group>"; };
+		4B91F7581E88A0B00047F5E8 /* MainProductModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductModle.m; sourceTree = "<group>"; };
 		4B9E44081E8643CD00B4FABD /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4B9E44091E8643CD00B4FABD /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		4B9E440A1E8643CD00B4FABD /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -476,6 +479,8 @@
 				4B009CE91E81258000BB5B80 /* BannerListModle.m */,
 				4B708A731E8384310064CD11 /* InterestModel.h */,
 				4B708A741E8384310064CD11 /* InterestModel.m */,
+				4B91F7571E88A0B00047F5E8 /* MainProductModle.h */,
+				4B91F7581E88A0B00047F5E8 /* MainProductModle.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -1086,6 +1091,7 @@
 				4BA157161E7636BB0087D279 /* InterestCell.m in Sources */,
 				4B9E44421E8643CD00B4FABD /* MJRefreshStateHeader.m in Sources */,
 				4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */,
+				4B91F7591E88A0B00047F5E8 /* MainProductModle.m in Sources */,
 				4BA1F0381E731BA500B4EED4 /* IQBarButtonItem.m in Sources */,
 				4BA1572C1E769BD70087D279 /* ChooseBirthdayView.m in Sources */,
 				4BBB66261E7FBDFE0076201D /* AFHTTPSessionManager.m in Sources */,

@@ -33,7 +33,7 @@
 //        [USERDEF synchronize];
 //        [self firstLaunch];
 //    }
-    [self everLaunch];
+    [self firstLaunch];
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -16,6 +16,12 @@
 #import "BannerListModle.h"
 #import "BlackWebController.h"
 #import "MJRefresh.h"
+#import "MainProductModle.h"
+
+typedef enum:NSUInteger{
+    refreshing,
+    notRefresh
+}RefreshType;
 
 @interface ViewController ()<MainBtnViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet XRCarouselView *XRCarouselView;
@@ -28,7 +34,11 @@
 @property (nonatomic,strong) NSMutableArray * productImageArr;
 @property (nonatomic,strong) NSMutableArray * productTitleArr;
 @property (nonatomic,strong) NSMutableArray * bannerListArr;
-
+@property (nonatomic,strong) NSMutableArray * mainProductArr;
+@property (nonatomic,assign) RefreshType refreshType;
+@property (nonatomic,copy) NSString * lastID;//记录上个产品ID
+@property (nonatomic,copy) NSString * currentId;
+@property (nonatomic,assign) int pageNum;
 @end
 
 @implementation ViewController
@@ -42,30 +52,38 @@
     [self setFristLineView];
     self.view.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
     [self setMJRefreshFooter];
+    _refreshType = notRefresh;
     _mainBtnListArr = [[NSMutableArray alloc] init];
     _productImageArr = [[NSMutableArray alloc] init];
     _productTitleArr = [[NSMutableArray alloc] init];
     _productIDArr = [[NSMutableArray alloc] init];
     _bannerListArr = [[NSMutableArray alloc] init];
+    _mainProductArr = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = _headView;
     self.navigationController.navigationBar.hidden = YES;
+    
+    [self netWorkRequest];
+    [self requestBannerProductType];
 }
 - (void)setMJRefreshFooter{
-    __weak __typeof(self) weakSelf = self;
+    if ([self.tableView.mj_footer isRefreshing]) {
+        return;
+    }
+    //__weak __typeof(self) weakSelf = self;
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        NSLog(@"s上拉获取新数据");
-        static int i = 2;
-        
-        [self requestProductListWithCurrentPage:[NSString stringWithFormat:@"%d",i] WithProductTypeId:<#(NSString *)#>];
+        _refreshType = refreshing;
+        NSLog(@"上拉获取新数据");
+        _pageNum++;
+        [self requestProductListWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum] WithProductTypeId:_currentId];
     }];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self netWorkRequest];
-    [self requestBannerProductType];
+//    [self starAnimateWithBtnTag:0];
+    
 }
 
 //加载首页btn的view
@@ -93,10 +111,21 @@
 }
 #pragma mark--MainBtnViewDelegate
 - (void)touchBtnWithBtn:(UIButton *)btn WithProductID:(NSNumber *)productID{
+    [self setMJRefreshFooter];
+    _refreshType = refreshing;
+    //判断是否是上拉刷新
+    if (_refreshType == notRefresh || ![_lastID isEqualToString:[NSString stringWithFormat:@"%@",productID]]) {
+        //不是上拉加载或者是新点击的ID
+        [_mainProductArr removeAllObjects];
+        _lastID = [NSString stringWithFormat:@"%@",productID];
+    }else if ([_lastID isEqualToString:[NSString stringWithFormat:@"%@",productID]]) {
+        [_mainProductArr removeAllObjects];
+    }
     NSLog(@"产品类型的ID%@",productID);
-    //获取产品列表信息
+    self.currentId = [NSString stringWithFormat:@"%@",productID];
     [self requestProductListWithCurrentPage:@"1"
                           WithProductTypeId:[NSString stringWithFormat:@"%@",productID]];
+    _pageNum = 1;
     [self starAnimateWithBtnTag:btn.tag-100];
 }
 - (void)starAnimateWithBtnTag:(long)i{
@@ -128,15 +157,21 @@
 }
 #pragma mark--UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return _mainProductArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MainCell" forIndexPath:indexPath];
+    cell.productModle = _mainProductArr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MainProductModle * modle = _mainProductArr[indexPath.row];
+    [self pushToController:@"BlackWebController"
+            WithStoyBordID:@"Main"
+                  WithForm:self
+                  WithInfo:@{@"webviewURL":modle.promotionalWapLink}];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 230;
@@ -163,13 +198,21 @@
                               MainBtnListModle * modle = [[MainBtnListModle alloc] initWithDic:dic1];
                               [_mainBtnListArr addObject:modle];
                           }
+                          //添加全部的分类
+                          MainBtnListModle * allModle = [[MainBtnListModle alloc] init];
+                          allModle.productListID = @(-1);
+                          allModle.productListImage = @"";
+                          allModle.productListTitle = @"全部";
+                          [_mainBtnListArr insertObject:allModle atIndex:0];
+                          
                           MainBtnListModle * modle = _mainBtnListArr[0];
                           [self loadMainBtnView];
                           [self requestProductListWithCurrentPage:@"1"
-                                                WithProductTypeId:[NSString stringWithFormat:@"%@",modle.productListID]];
+                                                WithProductTypeId:@""];
+                          self.lastID = [NSString stringWithFormat:@"%@",modle.productListID];
+                          self.currentId = [NSString stringWithFormat:@"%@",modle.productListID];
+                          self.pageNum = 1;
                       }];
-    
-    
 }
 //请求banner产品的列表
 - (void)requestBannerProductType{
@@ -192,7 +235,17 @@
                         WithProductTypeId:productTypeId
                              WithComplete:^(NSDictionary *dic) {
                                  NSLog(@"%@",dic);
-                                 
+                                 NSDictionary * dic1 = dic[@"attribute"];
+                                 NSArray * arr = dic1[@"list"];
+                                 if (arr.count > 0) {
+                                     for (NSDictionary * dic2 in arr) {
+                                         MainProductModle * proModle = [[MainProductModle alloc] initWithDic:dic2];
+                                         [_mainProductArr addObject:proModle];
+                                     }
+                                 }else{
+                                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                                 }
+                                 [self.tableView reloadData];
                              }];
 }
 
