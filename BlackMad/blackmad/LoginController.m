@@ -170,8 +170,6 @@ typedef enum :NSUInteger{
                            [SVProgressHUD dismiss];
                            NSLog(@"%@",dic);
                            NSDictionary * dic1 = dic[@"attribute"];
-                           
-                           
                            //清空用户信息
                            [LoginUser shareUser].user = nil;
                            [LoginUser shareUser].token = nil;
@@ -181,6 +179,7 @@ typedef enum :NSUInteger{
                            [USERDEF synchronize];
                            [LoginUser shareUser].uid = [NSString stringWithFormat:@"%@",dic1[@"uid"]];
                            [LoginUser shareUser].token = (NSString *)dic1[@"token"];
+                           [LoginUser shareUser].isLogin = YES;
                            if ([dic1[@"isSelectInterest"] isEqual:@(0)]) {
                                //没有接受兴趣调查
                                [LoginUser shareUser].isSelectInterest = @(0);

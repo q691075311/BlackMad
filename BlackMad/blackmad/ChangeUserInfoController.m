@@ -53,6 +53,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;//保存btn
 @property (nonatomic,assign) BOOL isGetUserInfo;//是否获取到用户信息
 @property (nonatomic,strong) UIImagePickerController * imagePickController;
+@property (nonatomic,copy) NSString * headImageStr;//头像地址
 
 @end
 
@@ -82,7 +83,7 @@
 }
 //更新界面内容
 - (void)updataUI{
-    NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,[LoginUser shareUser].user.headImage]];
+    NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[LoginUser shareUser].user.headImage]];
     NSString * gender;
     if ([[LoginUser shareUser].user.sex isEqualToString:@"1"]) {
         gender = @"男";
@@ -157,13 +158,17 @@
 #pragma mark--UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     [_imagePickController dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"%@",info);
+//        NSLog(@"%@",info);
         // 获取点击的图片
         UIImage * image = [info objectForKey:UIImagePickerControllerEditedImage];
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        
+        NSString * imageStr = [imageData base64Encoding];
+        _headImage.image = image;
         //上传头像
-        [self upHeadImageWith:image];
+        [self upHeadImageWith:imageStr];
         //将图片存入沙盒
-        [self saveImage:image withName:@"head.jpg"];
+        //[self saveImage:image withName:@"head.jpg"];
     }];
 }
 /**
@@ -195,9 +200,17 @@
 #pragma mark--保存
 - (IBAction)saveBtn:(UIButton *)sender {
     [SVProgressHUD show];
+    
     //校验信息
     if (_adress.text == nil) {
         _adress.text = @"";
+    }
+    if (!_headImageStr) {
+        if ([LoginUser shareUser].user.headImage.length == 0) {
+            _headImageStr = @"";
+        }else{
+            _headImageStr = [LoginUser shareUser].user.headImage;
+        }
     }
     
     NSString * gender = @"";
@@ -211,7 +224,7 @@
     [mutableDic setValue:_birthday.text forKey:@"birthday"];
     [mutableDic setValue:_adress.text forKey:@"city"];
     [mutableDic setValue:@"中国" forKey:@"country"];
-    [mutableDic setValue:@"" forKey:@"headImage"];
+    [mutableDic setValue:_headImageStr forKey:@"headImage"];
     [mutableDic setValue:_nickName.text forKey:@"nickname"];
     [mutableDic setValue:@"" forKey:@"realName"];
     [mutableDic setValue:gender forKey:@"sex"];
@@ -307,11 +320,14 @@
                           }];
 }
 //上传头像的请求
-- (void)upHeadImageWith:(UIImage *)image{
+- (void)upHeadImageWith:(NSString *)image{
     [AFNRequest requestUpheadImageWithURL:upImageURL
                                 WithImage:image
                              WithComplete:^(NSDictionary *dic) {
                                  NSLog(@"%@",dic);
+                                 NSDictionary * dic1 = dic[@"attribute"];
+                                 _headImageStr = [NSString stringWithFormat:@"%@%@",IMAGEURL,dic1[@"fileUrl"]];
+                                 [LoginUser shareUser].user.headImage = _headImageStr;
                              }];
 }
 //保存用户信息

@@ -8,7 +8,7 @@
 
 #import "MyTicketController.h"
 #import "MyTicketCell.h"
-
+#import "MyTicketModle.h"
 
 #define BTN_HIGTH 22
 #define BTN_WIDTH 50
@@ -24,8 +24,8 @@ typedef enum: NSUInteger{
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (nonatomic,strong) UIView * lineView;
 @property (nonatomic,strong) UIButton * lastBtn;//记录上一个Btn
-@property (nonatomic,copy) NSArray * textArr;
 @property (nonatomic,assign) barType touchType;
+@property (nonatomic,strong) NSMutableArray * myTicketArr;
 @end
 
 @implementation MyTicketController
@@ -40,12 +40,9 @@ typedef enum: NSUInteger{
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navBar.isAppearLineView = YES;
     self.touchType = allType;
+    self.myTicketArr = [[NSMutableArray alloc] init];
     [self.navBar configNavBarTitle:@"我的券" WithLeftView:@"back" WithRigthView:nil];
     [self addBarButton];
-    _textArr = @[@"3.8女神节，情侣可免费多得一杯哦~另外，单身狗可享6折星巴克女神的眷顾哦，时不待人你还等什么？",
-                 @"3.8女神节，情侣可免费多得一杯哦~另外，单身狗可享6折星巴克女神的眷顾哦，时不待人你还等什么？",
-                 @"肯德基2017年3月会员独享优惠券，优惠码M5，凭券享新奥尔良烤鸡腿堡+香辣鸡腿堡+小食拼盘+九珍果汁饮料2杯 优惠价73元，优惠仅限肯德基WOW会员餐厅堂食享受。",
-                 @".kjsgkshrtgjirkthsh"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -92,34 +89,40 @@ typedef enum: NSUInteger{
 - (void)changeBtnTypeWithBtnTag:(NSInteger)tag{
     switch (tag) {
         case 0:
+            [self requestMyTicketWithPageNum:@"1"];
             _touchType = allType;
             break;
         case 1:
+            [_myTicketArr removeAllObjects];
             _touchType = hasChangeType;
             break;
         case 2:
+            [_myTicketArr removeAllObjects];
             _touchType = notChangeType;
             break;
         default:
             break;
     }
-    
+    [self.tableView reloadData];
 }
 #pragma mark--UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return _myTicketArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyTicketCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyTicketCell"];
-    cell.ticketInfo.text = _textArr[indexPath.row];
+    MyTicketModle * modle = _myTicketArr[indexPath.row];
+    cell.myTicketModle = modle;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGRect rect = [self getLableRectWithText:_textArr[indexPath.row]];
+    MyTicketModle * modle = _myTicketArr[indexPath.row];
+    CGRect rect = [self getLableRectWithText:modle.cardRemark];
     if (rect.size.height < 40) {
         return 200;
     }else{
@@ -144,6 +147,13 @@ typedef enum: NSUInteger{
                                WithUID:[LoginUser shareUser].uid
                           WithComplete:^(NSDictionary *dic) {
                               NSLog(@"%@",dic);
+                              NSDictionary * dic1 = dic[@"attribute"];
+                              NSArray * arr = dic1[@"list"];
+                              for (NSDictionary * dic2 in arr) {
+                                  MyTicketModle * modle = [[MyTicketModle alloc] initWithDic:dic2];
+                                  [_myTicketArr addObject:modle];
+                              }
+                              [self.tableView reloadData];
                           }];
 }
 

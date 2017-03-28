@@ -32,6 +32,7 @@
 		4B8EA20D1E7278200051EC5A /* LaunchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA20C1E7278200051EC5A /* LaunchController.m */; };
 		4B8EA2121E7282940051EC5A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2111E7282940051EC5A /* LoginController.m */; };
 		4B91F7591E88A0B00047F5E8 /* MainProductModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B91F7581E88A0B00047F5E8 /* MainProductModle.m */; };
+		4B94CD251E8A449E00CBAE36 /* MyTicketModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B94CD241E8A449E00CBAE36 /* MyTicketModle.m */; };
 		4B9E44351E8643CD00B4FABD /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E44091E8643CD00B4FABD /* MJRefreshAutoFooter.m */; };
 		4B9E44361E8643CD00B4FABD /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E440B1E8643CD00B4FABD /* MJRefreshBackFooter.m */; };
 		4B9E44371E8643CD00B4FABD /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E440D1E8643CD00B4FABD /* MJRefreshComponent.m */; };
@@ -169,6 +170,8 @@
 		4B8EA2111E7282940051EC5A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		4B91F7571E88A0B00047F5E8 /* MainProductModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProductModle.h; sourceTree = "<group>"; };
 		4B91F7581E88A0B00047F5E8 /* MainProductModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductModle.m; sourceTree = "<group>"; };
+		4B94CD231E8A449E00CBAE36 /* MyTicketModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketModle.h; sourceTree = "<group>"; };
+		4B94CD241E8A449E00CBAE36 /* MyTicketModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketModle.m; sourceTree = "<group>"; };
 		4B9E44081E8643CD00B4FABD /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4B9E44091E8643CD00B4FABD /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		4B9E440A1E8643CD00B4FABD /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -481,6 +484,8 @@
 				4B708A741E8384310064CD11 /* InterestModel.m */,
 				4B91F7571E88A0B00047F5E8 /* MainProductModle.h */,
 				4B91F7581E88A0B00047F5E8 /* MainProductModle.m */,
+				4B94CD231E8A449E00CBAE36 /* MyTicketModle.h */,
+				4B94CD241E8A449E00CBAE36 /* MyTicketModle.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -1102,6 +1107,7 @@
 				4BA1F02F1E731BA500B4EED4 /* IQNSArray+Sort.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
 				4B7F2D861E77FA0D00832821 /* MyTicketCell.m in Sources */,
+				4B94CD251E8A449E00CBAE36 /* MyTicketModle.m in Sources */,
 				4BA1F0351E731BA500B4EED4 /* IQKeyboardManager.m in Sources */,
 				4BCC61AD1E77934C002C7FF9 /* AddressView.m in Sources */,
 				4B708A751E8384310064CD11 /* InterestModel.m in Sources */,

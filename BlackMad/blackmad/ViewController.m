@@ -77,6 +77,7 @@ typedef enum:NSUInteger{
         _refreshType = refreshing;
         NSLog(@"上拉获取新数据");
         _pageNum++;
+        NSLog(@"%d",_pageNum);
         [self requestProductListWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum] WithProductTypeId:_currentId];
     }];
 }
@@ -146,13 +147,16 @@ typedef enum:NSUInteger{
     _XRCarouselView.changeMode = ChangeModeDefault;
     _XRCarouselView.imageClickBlock = ^(NSInteger index){
         NSLog(@"点击了第%ld张图",(long)index);
-        BannerListModle * ban = _bannerListArr[index];
-        NSLog(@"%@",ban.bannerWapLink);
-        [self pushToController:@"BlackWebController"
-                WithStoyBordID:@"Main"
-                      WithForm:self
-                      WithInfo:@{@"webviewURL":ban.bannerWapLink}];
-        
+        if ([LoginUser shareUser].isLogin) {
+            BannerListModle * ban = _bannerListArr[index];
+            NSLog(@"%@",ban.bannerWapLink);
+            [self pushToController:@"BlackWebController"
+                    WithStoyBordID:@"Main"
+                          WithForm:self
+                          WithInfo:@{@"webviewURL":ban.bannerWapLink}];
+        }else{
+            [self toLogin];
+        }
     };
 }
 #pragma mark--UITableViewDataSource
@@ -167,23 +171,41 @@ typedef enum:NSUInteger{
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    MainProductModle * modle = _mainProductArr[indexPath.row];
-    [self pushToController:@"BlackWebController"
-            WithStoyBordID:@"Main"
-                  WithForm:self
-                  WithInfo:@{@"webviewURL":modle.promotionalWapLink}];
+    if ([LoginUser shareUser].isLogin) {
+        MainProductModle * modle = _mainProductArr[indexPath.row];
+        [self pushToController:@"BlackWebController"
+                WithStoyBordID:@"Main"
+                      WithForm:self
+                      WithInfo:@{@"webviewURL":modle.promotionalWapLink}];
+    }else{
+        [self toLogin];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 230;
 }
-#pragma mark--左btn按钮
-- (void)touchLeftBtn{
-    //进入个人中心
-    [self pushToController:@"UserInfoController"
+#pragma mark--跳转登录页面
+- (void)toLogin{
+    [self pushToController:@"LoginController"
             WithStoyBordID:@"Main"
                   WithForm:self
                   WithInfo:@{}];
-    
+}
+#pragma mark--左btn按钮
+- (void)touchLeftBtn{
+    if ([LoginUser shareUser].isLogin) {
+        //进入个人中心
+        [self pushToController:@"UserInfoController"
+                WithStoyBordID:@"Main"
+                      WithForm:self
+                      WithInfo:@{}];
+    }else{
+        //进入登录页面
+        [self pushToController:@"LoginController"
+                WithStoyBordID:@"Main"
+                      WithForm:self
+                      WithInfo:@{}];
+    }
 }
 #pragma mark--网络请求
 
@@ -235,6 +257,7 @@ typedef enum:NSUInteger{
                         WithProductTypeId:productTypeId
                              WithComplete:^(NSDictionary *dic) {
                                  NSLog(@"%@",dic);
+                                 [self.tableView.mj_footer endRefreshing];
                                  NSDictionary * dic1 = dic[@"attribute"];
                                  NSArray * arr = dic1[@"list"];
                                  if (arr.count > 0) {
@@ -245,6 +268,7 @@ typedef enum:NSUInteger{
                                  }else{
                                      [self.tableView.mj_footer endRefreshingWithNoMoreData];
                                  }
+                                 
                                  [self.tableView reloadData];
                              }];
 }
