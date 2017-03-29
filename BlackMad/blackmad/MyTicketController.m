@@ -9,6 +9,7 @@
 #import "MyTicketController.h"
 #import "MyTicketCell.h"
 #import "MyTicketModle.h"
+#import "MJRefresh.h"
 
 #define BTN_HIGTH 22
 #define BTN_WIDTH 50
@@ -26,6 +27,8 @@ typedef enum: NSUInteger{
 @property (nonatomic,strong) UIButton * lastBtn;//记录上一个Btn
 @property (nonatomic,assign) barType touchType;
 @property (nonatomic,strong) NSMutableArray * myTicketArr;
+@property (nonatomic,assign) int pageNum;
+
 @end
 
 @implementation MyTicketController
@@ -41,8 +44,20 @@ typedef enum: NSUInteger{
     self.navBar.isAppearLineView = YES;
     self.touchType = allType;
     self.myTicketArr = [[NSMutableArray alloc] init];
+    self.pageNum = 1;
     [self.navBar configNavBarTitle:@"我的券" WithLeftView:@"back" WithRigthView:nil];
+    [self setMJRefreshFooter];
     [self addBarButton];
+}
+
+- (void)setMJRefreshFooter{
+    if ([self.tableView.mj_footer isRefreshing]) return;
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        NSLog(@"上拉获取新数据");
+        _pageNum++;
+        NSLog(@"%d",_pageNum);
+        [self requestMyTicketWithPageNum:[NSString stringWithFormat:@"%d",_pageNum]];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -117,8 +132,6 @@ typedef enum: NSUInteger{
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyTicketModle * modle = _myTicketArr[indexPath.row];
@@ -146,12 +159,17 @@ typedef enum: NSUInteger{
                              WithToken:[LoginUser shareUser].token
                                WithUID:[LoginUser shareUser].uid
                           WithComplete:^(NSDictionary *dic) {
+                              [self.tableView.mj_footer endRefreshing];
                               NSLog(@"%@",dic);
                               NSDictionary * dic1 = dic[@"attribute"];
                               NSArray * arr = dic1[@"list"];
-                              for (NSDictionary * dic2 in arr) {
-                                  MyTicketModle * modle = [[MyTicketModle alloc] initWithDic:dic2];
-                                  [_myTicketArr addObject:modle];
+                              if (arr.count>0) {
+                                  for (NSDictionary * dic2 in arr) {
+                                      MyTicketModle * modle = [[MyTicketModle alloc] initWithDic:dic2];
+                                      [_myTicketArr addObject:modle];
+                                  }
+                              }else{
+                                  [self.tableView.mj_footer endRefreshingWithNoMoreData];
                               }
                               [self.tableView reloadData];
                           }];

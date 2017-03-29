@@ -143,7 +143,7 @@
     if ([productTypeId isEqualToString:@"-1"]) {
         productTypeId = @"";
     }
-    NSDictionary * dic = @{@"currentPage":currentPage,@"itemsperpage":@"2"};
+    NSDictionary * dic = @{@"currentPage":currentPage};
     NSDictionary * body = @{@"page":dic,
                             @"orderGuize":@"create_datedesc",
                             @"productTypeId":productTypeId};
@@ -214,7 +214,7 @@
     [manager.requestSerializer setValue:uid forHTTPHeaderField:@"uid"];
     //设置请求body
     NSInteger intter = [pageNum integerValue];
-    NSDictionary * dic = @{@"currentPage":@(intter)};
+    NSDictionary * dic = @{@"currentPage":@(intter),@"itemsperpage": @(1)};
     NSDictionary * parameterDic = @{@"page":dic};
     NSString * parameterStr = [self dictionaryToJson:parameterDic];
     //发起请求

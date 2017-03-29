@@ -46,7 +46,7 @@
 }
 #pragma mark--不是第一次启动
 - (void)everLaunch{
-    NSString * loginName = [USERDEF objectForKey:@"loginname"];
+    NSString * loginName = [USERDEF objectForKey:@"username"];
     NSString * pwd = [USERDEF objectForKey:@"pwd"];
     if (loginName && pwd) {
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
