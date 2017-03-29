@@ -45,7 +45,7 @@
 /**
  *  发送上传头像的请求
  */
-+ (void)requestUpheadImageWithURL:(NSString *)URL WithImage:(UIImage *)image WithComplete:(void(^)(NSDictionary *dic))block;
++ (void)requestUpheadImageWithURL:(NSString *)URL WithImage:(NSString *)imageStr WithComplete:(void(^)(NSDictionary *dic))block;
 /**
  *  发送产品类型请求
  */

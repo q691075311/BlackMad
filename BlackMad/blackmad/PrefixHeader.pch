@@ -50,7 +50,7 @@
 //产品列表
 #define ProductList @"/phone/product/list"
 //上传图片
-#define upImageURL @"/phone/fileUpload?fileType=userHeadImage"
+#define upImageURL @"/phone/fileUpload"
 //我的券列表
 #define MyTicketURL @"/phone/user/cardVolume"
 //保存用户信息

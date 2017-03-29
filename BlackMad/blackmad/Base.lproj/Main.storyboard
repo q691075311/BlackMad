@@ -303,7 +303,7 @@
                                                         <constraint firstAttribute="height" constant="1" id="wmH-Bh-93x"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small" translatesAutoresizingMaskIntoConstraints="NO" id="Ja3-68-xjP">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ja3-68-xjP">
                                                     <rect key="frame" x="298" y="10" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="52" id="ka6-Zv-Rw8"/>
@@ -1035,7 +1035,6 @@
         <image name="guodate" width="45" height="40"/>
         <image name="hdui" width="38" height="38"/>
         <image name="headimage" width="122" height="122"/>
-        <image name="small" width="54" height="54"/>
         <image name="xingbake" width="60" height="60"/>
     </resources>
 </document>

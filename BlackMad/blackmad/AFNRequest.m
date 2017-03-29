@@ -214,7 +214,7 @@
     [manager.requestSerializer setValue:uid forHTTPHeaderField:@"uid"];
     //设置请求body
     NSInteger intter = [pageNum integerValue];
-    NSDictionary * dic = @{@"currentPage":@(intter)};
+    NSDictionary * dic = @{@"currentPage":@(intter),@"itemsperpage": @(1)};
     NSDictionary * parameterDic = @{@"page":dic};
     NSString * parameterStr = [self dictionaryToJson:parameterDic];
     //发起请求
@@ -254,36 +254,35 @@
                  return;
              }
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             
+             NSLog(@"%@",error.userInfo);
          }];
 }
 
 //发送上传头像的请求
-+ (void)requestUpheadImageWithURL:(NSString *)URL WithImage:(UIImage *)image WithComplete:(void (^)(NSDictionary *))block{
++ (void)requestUpheadImageWithURL:(NSString *)URL WithImage:(NSString *)imageStr WithComplete:(void (^)(NSDictionary *))block{
     AFHTTPSessionManager * manager = [self getHttpManager];
-    [manager.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
-    NSData * imageData = UIImageJPEGRepresentation(image, 1);
     //请求URL
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    [manager POST:url
-       parameters:nil
-constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-    [formData appendPartWithFormData:imageData name:@"fileType"];
-}
-         progress:^(NSProgress * _Nonnull uploadProgress) {
-             
-         }
-          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-              NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-              if ([self judgeStatusCodeWithDic:dic]) {
-                  block(dic);
-              }else{
-                  return;
-              }
-          }
-          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-              
-          }];
+    //请求参数
+    NSDictionary * dic = @{@"filePathType":@"userHeadImage",
+                           @"fileType":@".jpg",
+                           @"imgContent":imageStr};
+    NSString *parameter = [self dictionaryToJson:dic];
+    //发送请求
+    [manager POST:url parameters:parameter progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+    
+    
 }
 //字典转为Json字符串
 + (NSString *)dictionaryToJson:(NSDictionary *)dic

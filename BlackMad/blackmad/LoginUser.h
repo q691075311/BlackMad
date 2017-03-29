@@ -14,6 +14,10 @@
  */
 @property (nonatomic,strong) UserInfo * user;
 /**
+ *  是否登录
+ */
+@property (nonatomic,assign) BOOL isLogin;
+/**
  *  用户token
  */
 @property (nonatomic,copy) NSString * token;

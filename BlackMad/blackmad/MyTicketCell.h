@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyTicketModle.h"
 
 @interface MyTicketCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *backView;
@@ -18,5 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ticketprice;//优惠价格
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;//优惠背景图
 @property (weak, nonatomic) IBOutlet UILabel *ticketDate;//优惠有效期
+
+@property (nonatomic,strong) MyTicketModle * myTicketModle;
 
 @end
