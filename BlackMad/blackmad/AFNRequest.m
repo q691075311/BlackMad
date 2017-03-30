@@ -214,7 +214,7 @@
     [manager.requestSerializer setValue:uid forHTTPHeaderField:@"uid"];
     //设置请求body
     NSInteger intter = [pageNum integerValue];
-    NSDictionary * dic = @{@"currentPage":@(intter),@"itemsperpage": @(1)};
+    NSDictionary * dic = @{@"currentPage":@(intter)};
     NSDictionary * parameterDic = @{@"page":dic};
     NSString * parameterStr = [self dictionaryToJson:parameterDic];
     //发起请求
