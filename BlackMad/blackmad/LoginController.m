@@ -65,7 +65,7 @@ typedef enum :NSUInteger{
         [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         [_registeredBtn setTitle:@"点击注册" forState:UIControlStateNormal];
-        _headImage.image = [UIImage imageNamed:@"headimage"];
+        _headImage.image = [UIImage imageNamed:@"logo"];
         _pwdField.placeholder = @"请输入密码";
     }else if (_type == userType_Registered){
         [self.navBar configNavBarTitle:@"账户注册" WithLeftView:nil WithRigthView:nil];
@@ -74,8 +74,6 @@ typedef enum :NSUInteger{
         _headImage.image = [UIImage imageNamed:@"logo"];
         _pwdField.placeholder = @"请输入密码（6-18位字符）";
     }
-    _headImage.layer.masksToBounds = YES;
-    _headImage.layer.cornerRadius = 60;
     //设置用户名的textfield的左边框
     [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
     [self changeTextFieldLayer:_loginPhone];

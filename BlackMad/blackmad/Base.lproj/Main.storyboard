@@ -854,7 +854,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headimage" translatesAutoresizingMaskIntoConstraints="NO" id="67F-RW-asZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="67F-RW-asZ">
                                 <rect key="frame" x="127" y="116" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="DRT-am-gXx"/>
@@ -1034,7 +1034,7 @@
         <image name="bolanghong" width="355" height="33"/>
         <image name="guodate" width="45" height="40"/>
         <image name="hdui" width="38" height="38"/>
-        <image name="headimage" width="122" height="122"/>
+        <image name="logo" width="118" height="160"/>
         <image name="xingbake" width="60" height="60"/>
     </resources>
 </document>
