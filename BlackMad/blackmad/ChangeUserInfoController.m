@@ -83,7 +83,7 @@
 }
 //更新界面内容
 - (void)updataUI{
-    NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[LoginUser shareUser].user.headImage]];
+    NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,[LoginUser shareUser].user.headImage]];
     NSString * gender;
     if ([[LoginUser shareUser].user.sex isEqualToString:@"1"]) {
         gender = @"男";

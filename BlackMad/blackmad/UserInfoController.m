@@ -39,7 +39,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [SVProgressHUD show];
+//    [SVProgressHUD show];
     [self getUserInfoRequest];
 }
 #pragma mark--UITableViewDataSource
@@ -83,7 +83,7 @@
                               NSDictionary * dic2 = dic1[@"item"];
                               UserInfo * user = [[UserInfo alloc] initWithDic:dic2];
                               [LoginUser shareUser].user = user;
-                              NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[LoginUser shareUser].user.headImage]];
+                              NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,[LoginUser shareUser].user.headImage]];
                               //设置头像 昵称  电话
                               [_headView.userImage sd_setImageWithURL:headURL placeholderImage:[UIImage imageNamed:@"headimage"]];
                               _headView.userName.text = [LoginUser shareUser].user.nickname;

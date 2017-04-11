@@ -154,8 +154,8 @@ typedef enum :NSUInteger{
                           //注册成功
                           _type = userType_Login;
                           [self initUI];
-                          _loginPhone.text = @"";
-                          _pwdField.text = @"";
+//                          _loginPhone.text = @"";
+//                          _pwdField.text = @"";
                           [self.view endEditing:YES];
                       }];
 }

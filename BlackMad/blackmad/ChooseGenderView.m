@@ -53,9 +53,9 @@
         
         _confirm = [UIButton buttonWithType:UIButtonTypeCustom];
         _confirm.frame = CGRectMake(0, 50+1+50+6, DWIDTH, 50);
-        [_confirm addTarget:self action:@selector(clickConfirm) forControlEvents:UIControlEventTouchUpInside];
+        [_confirm addTarget:self action:@selector(cancle) forControlEvents:UIControlEventTouchUpInside];
         [_confirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_confirm setTitle:@"确定" forState:UIControlStateNormal];
+        [_confirm setTitle:@"取消" forState:UIControlStateNormal];
         _confirm.backgroundColor = [UIColor whiteColor];
         
         [_genderView addSubview:_manBtn];
@@ -72,16 +72,21 @@
     _select = @"女";
     [_womanBtn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
     [_manBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    if (_delegate && [_delegate respondsToSelector:@selector(selectWithGender:)]) {
+        [_delegate selectWithGender:_select];
+        [self hidden];
+    }
 }
 - (void)chooseMan{
     _select = @"男";
     [_womanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_manBtn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
-}
-- (void)clickConfirm{
     if (_delegate && [_delegate respondsToSelector:@selector(selectWithGender:)]) {
         [_delegate selectWithGender:_select];
+        [self hidden];
     }
+}
+- (void)cancle{
     [self hidden];
 }
 - (void)show{
