@@ -12,8 +12,6 @@
 
 @interface InterestController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-//@property (nonatomic,copy) NSArray * imageArr;
-//@property (nonatomic,copy) NSArray * titleArr;
 @property (nonatomic,strong) NSMutableArray * interestArr;//存储兴趣爱好的模型数组
 @property (nonatomic,strong) NSMutableArray * selectArr;//cell是否选中
 @end
