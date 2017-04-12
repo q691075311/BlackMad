@@ -76,7 +76,8 @@
     self.tableView.dataSource = self;
     self.headImage.layer.masksToBounds = YES;
     self.headImage.layer.cornerRadius = 26;
-    [self setUserInfoTextWithColor:COLORWITHRGB(238, 238, 238)];
+    [self setUserInfoTextWithColor:COLORWITHRGB(245, 245, 245)];
+    [self setUserInteractionEnabledWith:NO];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -204,6 +205,7 @@
 - (IBAction)saveBtn:(UIButton *)sender {
     [SVProgressHUD show];
     [self setUserInfoTextWithColor:COLORWITHRGB(245, 245, 245)];
+    [self setUserInteractionEnabledWith:NO];
     //校验信息
     if (_adress.text == nil) {
         _adress.text = @"";
@@ -235,6 +237,7 @@
     [self saveUserInfoWith:dic];
 }
 - (IBAction)changeInfo:(UIButton *)sender {
+    [self setUserInteractionEnabledWith:YES];
     [self setUserInfoTextWithColor:COLORWITHRGB(0, 0, 0)];
 }
 
@@ -244,6 +247,26 @@
     _gender.textColor = color;
     _birthday.textColor = color;
     _adress.textColor = color;
+}
+#pragma mark--set用户信息可交互性
+- (void)setUserInteractionEnabledWith:(BOOL)booler{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:2 inSection:0];
+    NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:3 inSection:0];
+    NSIndexPath *indexPath3 = [NSIndexPath indexPathForRow:4 inSection:0];
+    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell * cell1 = [self.tableView cellForRowAtIndexPath:indexPath1];
+    UITableViewCell * cell2 = [self.tableView cellForRowAtIndexPath:indexPath2];
+    UITableViewCell * cell3 = [self.tableView cellForRowAtIndexPath:indexPath3];
+    cell.userInteractionEnabled = booler;
+    cell1.userInteractionEnabled = booler;
+    cell2.userInteractionEnabled = booler;
+    cell3.userInteractionEnabled = booler;
+    
+    _nickName.userInteractionEnabled = booler;
+    _gender.userInteractionEnabled = booler;
+    _birthday.userInteractionEnabled = booler;
+    _adress.userInteractionEnabled = booler;
 }
 
 #pragma mark--ChooseGenderDelegate
