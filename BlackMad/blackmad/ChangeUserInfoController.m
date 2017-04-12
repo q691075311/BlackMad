@@ -76,7 +76,7 @@
     self.tableView.dataSource = self;
     self.headImage.layer.masksToBounds = YES;
     self.headImage.layer.cornerRadius = 26;
-    [self setUserInfoTextWithColor:COLORWITHRGB(245, 245, 245)];
+    [self setUserInfoTextWithColor:COLORWITHRGB(120, 120, 120)];
     [self setUserInteractionEnabledWith:NO];
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -204,7 +204,7 @@
 #pragma mark--保存
 - (IBAction)saveBtn:(UIButton *)sender {
     [SVProgressHUD show];
-    [self setUserInfoTextWithColor:COLORWITHRGB(245, 245, 245)];
+    [self setUserInfoTextWithColor:COLORWITHRGB(120, 120, 120)];
     [self setUserInteractionEnabledWith:NO];
     //校验信息
     if (_adress.text == nil) {

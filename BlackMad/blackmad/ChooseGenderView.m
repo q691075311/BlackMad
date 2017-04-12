@@ -40,14 +40,14 @@
         _manBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _manBtn.frame = CGRectMake(0, 0, DWIDTH, 50);
         [_manBtn addTarget:self action:@selector(chooseMan) forControlEvents:UIControlEventTouchUpInside];
-        [_manBtn setTitle:@"男士" forState:UIControlStateNormal];
-        [_manBtn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
+        [_manBtn setTitle:@"男" forState:UIControlStateNormal];
+        [_manBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _manBtn.backgroundColor = [UIColor whiteColor];
         
         _womanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _womanBtn.frame = CGRectMake(0, 51, DWIDTH, 50);
         [_womanBtn addTarget:self action:@selector(chooseWoman) forControlEvents:UIControlEventTouchUpInside];
-        [_womanBtn setTitle:@"女士" forState:UIControlStateNormal];
+        [_womanBtn setTitle:@"女" forState:UIControlStateNormal];
         [_womanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _womanBtn.backgroundColor = [UIColor whiteColor];
         
@@ -70,8 +70,8 @@
 
 - (void)chooseWoman{
     _select = @"女";
-    [_womanBtn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
-    [_manBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [_womanBtn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
+//    [_manBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     if (_delegate && [_delegate respondsToSelector:@selector(selectWithGender:)]) {
         [_delegate selectWithGender:_select];
         [self hidden];
@@ -79,8 +79,8 @@
 }
 - (void)chooseMan{
     _select = @"男";
-    [_womanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_manBtn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
+//    [_womanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [_manBtn setTitleColor:COLORWITHRGB(203, 50, 50) forState:UIControlStateNormal];
     if (_delegate && [_delegate respondsToSelector:@selector(selectWithGender:)]) {
         [_delegate selectWithGender:_select];
         [self hidden];
