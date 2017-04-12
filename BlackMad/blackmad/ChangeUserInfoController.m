@@ -83,7 +83,7 @@
 }
 //更新界面内容
 - (void)updataUI{
-    NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[LoginUser shareUser].user.headImage]];
+    NSURL * headURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,[LoginUser shareUser].user.headImage]];
     NSString * gender;
     if ([[LoginUser shareUser].user.sex isEqualToString:@"1"]) {
         gender = @"男";
@@ -326,7 +326,7 @@
                              WithComplete:^(NSDictionary *dic) {
                                  NSLog(@"%@",dic);
                                  NSDictionary * dic1 = dic[@"attribute"];
-                                 _headImageStr = [NSString stringWithFormat:@"%@%@",IMAGEURL,dic1[@"fileUrl"]];
+                                 _headImageStr = [NSString stringWithFormat:@"%@",dic1[@"fileUrl"]];
                                  [LoginUser shareUser].user.headImage = _headImageStr;
                              }];
 }
