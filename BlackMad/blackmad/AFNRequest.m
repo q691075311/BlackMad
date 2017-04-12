@@ -302,8 +302,17 @@
     //4302--用户密码错误
     if (![dic[@"statusCode"] isEqualToString:@"0"]) {
         [SVProgressHUD dismiss];
-        NSString * errorStr = dic[@"statusMessage"];
-        [SVProgressHUD showErrorWithStatus:errorStr];
+        NSString * str;
+        if ([dic[@"statusCode"] isEqualToString:@"4301"]) {
+            str = @"用户不存在";
+        }else if ([dic[@"statusCode"] isEqualToString:@"4302"]){
+            str = @"用户密码错误";
+        }else if ([dic[@"statusCode"] isEqualToString:@"4303"]){
+            str = @"该账号已存在";
+        }
+        
+//        NSString * errorStr = dic[@"statusMessage"];
+        [SVProgressHUD showErrorWithStatus:str];
         return NO;
     }else{
         return YES;

@@ -51,6 +51,7 @@
 @interface ChangeUserInfoContainerController()<UITableViewDelegate,UITableViewDataSource,ChooseGenderDelegate,ChooseBirthdayDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ChooseHeadTypeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *footView;
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;//保存btn
+@property (weak, nonatomic) IBOutlet UIButton *changeBtn;//修改Btn
 @property (nonatomic,assign) BOOL isGetUserInfo;//是否获取到用户信息
 @property (nonatomic,strong) UIImagePickerController * imagePickController;
 @property (nonatomic,copy) NSString * headImageStr;//头像地址
@@ -68,12 +69,14 @@
     _isGetUserInfo = NO;
     self.saveBtn.layer.masksToBounds = YES;
     self.saveBtn.layer.cornerRadius = 24;
+    self.changeBtn.layer.masksToBounds = YES;
+    self.changeBtn.layer.cornerRadius = 24;
     self.tableView.tableFooterView = self.footView;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.headImage.layer.masksToBounds = YES;
     self.headImage.layer.cornerRadius = 26;
-    
+    [self setUserInfoTextWithColor:COLORWITHRGB(238, 238, 238)];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -200,7 +203,7 @@
 #pragma mark--保存
 - (IBAction)saveBtn:(UIButton *)sender {
     [SVProgressHUD show];
-    
+    [self setUserInfoTextWithColor:COLORWITHRGB(245, 245, 245)];
     //校验信息
     if (_adress.text == nil) {
         _adress.text = @"";
@@ -231,6 +234,18 @@
     NSDictionary * dic = @{@"item":mutableDic};
     [self saveUserInfoWith:dic];
 }
+- (IBAction)changeInfo:(UIButton *)sender {
+    [self setUserInfoTextWithColor:COLORWITHRGB(0, 0, 0)];
+}
+
+#pragma mark--set用户信息字体颜色
+- (void)setUserInfoTextWithColor:(UIColor *)color{
+    _nickName.textColor = color;
+    _gender.textColor = color;
+    _birthday.textColor = color;
+    _adress.textColor = color;
+}
+
 #pragma mark--ChooseGenderDelegate
 - (void)selectWithGender:(NSString *)gender{
     NSLog(@"%@",gender);
