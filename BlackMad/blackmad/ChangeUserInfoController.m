@@ -78,7 +78,7 @@
     self.headImage.layer.cornerRadius = 26;
     [self setUserInfoTextWithColor:COLORWITHRGB(120, 120, 120)];
     [self setUserInteractionEnabledWith:NO];
-    [self setCellStatlyWith:NO];
+    [self setCellStatlyWith:YES];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -131,7 +131,7 @@
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexp];
         if (isHiden == YES) {
             cell.accessoryType = UITableViewCellAccessoryNone;
-        }else{
+        }else if(isHiden == NO){
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
@@ -219,7 +219,7 @@
     [SVProgressHUD show];
     [self setUserInfoTextWithColor:COLORWITHRGB(120, 120, 120)];
     [self setUserInteractionEnabledWith:NO];
-    [self setCellStatlyWith:NO];
+    [self setCellStatlyWith:YES];
     //校验信息
     if (_adress.text == nil) {
         _adress.text = @"";
@@ -254,7 +254,7 @@
 - (IBAction)changeInfo:(UIButton *)sender {
     [self setUserInteractionEnabledWith:YES];
     [self setUserInfoTextWithColor:COLORWITHRGB(0, 0, 0)];
-    [self setCellStatlyWith:YES];
+    [self setCellStatlyWith:NO];
 }
 
 #pragma mark--set用户信息字体颜色
