@@ -72,14 +72,17 @@ typedef enum:NSUInteger{
     if ([self.tableView.mj_footer isRefreshing]) {
         return;
     }
-    //__weak __typeof(self) weakSelf = self;
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         _refreshType = refreshing;
         NSLog(@"上拉获取新数据");
         _pageNum++;
         NSLog(@"%d",_pageNum);
         [self requestProductListWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum] WithProductTypeId:_currentId];
     }];
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        
+//    }];
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -266,6 +269,7 @@ typedef enum:NSUInteger{
                                          [_mainProductArr addObject:proModle];
                                      }
                                  }else{
+                                     NSLog(@"没有更多数据了");
                                      [self.tableView.mj_footer endRefreshingWithNoMoreData];
                                  }
                                  
