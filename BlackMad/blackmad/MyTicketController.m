@@ -52,7 +52,7 @@ typedef enum: NSUInteger{
 
 - (void)setMJRefreshFooter{
     if ([self.tableView.mj_footer isRefreshing]) return;
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         NSLog(@"上拉获取新数据");
         _pageNum++;
         NSLog(@"%d",_pageNum);

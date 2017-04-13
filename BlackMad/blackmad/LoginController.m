@@ -65,7 +65,9 @@ typedef enum :NSUInteger{
         [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         [_registeredBtn setTitle:@"点击注册" forState:UIControlStateNormal];
-        _headImage.image = [UIImage imageNamed:@"logo"];
+        //_headImage.image = [UIImage imageNamed:@"logo"];
+        NSString * headImageStr = [USERDEF objectForKey:@"headImage"];
+        [_headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,headImageStr]] placeholderImage:[UIImage imageNamed:@"headimage"]];
         _pwdField.placeholder = @"请输入密码";
     }else if (_type == userType_Registered){
         [self.navBar configNavBarTitle:@"账户注册" WithLeftView:nil WithRigthView:nil];
@@ -73,6 +75,7 @@ typedef enum :NSUInteger{
         [_registeredBtn setTitle:@"有账号？返回登录" forState:UIControlStateNormal];
         _headImage.image = [UIImage imageNamed:@"logo"];
         _pwdField.placeholder = @"请输入密码（6-18位字符）";
+        
     }
     //设置用户名的textfield的左边框
     [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
@@ -85,6 +88,8 @@ typedef enum :NSUInteger{
     //设置登录btn的边框
     _loginBtn.layer.masksToBounds = YES;
     _loginBtn.layer.cornerRadius = 24;
+    _headImage.layer.masksToBounds = YES;
+    _headImage.layer.cornerRadius = 60;
     
 }
 - (void)changeTextFieldLayer:(UITextField *)textField{
@@ -200,6 +205,8 @@ typedef enum :NSUInteger{
                               NSDictionary * dic2 = dic1[@"item"];
                               UserInfo * user = [[UserInfo alloc] initWithDic:dic2];
                               [LoginUser shareUser].user = user;
+                              [USERDEF setObject:user.headImage forKey:@"headImage"];
+                              [USERDEF synchronize];
                               //判断是否跳转兴趣页面
                               if ([[LoginUser shareUser].isSelectInterest isEqual:@(0)]) {
                                   //登录成功跳兴趣爱好

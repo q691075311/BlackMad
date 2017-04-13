@@ -33,9 +33,9 @@
     [LoginUser shareUser].token = nil;
     [LoginUser shareUser].isSelectInterest = nil;
     [LoginUser shareUser].isLogin = NO;
-    [USERDEF removeObjectForKey:@"username"];
-    [USERDEF removeObjectForKey:@"pwd"];
-    [USERDEF synchronize];
+//    [USERDEF removeObjectForKey:@"username"];
+//    [USERDEF removeObjectForKey:@"pwd"];
+//    [USERDEF synchronize];
     [self pushToController:@"ViewController"
             WithStoyBordID:@"Main"
                   WithForm:self

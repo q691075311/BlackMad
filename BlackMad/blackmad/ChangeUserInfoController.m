@@ -78,6 +78,7 @@
     self.headImage.layer.cornerRadius = 26;
     [self setUserInfoTextWithColor:COLORWITHRGB(120, 120, 120)];
     [self setUserInteractionEnabledWith:NO];
+    [self setCellStatlyWith:NO];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -123,6 +124,18 @@
         //选择地区
         [self chooseAdress];
     }
+}
+- (void)setCellStatlyWith:(BOOL)isHiden{
+    for (int i = 0; i<5; i++) {
+        NSIndexPath * indexp = [NSIndexPath indexPathForRow:i inSection:0];
+        UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexp];
+        if (isHiden == YES) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }else{
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+    }
+    [self.tableView reloadData];
 }
 #pragma mark--选择个人信息
 /**
@@ -206,6 +219,7 @@
     [SVProgressHUD show];
     [self setUserInfoTextWithColor:COLORWITHRGB(120, 120, 120)];
     [self setUserInteractionEnabledWith:NO];
+    [self setCellStatlyWith:NO];
     //校验信息
     if (_adress.text == nil) {
         _adress.text = @"";
@@ -224,7 +238,8 @@
     }else if ([_gender.text isEqualToString:@"女"]){
         gender = @"2";
     }
-    NSLog(@"%@%@%@%@",_nickName.text,_gender.text,_birthday.text,_adress.text);
+    [USERDEF setObject:[LoginUser shareUser].user.headImage forKey:@"headImage"];
+    [USERDEF synchronize];
     NSMutableDictionary * mutableDic = [[NSMutableDictionary alloc] init];
     [mutableDic setValue:_birthday.text forKey:@"birthday"];
     [mutableDic setValue:_adress.text forKey:@"city"];
@@ -239,6 +254,7 @@
 - (IBAction)changeInfo:(UIButton *)sender {
     [self setUserInteractionEnabledWith:YES];
     [self setUserInfoTextWithColor:COLORWITHRGB(0, 0, 0)];
+    [self setCellStatlyWith:YES];
 }
 
 #pragma mark--set用户信息字体颜色

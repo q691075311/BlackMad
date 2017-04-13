@@ -1061,7 +1061,7 @@
         <image name="bolanghong" width="355" height="33"/>
         <image name="guodate" width="45" height="40"/>
         <image name="hdui" width="38" height="38"/>
-        <image name="logo" width="118" height="160"/>
+        <image name="logo" width="120" height="120"/>
         <image name="xingbake" width="60" height="60"/>
     </resources>
 </document>
