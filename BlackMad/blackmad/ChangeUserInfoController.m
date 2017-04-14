@@ -183,6 +183,8 @@
         NSString * imageStr = [imageData base64Encoding];
         _headImage.image = image;
         //上传头像
+        [SVProgressHUD show];
+        self.view.userInteractionEnabled = NO;
         [self upHeadImageWith:imageStr];
         //将图片存入沙盒
         //[self saveImage:image withName:@"head.jpg"];
@@ -382,6 +384,8 @@
                                  NSDictionary * dic1 = dic[@"attribute"];
                                  _headImageStr = [NSString stringWithFormat:@"%@",dic1[@"fileUrl"]];
                                  [LoginUser shareUser].user.headImage = _headImageStr;
+                                 self.view.userInteractionEnabled = YES;
+                                 [SVProgressHUD dismiss];
                              }];
 }
 //保存用户信息
