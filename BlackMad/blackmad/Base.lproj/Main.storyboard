@@ -52,14 +52,11 @@
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="esP-S7-uS5">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="160"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="160" id="6tg-Rc-ZF6"/>
-                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdl-Wk-OQw">
                                                             <rect key="frame" x="10" y="170" width="325" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="r4L-e5-jwk"/>
+                                                                <constraint firstAttribute="height" constant="20" id="xbV-PW-KH6"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -76,15 +73,16 @@
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="esP-S7-uS5" firstAttribute="leading" secondItem="vOY-PW-mQU" secondAttribute="leading" id="29w-dl-Tva"/>
-                                                        <constraint firstItem="Kdl-Wk-OQw" firstAttribute="leading" secondItem="vOY-PW-mQU" secondAttribute="leading" constant="10" id="KfR-ag-la0"/>
-                                                        <constraint firstItem="Kdl-Wk-OQw" firstAttribute="top" secondItem="esP-S7-uS5" secondAttribute="bottom" constant="10" id="Oem-jq-eVt"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Kdl-Wk-OQw" secondAttribute="bottom" constant="29" id="CoM-U1-ZvG"/>
+                                                        <constraint firstItem="esP-S7-uS5" firstAttribute="top" secondItem="vOY-PW-mQU" secondAttribute="top" id="JU8-ag-gtQ"/>
+                                                        <constraint firstItem="Kdl-Wk-OQw" firstAttribute="leading" secondItem="vOY-PW-mQU" secondAttribute="leading" constant="10" id="QOd-6r-TKr"/>
                                                         <constraint firstAttribute="bottom" secondItem="elZ-j1-QMr" secondAttribute="bottom" constant="10" id="Rfh-Og-5N0"/>
-                                                        <constraint firstItem="esP-S7-uS5" firstAttribute="top" secondItem="vOY-PW-mQU" secondAttribute="top" id="VCf-BW-8nK"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Kdl-Wk-OQw" secondAttribute="trailing" constant="20" id="mhS-np-jwe"/>
+                                                        <constraint firstAttribute="trailing" secondItem="esP-S7-uS5" secondAttribute="trailing" id="YcO-QB-kVR"/>
+                                                        <constraint firstItem="esP-S7-uS5" firstAttribute="leading" secondItem="vOY-PW-mQU" secondAttribute="leading" id="eaY-QI-rSU"/>
                                                         <constraint firstAttribute="trailing" secondItem="elZ-j1-QMr" secondAttribute="trailing" constant="20" id="nzC-I1-TVo"/>
                                                         <constraint firstItem="elZ-j1-QMr" firstAttribute="leading" secondItem="vOY-PW-mQU" secondAttribute="leading" constant="10" id="qHy-68-PXs"/>
-                                                        <constraint firstAttribute="trailing" secondItem="esP-S7-uS5" secondAttribute="trailing" id="tvy-RA-QY3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Kdl-Wk-OQw" secondAttribute="trailing" constant="20" id="sDo-rK-Smr"/>
+                                                        <constraint firstItem="Kdl-Wk-OQw" firstAttribute="top" secondItem="esP-S7-uS5" secondAttribute="bottom" constant="10" id="wka-31-g2s"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

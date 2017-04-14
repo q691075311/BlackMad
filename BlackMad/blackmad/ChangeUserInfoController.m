@@ -126,7 +126,7 @@
     }
 }
 - (void)setCellStatlyWith:(BOOL)isHiden{
-    for (int i = 0; i<5; i++) {
+    for (int i = 1; i<5; i++) {
         NSIndexPath * indexp = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexp];
         if (isHiden == YES) {

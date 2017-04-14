@@ -51,6 +51,7 @@ typedef enum:NSUInteger{
     [self.navBar configNavBarTitle:@"疯趣" WithLeftView:@"mainLeft" WithRigthView:nil];
     [self setFristLineView];
     self.view.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
+    self.tableView.backgroundColor = COLORWITHRGB(246, 246, 246);
     [self setMJRefreshFooter];
     _refreshType = notRefresh;
     _mainBtnListArr = [[NSMutableArray alloc] init];
@@ -185,7 +186,7 @@ typedef enum:NSUInteger{
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 230;
+    return 250;
 }
 #pragma mark--跳转登录页面
 - (void)toLogin{
