@@ -56,6 +56,10 @@
 @property (nonatomic,strong) UIImagePickerController * imagePickController;
 @property (nonatomic,copy) NSString * headImageStr;//头像地址
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nickNameLong;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *genderLong;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *brithDayLong;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adressLong;
 @end
 
 @implementation ChangeUserInfoContainerController
@@ -125,17 +129,37 @@
         [self chooseAdress];
     }
 }
+//设置cell样式
 - (void)setCellStatlyWith:(BOOL)isHiden{
     for (int i = 1; i<5; i++) {
         NSIndexPath * indexp = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexp];
+        UIImageView * imageView1 = [cell.contentView viewWithTag:i];
         if (isHiden == YES) {
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            imageView1.hidden = isHiden;
+            [self setLableLongWith:isHiden];
         }else if(isHiden == NO){
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            imageView1.hidden = isHiden;
+            [self setLableLongWith:isHiden];
         }
     }
     [self.tableView reloadData];
+}
+
+- (void)setLableLongWith:(BOOL)isLong{
+    int lableLong = 30;
+    int lableshite = 20;
+    if (!isLong) {
+        _nickNameLong.constant = lableLong;
+        _genderLong.constant = lableLong;
+        _brithDayLong.constant = lableLong;
+        _adressLong.constant = lableLong;
+    }else{
+        _nickNameLong.constant = lableshite;
+        _genderLong.constant = lableshite;
+        _brithDayLong.constant = lableshite;
+        _adressLong.constant = lableshite;
+    }
 }
 #pragma mark--选择个人信息
 /**
