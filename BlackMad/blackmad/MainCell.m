@@ -22,11 +22,7 @@
     
     self.time.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
     self.time.textColor = [UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1/1.0];
-    
-//    self.image.image = [UIImage imageNamed:@"XRPlaceholder"];
     [self.image sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png"] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
-    self.title.text = @"111111";
-    self.time.text = @"222222";
 }
 
 - (void)setProductModle:(MainProductModle *)productModle{
