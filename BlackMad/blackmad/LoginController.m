@@ -157,10 +157,10 @@ typedef enum :NSUInteger{
                           [SVProgressHUD dismiss];
                           [SVProgressHUD showSuccessWithStatus:@"注册成功"];
                           //注册成功
+                          [USERDEF removeObjectForKey:@"headImage"];
+                          [USERDEF synchronize];
                           _type = userType_Login;
                           [self initUI];
-//                          _loginPhone.text = @"";
-//                          _pwdField.text = @"";
                           [self.view endEditing:YES];
                       }];
 }
