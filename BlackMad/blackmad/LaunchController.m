@@ -56,9 +56,12 @@
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
         vc.fromFlag = @"ad";
+        vc.tabBarItem.title = @"首页";
+        vc.tabBarItem.image = [UIImage imageNamed:@"guodate"];
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
         UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
         window.rootViewController = nav;
+        
     }];
 }
 - (void)didReceiveMemoryWarning {

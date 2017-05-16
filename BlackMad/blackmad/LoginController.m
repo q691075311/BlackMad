@@ -213,7 +213,25 @@ typedef enum :NSUInteger{
                                   [self pushToController:@"InterestController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
                               }else{
                                   //登录成功跳首页
-                                  [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+                                  //a.初始化一个tabBar控制器
+                                  UITabBarController *tb=[[UITabBarController alloc]init];
+                                  UIViewController *c1=[[UIViewController alloc]init];
+                                  c1.tabBarItem.title=@"消息";
+                                  c1.tabBarItem.image=[UIImage imageNamed:@"all"];
+                                  
+                                  
+                                  UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                                  ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+                                  vc.tabBarItem.title = @"首页";
+                                  UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                                  UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+                                  [tb addChildViewController:nav];
+                                  [tb addChildViewController:c1];
+                                  window.rootViewController = tb;
+//                                  [window makeKeyAndVisible];
+                                  [self.navigationController pushViewController:vc animated:YES];
+                                  
+//                                  [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
                               }
                           }];
 }
