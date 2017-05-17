@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NavBar.h"
 
+
 @interface BaseController : UIViewController
 /**
  *  接收上个界面传的数据

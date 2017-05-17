@@ -7,6 +7,7 @@
 //
 
 #import "BaseController.h"
+#import "AccountManagementController.h"
 
 @interface BaseController ()<NavBarDelegate>
 
