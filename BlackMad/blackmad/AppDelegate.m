@@ -51,7 +51,7 @@
     //创建tabbar的视图
     UIViewController *c1=[[UIViewController alloc]init];
     c1.tabBarItem.title=@"消息";
-    c1.tabBarItem.image=[UIImage imageNamed:@"all"];
+    c1.tabBarItem.image=[UIImage imageNamed:@"user"];
     
     NSString * loginName = [USERDEF objectForKey:@"username"];
     NSString * pwd = [USERDEF objectForKey:@"pwd"];
@@ -59,7 +59,7 @@
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         ViewController * mainVC = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
         mainVC.tabBarItem.title = @"首页";
-        mainVC.tabBarItem.image = [UIImage imageNamed:@"guodate"];
+        mainVC.tabBarItem.image = [UIImage imageNamed:@"pwdh"];
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
         self.window.rootViewController = tb;
         [tb addChildViewController:nav];

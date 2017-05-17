@@ -8,7 +8,7 @@
 
 #import "LaunchController.h"
 #import "LoginController.h"
-
+#import "ViewController.h"
 
 @interface LaunchController ()
 @property (nonatomic,copy) NSArray * launchImageArr;
@@ -53,14 +53,24 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.scrollView.alpha = 0;
     } completion:^(BOOL finished) {
+        UITabBarController *tb=[[UITabBarController alloc]init];
+        //创建tabbar的视图
+        UIViewController *c1=[[UIViewController alloc]init];
+        c1.view.backgroundColor = [UIColor redColor];
+        c1.tabBarItem.title=@"消息";
+        c1.tabBarItem.image=[UIImage imageNamed:@"all.png"];
+        
+        
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
-        vc.fromFlag = @"ad";
+        ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+        vc.isAD = @"FormAD";
         vc.tabBarItem.title = @"首页";
         vc.tabBarItem.image = [UIImage imageNamed:@"guodate"];
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
         UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
-        window.rootViewController = nav;
+        [tb addChildViewController:nav];
+        [tb addChildViewController:c1];
+        window.rootViewController = tb;
         
     }];
 }
