@@ -41,24 +41,37 @@
 - (void)firstLaunch{
     UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     LaunchController * vc = [sb instantiateViewControllerWithIdentifier:@"LaunchController"];
-//    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = vc;
 }
 #pragma mark--不是第一次启动
 - (void)everLaunch{
+    self.window.backgroundColor = [UIColor whiteColor];
+    //a.初始化一个tabBar控制器
+    UITabBarController *tb=[[UITabBarController alloc]init];
+    //创建tabbar的视图
+    UIViewController *c1=[[UIViewController alloc]init];
+    c1.tabBarItem.title=@"消息";
+    c1.tabBarItem.image=[UIImage imageNamed:@"user"];
+    
     NSString * loginName = [USERDEF objectForKey:@"username"];
     NSString * pwd = [USERDEF objectForKey:@"pwd"];
     if (loginName && pwd) {
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
-        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        self.window.rootViewController = nav;
+        ViewController * mainVC = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+        mainVC.tabBarItem.title = @"首页";
+        mainVC.tabBarItem.image = [UIImage imageNamed:@"pwdh"];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
+        self.window.rootViewController = tb;
+        [tb addChildViewController:nav];
     }else{
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
-        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        LoginController * loginVC = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
         self.window.rootViewController = nav;
+        
     }
+    [tb addChildViewController:c1];
+    
 }
 #pragma mark--控制键盘弹出的三方库
 - (void)initIQKeyboard{

@@ -157,10 +157,10 @@ typedef enum :NSUInteger{
                           [SVProgressHUD dismiss];
                           [SVProgressHUD showSuccessWithStatus:@"注册成功"];
                           //注册成功
+                          [USERDEF removeObjectForKey:@"headImage"];
+                          [USERDEF synchronize];
                           _type = userType_Login;
                           [self initUI];
-//                          _loginPhone.text = @"";
-//                          _pwdField.text = @"";
                           [self.view endEditing:YES];
                       }];
 }
@@ -212,8 +212,28 @@ typedef enum :NSUInteger{
                                   //登录成功跳兴趣爱好
                                   [self pushToController:@"InterestController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
                               }else{
-                                  //登录成功跳首页
-                                  [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+                                  //登录成功回首页
+                                  [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                                  //a.初始化一个tabBar控制器
+                                  UITabBarController *tb=[[UITabBarController alloc]init];
+                                  UIViewController *c1=[[UIViewController alloc]init];
+                                  c1.view.backgroundColor = [UIColor redColor];
+                                  c1.tabBarItem.title=@"消息";
+                                  c1.tabBarItem.image=[UIImage imageNamed:@"user"];
+                                  
+                                  
+                                  UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                                  ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+                                  vc.tabBarItem.title = @"首页";
+                                  vc.tabBarItem.image = [UIImage imageNamed:@"pwdh"];
+                                  UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                                  UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+                                  [tb addChildViewController:nav];
+                                  [tb addChildViewController:c1];
+                                  window.rootViewController = tb;
+                                  
+//                                  [self.navigationController pushViewController:vc animated:YES];
+//                                  [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
                               }
                           }];
 }
@@ -234,7 +254,9 @@ typedef enum :NSUInteger{
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
-
+- (void)touchLeftBtn{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

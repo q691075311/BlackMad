@@ -7,6 +7,7 @@
 //
 
 #import "BaseController.h"
+#import "AccountManagementController.h"
 
 @interface BaseController ()<NavBarDelegate>
 
@@ -42,6 +43,7 @@
     UIStoryboard * sb = [UIStoryboard storyboardWithName:stoyBordID bundle:[NSBundle mainBundle]];
     BaseController * vc = [sb instantiateViewControllerWithIdentifier:controllerID];
     vc.userInfo = info;
+    vc.hidesBottomBarWhenPushed = YES;
     [formController.navigationController pushViewController:vc animated:YES];
     return vc;
 }

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseController.h"
 @interface ViewController : BaseController
+@property (nonatomic,copy) NSString * isAD;
 
 @end
 

@@ -7,6 +7,7 @@
 //
 
 #import "AccountManagementController.h"
+#import "ViewController.h"
 
 @interface AccountManagementController ()
 @property (weak, nonatomic) IBOutlet UIButton *outLoginBtn;
@@ -33,15 +34,8 @@
     [LoginUser shareUser].token = nil;
     [LoginUser shareUser].isSelectInterest = nil;
     [LoginUser shareUser].isLogin = NO;
-//    [USERDEF removeObjectForKey:@"username"];
-//    [USERDEF removeObjectForKey:@"pwd"];
-//    [USERDEF synchronize];
-    [self pushToController:@"ViewController"
-            WithStoyBordID:@"Main"
-                  WithForm:self
-                  WithInfo:@{}];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

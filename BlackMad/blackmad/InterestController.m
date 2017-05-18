@@ -111,7 +111,8 @@
                               WithComplete:^(NSDictionary *dic) {
                                   NSLog(@"%@",dic);
                                   [LoginUser shareUser].isSelectInterest = @(1);
-                                  [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
+                                  [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//                                  [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];
                               }];
 }
 

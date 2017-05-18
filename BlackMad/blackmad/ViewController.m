@@ -17,6 +17,7 @@
 #import "BlackWebController.h"
 #import "MJRefresh.h"
 #import "MainProductModle.h"
+#import "LoginController.h"
 
 typedef enum:NSUInteger{
     refreshing,
@@ -68,6 +69,15 @@ typedef enum:NSUInteger{
     
     [self netWorkRequest];
     [self requestBannerProductType];
+    [self isShowLogin];
+    
+}
+- (void)isShowLogin{
+    if ([self.isAD isEqualToString:@"FormAD"]) {
+        [self presentLoginViewWithStr:@"isReg"];
+    }else{
+        
+    }
 }
 - (void)setMJRefreshFooter{
     if ([self.tableView.mj_footer isRefreshing]) {
@@ -80,9 +90,6 @@ typedef enum:NSUInteger{
         NSLog(@"%d",_pageNum);
         [self requestProductListWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum] WithProductTypeId:_currentId];
     }];
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        
-//    }];
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -205,10 +212,11 @@ typedef enum:NSUInteger{
                       WithInfo:@{}];
     }else{
         //进入登录页面
-        [self pushToController:@"LoginController"
-                WithStoyBordID:@"Main"
-                      WithForm:self
-                      WithInfo:@{}];
+//        [self pushToController:@"LoginController"
+//                WithStoyBordID:@"Main"
+//                      WithForm:self
+//                      WithInfo:@{}];
+        [self presentLoginViewWithStr:@"isLogin"];
     }
 }
 #pragma mark--网络请求
@@ -277,7 +285,18 @@ typedef enum:NSUInteger{
                                  [self.tableView reloadData];
                              }];
 }
-
+//模态弹出登录界面
+- (void)presentLoginViewWithStr:(NSString *)str{
+    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
+    if ([str isEqualToString:@"isReg"]) {
+        vc.fromFlag = @"ad";
+    }else{
+        
+    }
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
