@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,copy) NSArray *titleOfSectionArr;
 @property (nonatomic,copy) NSArray *imageOfSectionArr;
+@property (nonatomic,copy) NSArray *pushArr;
 @property (nonatomic,copy) NSArray *imageArr;
 @property (nonatomic,strong) UserInfoView *headView;
 @end
@@ -51,6 +52,13 @@
     NSArray *twoImageArr = @[[UIImage imageNamed:@"help"],
                              [UIImage imageNamed:@"advice"]];
     _imageOfSectionArr = @[oneImageArr,twoImageArr];
+    NSArray * pushOneArr= @[@"ChangeUserInfoController",
+                            @"MyTicketController",
+                            @"AccountManagementController",
+                            @"MyCollectionController"];
+    NSArray * pushtwoArr = @[@"HelpController",
+                             @"AdviceViewController",];
+    _pushArr = @[pushOneArr,pushtwoArr];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -82,11 +90,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSArray * arr= @[@"ChangeUserInfoController",
-                     @"MyTicketController",
-                     @"AccountManagementController"];
-    [self pushToController:arr[indexPath.row]
-            WithStoyBordID:@"Main"
+    //这是卡券页面
+    NSIndexPath * index = [NSIndexPath indexPathForRow:1 inSection:0];
+    if (indexPath == index) {
+        [self pushToController:_pushArr[indexPath.section][indexPath.row]
+                WithStoyBordID:@"User"
+                      WithForm:self
+                      WithInfo:@{}];
+    }
+    [self pushToController:_pushArr[indexPath.section][indexPath.row]
+            WithStoyBordID:@"User"
                   WithForm:self
                   WithInfo:@{}];
 }

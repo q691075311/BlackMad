@@ -16,6 +16,9 @@
 		4B12B0AB1EDE526E0041196C /* ClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0AA1EDE526E0041196C /* ClassController.m */; };
 		4B12B0AD1EDE5ED20041196C /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B12B0AC1EDE5ED20041196C /* User.storyboard */; };
 		4B12B0B01EDE64A80041196C /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0AF1EDE64A80041196C /* Tool.m */; };
+		4B12B0B31EDEA5760041196C /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0B21EDEA5760041196C /* MyCollectionController.m */; };
+		4B12B0B61EDEAAD30041196C /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0B51EDEAAD30041196C /* HelpController.m */; };
+		4B12B0B91EDEAB290041196C /* AdviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0B81EDEAB290041196C /* AdviceViewController.m */; };
 		4B407C101E828F31004B94A6 /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C0F1E828F31004B94A6 /* LoginUser.m */; };
 		4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C121E82AAC6004B94A6 /* UserInfo.m */; };
 		4B708A751E8384310064CD11 /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B708A741E8384310064CD11 /* InterestModel.m */; };
@@ -145,6 +148,12 @@
 		4B12B0AC1EDE5ED20041196C /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		4B12B0AE1EDE64A80041196C /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
 		4B12B0AF1EDE64A80041196C /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
+		4B12B0B11EDEA5760041196C /* MyCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionController.h; sourceTree = "<group>"; };
+		4B12B0B21EDEA5760041196C /* MyCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionController.m; sourceTree = "<group>"; };
+		4B12B0B41EDEAAD30041196C /* HelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
+		4B12B0B51EDEAAD30041196C /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
+		4B12B0B71EDEAB290041196C /* AdviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviceViewController.h; sourceTree = "<group>"; };
+		4B12B0B81EDEAB290041196C /* AdviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdviceViewController.m; sourceTree = "<group>"; };
 		4B407C0E1E828F31004B94A6 /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
 		4B407C0F1E828F31004B94A6 /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		4B407C111E82AAC6004B94A6 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
@@ -477,7 +486,7 @@
 				4B8EA20E1E72823D0051EC5A /* 登录页面 */,
 				4B8EA20A1E7277930051EC5A /* 启动页面 */,
 				4BB076251E713F6F00D8DF4B /* 个人中心 */,
-				4BB076241E713F5B00D8DF4B /* 首页 */,
+				4BB076241E713F5B00D8DF4B /* 推荐 */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -671,6 +680,12 @@
 				4BA157221E766C7C0087D279 /* MyTicketController.m */,
 				4BA1571E1E766C580087D279 /* AccountManagementController.h */,
 				4BA1571F1E766C580087D279 /* AccountManagementController.m */,
+				4B12B0B11EDEA5760041196C /* MyCollectionController.h */,
+				4B12B0B21EDEA5760041196C /* MyCollectionController.m */,
+				4B12B0B41EDEAAD30041196C /* HelpController.h */,
+				4B12B0B51EDEAAD30041196C /* HelpController.m */,
+				4B12B0B71EDEAB290041196C /* AdviceViewController.h */,
+				4B12B0B81EDEAB290041196C /* AdviceViewController.m */,
 			);
 			name = "个人中心子页面";
 			sourceTree = "<group>";
@@ -811,13 +826,13 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
-		4BB076241E713F5B00D8DF4B /* 首页 */ = {
+		4BB076241E713F5B00D8DF4B /* 推荐 */ = {
 			isa = PBXGroup;
 			children = (
 				4B7F8C501E6FBF6100686040 /* ViewController.h */,
 				4B7F8C511E6FBF6100686040 /* ViewController.m */,
 			);
-			name = "首页";
+			name = "推荐";
 			sourceTree = "<group>";
 		};
 		4BB076251E713F6F00D8DF4B /* 个人中心 */ = {
@@ -1064,6 +1079,7 @@
 				4BA1F03C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				4B9E44361E8643CD00B4FABD /* MJRefreshBackFooter.m in Sources */,
 				4BA1F0391E731BA500B4EED4 /* IQPreviousNextView.m in Sources */,
+				4B12B0B61EDEAAD30041196C /* HelpController.m in Sources */,
 				4B9E44371E8643CD00B4FABD /* MJRefreshComponent.m in Sources */,
 				4BE874661E80C415004F174E /* UIImage+MultiFormat.m in Sources */,
 				4BA157131E762E2E0087D279 /* InterestController.m in Sources */,
@@ -1090,6 +1106,7 @@
 				4B7F8C751E6FF51300686040 /* BaseController.m in Sources */,
 				4BA157231E766C7C0087D279 /* MyTicketController.m in Sources */,
 				4BCC61C91E7793DB002C7FF9 /* CitiesDataTool.m in Sources */,
+				4B12B0B91EDEAB290041196C /* AdviceViewController.m in Sources */,
 				4B9E44391E8643CD00B4FABD /* MJRefreshHeader.m in Sources */,
 				4BE874641E80C415004F174E /* UIButton+WebCache.m in Sources */,
 				4B9E44351E8643CD00B4FABD /* MJRefreshAutoFooter.m in Sources */,
@@ -1143,6 +1160,7 @@
 				4BB0762B1E71427100D8DF4B /* UserInfoController.m in Sources */,
 				4B7F8C4F1E6FBF6100686040 /* AppDelegate.m in Sources */,
 				4BA1F0371E731BA500B4EED4 /* IQTextView.m in Sources */,
+				4B12B0B31EDEA5760041196C /* MyCollectionController.m in Sources */,
 				4BE8745D1E80C415004F174E /* SDImageCache.m in Sources */,
 				4B9E44381E8643CD00B4FABD /* MJRefreshFooter.m in Sources */,
 				4B9E443C1E8643CD00B4FABD /* MJRefreshAutoStateFooter.m in Sources */,
