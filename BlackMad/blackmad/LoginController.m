@@ -215,22 +215,22 @@ typedef enum :NSUInteger{
                                   //登录成功回首页
                                   [self.navigationController dismissViewControllerAnimated:YES completion:nil];
                                   //a.初始化一个tabBar控制器
-                                  UITabBarController *tb=[[UITabBarController alloc]init];
-                                  UIViewController *c1=[[UIViewController alloc]init];
-                                  c1.view.backgroundColor = [UIColor redColor];
-                                  c1.tabBarItem.title=@"消息";
-                                  c1.tabBarItem.image=[UIImage imageNamed:@"user"];
-                                  
-                                  
-                                  UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                                  ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
-                                  vc.tabBarItem.title = @"首页";
-                                  vc.tabBarItem.image = [UIImage imageNamed:@"pwdh"];
-                                  UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                                  UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
-                                  [tb addChildViewController:nav];
-                                  [tb addChildViewController:c1];
-                                  window.rootViewController = tb;
+//                                  UITabBarController *tb=[[UITabBarController alloc]init];
+//                                  UIViewController *c1=[[UIViewController alloc]init];
+//                                  c1.view.backgroundColor = [UIColor redColor];
+//                                  c1.tabBarItem.title=@"消息";
+//                                  c1.tabBarItem.image=[UIImage imageNamed:@"user"];
+//                                  
+//                                  
+//                                  UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//                                  ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+//                                  vc.tabBarItem.title = @"首页";
+//                                  vc.tabBarItem.image = [UIImage imageNamed:@"pwdh"];
+//                                  UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//                                  UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+//                                  [tb addChildViewController:nav];
+//                                  [tb addChildViewController:c1];
+//                                  window.rootViewController = tb;
                                   
 //                                  [self.navigationController pushViewController:vc animated:YES];
 //                                  [self pushToController:@"ViewController" WithStoyBordID:@"Main" WithForm:self WithInfo:@{}];

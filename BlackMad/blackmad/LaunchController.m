@@ -10,6 +10,7 @@
 #import "LoginController.h"
 #import "ViewController.h"
 
+
 @interface LaunchController ()
 @property (nonatomic,copy) NSArray * launchImageArr;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -53,25 +54,23 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.scrollView.alpha = 0;
     } completion:^(BOOL finished) {
-        UITabBarController *tb=[[UITabBarController alloc]init];
-        //创建tabbar的视图
-        UIViewController *c1=[[UIViewController alloc]init];
-        c1.view.backgroundColor = [UIColor redColor];
-        c1.tabBarItem.title=@"消息";
-        c1.tabBarItem.image=[UIImage imageNamed:@"all.png"];
-        
-        
-        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
-        vc.isAD = @"FormAD";
-        vc.tabBarItem.title = @"首页";
-        vc.tabBarItem.image = [UIImage imageNamed:@"guodate"];
-        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
-        [tb addChildViewController:nav];
-        [tb addChildViewController:c1];
-        window.rootViewController = tb;
-        
+//        UITabBarController *tb=[[UITabBarController alloc]init];
+//        //创建tabbar的视图
+//        UIViewController *c1=[[UIViewController alloc]init];
+//        c1.view.backgroundColor = [UIColor redColor];
+//        c1.tabBarItem.title=@"分类";
+//        c1.tabBarItem.image=[UIImage imageNamed:@"all.png"];
+//        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//        ViewController * vc = [sb instantiateViewControllerWithIdentifier:@"ViewController"];
+//        vc.isAD = @"FormAD";
+//        vc.tabBarItem.title = @"精选";
+//        vc.tabBarItem.image = [UIImage imageNamed:@"guodate"];
+//        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//        UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+//        [tb addChildViewController:nav];
+//        [tb addChildViewController:c1];
+//        window.rootViewController = tb;
+        [Tool configTabBarItem];
     }];
 }
 - (void)didReceiveMemoryWarning {

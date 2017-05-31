@@ -12,6 +12,10 @@
 		4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2DD1E702E1E0084ADF6 /* XRCarouselView.m */; };
 		4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */; };
 		4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00A2E21E702F4A0084ADF6 /* MainheadView.m */; };
+		4B12B0A71EDE515B0041196C /* class.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B12B0A61EDE515B0041196C /* class.storyboard */; };
+		4B12B0AB1EDE526E0041196C /* ClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0AA1EDE526E0041196C /* ClassController.m */; };
+		4B12B0AD1EDE5ED20041196C /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B12B0AC1EDE5ED20041196C /* User.storyboard */; };
+		4B12B0B01EDE64A80041196C /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0AF1EDE64A80041196C /* Tool.m */; };
 		4B407C101E828F31004B94A6 /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C0F1E828F31004B94A6 /* LoginUser.m */; };
 		4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C121E82AAC6004B94A6 /* UserInfo.m */; };
 		4B708A751E8384310064CD11 /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B708A741E8384310064CD11 /* InterestModel.m */; };
@@ -135,6 +139,12 @@
 		4B00A2DE1E702E1E0084ADF6 /* XRPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XRPlaceholder.png; sourceTree = "<group>"; };
 		4B00A2E11E702F4A0084ADF6 /* MainheadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainheadView.h; sourceTree = "<group>"; };
 		4B00A2E21E702F4A0084ADF6 /* MainheadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainheadView.m; sourceTree = "<group>"; };
+		4B12B0A61EDE515B0041196C /* class.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = class.storyboard; sourceTree = "<group>"; };
+		4B12B0A91EDE526E0041196C /* ClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassController.h; sourceTree = "<group>"; };
+		4B12B0AA1EDE526E0041196C /* ClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassController.m; sourceTree = "<group>"; };
+		4B12B0AC1EDE5ED20041196C /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		4B12B0AE1EDE64A80041196C /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
+		4B12B0AF1EDE64A80041196C /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
 		4B407C0E1E828F31004B94A6 /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
 		4B407C0F1E828F31004B94A6 /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		4B407C111E82AAC6004B94A6 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
@@ -389,6 +399,15 @@
 			path = XRCarouselView;
 			sourceTree = "<group>";
 		};
+		4B12B0A81EDE52500041196C /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+				4B12B0A91EDE526E0041196C /* ClassController.h */,
+				4B12B0AA1EDE526E0041196C /* ClassController.m */,
+			);
+			name = "分类";
+			sourceTree = "<group>";
+		};
 		4B407C0D1E828F12004B94A6 /* 用户信息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +449,8 @@
 				4B7F8C4D1E6FBF6100686040 /* AppDelegate.h */,
 				4B7F8C4E1E6FBF6100686040 /* AppDelegate.m */,
 				4B7F8C531E6FBF6100686040 /* Main.storyboard */,
+				4B12B0A61EDE515B0041196C /* class.storyboard */,
+				4B12B0AC1EDE5ED20041196C /* User.storyboard */,
 				4B7F8C561E6FBF6100686040 /* Assets.xcassets */,
 				4BCC61CC1E779538002C7FF9 /* Cities.json */,
 				4B7F8C581E6FBF6100686040 /* LaunchScreen.storyboard */,
@@ -451,6 +472,7 @@
 		4B7F8C611E6FE08100686040 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4B12B0A81EDE52500041196C /* 分类 */,
 				4BAF8F1E1E82112E009FE028 /* UIWebView */,
 				4B8EA20E1E72823D0051EC5A /* 登录页面 */,
 				4B8EA20A1E7277930051EC5A /* 启动页面 */,
@@ -501,6 +523,8 @@
 				4B7F8C6E1E6FE2B400686040 /* NavBar.xib */,
 				4BBB66741E7FC1FC0076201D /* AFNRequest.h */,
 				4BBB66751E7FC1FC0076201D /* AFNRequest.m */,
+				4B12B0AE1EDE64A80041196C /* Tool.h */,
+				4B12B0AF1EDE64A80041196C /* Tool.m */,
 			);
 			name = Tool;
 			sourceTree = "<group>";
@@ -1012,11 +1036,13 @@
 				4B7F8C5A1E6FBF6100686040 /* LaunchScreen.storyboard in Resources */,
 				4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */,
 				4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */,
+				4B12B0A71EDE515B0041196C /* class.storyboard in Resources */,
 				4B8EA2061E7240290051EC5A /* UserInfoView.xib in Resources */,
 				4BCC61AC1E77934C002C7FF9 /* AddressTableViewCell.xib in Resources */,
 				4B9E44431E8643CD00B4FABD /* MJRefresh.bundle in Resources */,
 				4BBB668B1E7FD15F0076201D /* SVProgressHUD.bundle in Resources */,
 				4B7F8C571E6FBF6100686040 /* Assets.xcassets in Resources */,
+				4B12B0AD1EDE5ED20041196C /* User.storyboard in Resources */,
 				4BCC61C51E7793AC002C7FF9 /* Info.plist in Resources */,
 				4BA1F03D1E731BA500B4EED4 /* IQKeyboardManager.bundle in Resources */,
 				4B7F8C551E6FBF6100686040 /* Main.storyboard in Resources */,
@@ -1069,6 +1095,7 @@
 				4B9E44351E8643CD00B4FABD /* MJRefreshAutoFooter.m in Sources */,
 				4BA1F0341E731BA500B4EED4 /* IQUIWindow+Hierarchy.m in Sources */,
 				4BE874691E80C415004F174E /* UIImageView+WebCache.m in Sources */,
+				4B12B0B01EDE64A80041196C /* Tool.m in Sources */,
 				4B9E44401E8643CD00B4FABD /* MJRefreshGifHeader.m in Sources */,
 				4BA1F0311E731BA500B4EED4 /* IQUITextFieldView+Additions.m in Sources */,
 				4BCC61A11E7792E7002C7FF9 /* AddressItem.m in Sources */,
@@ -1130,6 +1157,7 @@
 				4BE8745C1E80C415004F174E /* NSData+ImageContentType.m in Sources */,
 				4BE874681E80C415004F174E /* UIImageView+HighlightedWebCache.m in Sources */,
 				4BB076231E712DD300D8DF4B /* MainCell.m in Sources */,
+				4B12B0AB1EDE526E0041196C /* ClassController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

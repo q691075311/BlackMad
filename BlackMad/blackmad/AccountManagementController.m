@@ -34,7 +34,8 @@
     [LoginUser shareUser].token = nil;
     [LoginUser shareUser].isSelectInterest = nil;
     [LoginUser shareUser].isLogin = NO;
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [Tool configTabBarItem];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

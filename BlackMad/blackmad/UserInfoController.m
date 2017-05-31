@@ -12,7 +12,8 @@
 
 @interface UserInfoController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic,copy) NSArray *titleArr;
+@property (nonatomic,copy) NSArray *titleOfSectionArr;
+@property (nonatomic,copy) NSArray *imageOfSectionArr;
 @property (nonatomic,copy) NSArray *imageArr;
 @property (nonatomic,strong) UserInfoView *headView;
 @end
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navBar configNavBarTitle:@"个人中心" WithLeftView:@"back" WithRigthView:nil];
+    [self.navBar configNavBarTitle:@"个人中心" WithLeftView:nil WithRigthView:nil];
     _headView = [[UserInfoView alloc] initWithFrame:CGRectMake(0, 0, DWIDTH, 140)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -30,26 +31,53 @@
     _tableView.tableHeaderView = _headView;
     _tableView.tableFooterView.frame = CGRectZero;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _titleArr = @[@"完善个人信息",
-                           @"我的券",
-                           @"账户管理"];
-    _imageArr= @[@"userinfo",
-                          @"myjuan",
-                          @"userguanli"];
+    [self initViewData];
+}
+
+- (void)initViewData{
+    //页面title
+    NSArray *oneTitleArr = @[@"完善个人信息",
+                             @"我的券",
+                             @"账户管理",
+                             @"我的收藏"];
+    NSArray *twoTitleArr = @[@"新手帮助",
+                             @"投诉建议"];
+    _titleOfSectionArr = @[oneTitleArr,twoTitleArr];
+    //页面图片
+    NSArray *oneImageArr= @[[UIImage imageNamed:@"userinfo"],
+                            [UIImage imageNamed:@"myjuan"],
+                            [UIImage imageNamed:@"userguanli"],
+                            [UIImage imageNamed:@"collect"]];
+    NSArray *twoImageArr = @[[UIImage imageNamed:@"help"],
+                             [UIImage imageNamed:@"advice"]];
+    _imageOfSectionArr = @[oneImageArr,twoImageArr];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [SVProgressHUD show];
-    [self getUserInfoRequest];
+    if ([LoginUser shareUser].isLogin == YES) {
+        [self getUserInfoRequest];
+    }else{
+        [Tool presentLoginViewWithStr:@"isLogin" WithViewController:self];
+    }
 }
 #pragma mark--UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    NSArray * arr = _titleOfSectionArr[section];
+    return arr.count;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return 10;
+    }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UserInfoCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UserInfoCell" forIndexPath:indexPath];
-    cell.setTitle.text = _titleArr[indexPath.row];
-    cell.setImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",_imageArr[indexPath.row]]];
+    cell.setTitle.text = _titleOfSectionArr[indexPath.section][indexPath.row];
+    cell.setImage.image = _imageOfSectionArr[indexPath.section][indexPath.row];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -19,6 +19,7 @@
 #import "MainProductModle.h"
 #import "LoginController.h"
 
+
 typedef enum:NSUInteger{
     refreshing,
     notRefresh
@@ -49,7 +50,7 @@ typedef enum:NSUInteger{
     // Do any additional setup after loading the view, typically from a nib.
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.hidden = YES;
-    [self.navBar configNavBarTitle:@"疯趣" WithLeftView:@"mainLeft" WithRigthView:nil];
+    [self.navBar configNavBarTitle:@"疯趣" WithLeftView:nil WithRigthView:nil];
     [self setFristLineView];
     self.view.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
     self.tableView.backgroundColor = COLORWITHRGB(246, 246, 246);
@@ -73,10 +74,12 @@ typedef enum:NSUInteger{
     
 }
 - (void)isShowLogin{
+    NSString * loginName = [USERDEF objectForKey:@"username"];
+    NSString * pwd = [USERDEF objectForKey:@"pwd"];
     if ([self.isAD isEqualToString:@"FormAD"]) {
         [self presentLoginViewWithStr:@"isReg"];
-    }else{
-        
+    }else if(!loginName && !pwd){
+        [self presentLoginViewWithStr:nil];
     }
 }
 - (void)setMJRefreshFooter{
@@ -204,20 +207,15 @@ typedef enum:NSUInteger{
 }
 #pragma mark--左btn按钮
 - (void)touchLeftBtn{
-    if ([LoginUser shareUser].isLogin) {
-        //进入个人中心
-        [self pushToController:@"UserInfoController"
-                WithStoyBordID:@"Main"
-                      WithForm:self
-                      WithInfo:@{}];
-    }else{
-        //进入登录页面
-//        [self pushToController:@"LoginController"
+//    if ([LoginUser shareUser].isLogin) {
+//        //进入个人中心
+//        [self pushToController:@"UserInfoController"
 //                WithStoyBordID:@"Main"
 //                      WithForm:self
 //                      WithInfo:@{}];
-        [self presentLoginViewWithStr:@"isLogin"];
-    }
+//    }else{
+//        [Tool presentLoginViewWithStr:@"isLogin" WithViewController:self];
+//    }
 }
 #pragma mark--网络请求
 
@@ -287,15 +285,16 @@ typedef enum:NSUInteger{
 }
 //模态弹出登录界面
 - (void)presentLoginViewWithStr:(NSString *)str{
-    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
-    if ([str isEqualToString:@"isReg"]) {
-        vc.fromFlag = @"ad";
-    }else{
-        
-    }
-    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self.navigationController presentViewController:nav animated:YES completion:nil];
+//    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//    LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
+//    if ([str isEqualToString:@"isReg"]) {
+//        vc.fromFlag = @"ad";
+//    }else{
+//        
+//    }
+//    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//    [self.navigationController presentViewController:nav animated:YES completion:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
