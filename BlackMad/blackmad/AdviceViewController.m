@@ -9,6 +9,8 @@
 #import "AdviceViewController.h"
 
 @interface AdviceViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *adviceText;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 @end
 
@@ -17,7 +19,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navBar configNavBarTitle:@"意见反馈" WithLeftView:@"back" WithRigthView:nil];
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.navBar.isAppearLineView = YES;
+    [self.navBar configNavBarTitle:@"投诉建议" WithLeftView:@"back" WithRigthView:nil];
+    [self setViewUI];
+}
+- (void)setViewUI{
+    self.submitBtn.layer.masksToBounds = YES;
+    self.submitBtn.layer.cornerRadius = self.submitBtn.bounds.size.height/2;
+    self.adviceText.layer.masksToBounds = YES;
+    self.adviceText.layer.cornerRadius = 5;
+    self.adviceText.layer.borderWidth = 1;
+    self.adviceText.layer.borderColor = [UIColor colorWithRed:212/255.0 green:200/255.0 blue:185/255.0 alpha:1].CGColor;
+}
+
+- (IBAction)submitClicok:(UIButton *)sender {
+    
 }
 
 - (void)didReceiveMemoryWarning {

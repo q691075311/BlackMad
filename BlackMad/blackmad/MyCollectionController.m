@@ -7,8 +7,10 @@
 //
 
 #import "MyCollectionController.h"
+#import "MyCollectionCell.h"
 
-@interface MyCollectionController ()
+@interface MyCollectionController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -17,9 +19,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navBar.isAppearLineView = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.navBar configNavBarTitle:@"我的收藏" WithLeftView:@"back" WithRigthView:nil];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
-
+#pragma mark--UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 110;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MyCollectionCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyCollectionCell" forIndexPath:indexPath];
+    cell.collectionCancleBtn.tag = indexPath.row + 100;
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+#pragma mark--取消收藏Btn
+- (IBAction)cancleCollection:(UIButton *)sender {
+    NSLog(@"%ld",(long)sender.tag);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
