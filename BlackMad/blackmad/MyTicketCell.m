@@ -17,7 +17,8 @@
     self.backView.backgroundColor = [UIColor whiteColor];
     self.backView.layer.masksToBounds = YES;
     self.backView.layer.cornerRadius = 5;
-    
+    self.exchangeBtn.layer.masksToBounds = YES;
+    self.exchangeBtn.layer.cornerRadius = 6;
 }
 
 - (void)setMyTicketModle:(MyTicketModle *)myTicketModle{
@@ -30,14 +31,16 @@
     //0是未过期  1是未开始  2是已过期
     if ([myTicketModle.cardVolumeStatus isEqualToString:@"0"]) {
         self.guoQiImage.hidden = YES;
-        self.backImage.image = [UIImage imageNamed:@"bolanghong"];
+        
     }else if ([myTicketModle.cardVolumeStatus isEqualToString:@"1"]){
         self.guoQiImage.hidden = YES;
-        self.backImage.image = [UIImage imageNamed:@"bolanghong"];
+        
     }else{
         self.guoQiImage.hidden = NO;
-        self.backImage.image = [UIImage imageNamed:@"bolanghui"];
+        
     }
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

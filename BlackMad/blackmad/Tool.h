@@ -30,9 +30,17 @@
  */
 + (UIColor *)appRedColor;
 /**
- *  主题灰色
+ *  黑色字体
  */
-+ (UIColor *)appgrayColor;
++ (UIColor *)appBlackTextColor;
+/**
+ *  灰色
+ */
++ (UIColor *)appGrayColor;
+/**
+ *  动态计算lable的高度
+ */
++ (CGFloat)getLableRectWithText:(NSString *)str;
 /**
  *  配置TabBarItem
  */

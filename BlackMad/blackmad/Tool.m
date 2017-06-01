@@ -30,7 +30,7 @@
     //初始化一个tabBar控制器
     UITabBarController *tb=[[UITabBarController alloc]init];
     //设置字体大小颜色
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[self appgrayColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[self appBlackTextColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[self appRedColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
     return tb;
 }
@@ -45,9 +45,13 @@
     UIColor * red = [UIColor colorWithRed:205/255.0 green:48/255.0 blue:44/255.0 alpha:1];
     return red;
 }
-+ (UIColor *)appgrayColor{
-    UIColor * red = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-    return red;
++ (UIColor *)appBlackTextColor{
+    UIColor * black = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+    return black;
+}
++ (UIColor *)appGrayColor{
+    UIColor * gray = [UIColor colorWithRed:192/255.0 green:192/255.0 blue:192/255.0 alpha:1];
+    return gray;
 }
 + (void)configTabBarItem{
     UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
@@ -84,5 +88,13 @@
     [tb addChildViewController:userNav];
     window.rootViewController = tb;
 }
++ (CGFloat)getLableRectWithText:(NSString *)str withLableWidth:(float)width withTextFontOfSize:(float)size{
+    CGRect rect = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+                                    options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:size]}
+                                    context:nil];
+    return rect.size.height;
+}
+
 
 @end

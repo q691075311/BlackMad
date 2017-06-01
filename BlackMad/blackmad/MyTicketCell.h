@@ -17,8 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *ticketName;//优惠券名字
 @property (weak, nonatomic) IBOutlet UILabel *ticketInfo;//优惠券详情
 @property (weak, nonatomic) IBOutlet UILabel *ticketprice;//优惠价格
-@property (weak, nonatomic) IBOutlet UIImageView *backImage;//优惠背景图
 @property (weak, nonatomic) IBOutlet UILabel *ticketDate;//优惠有效期
+@property (weak, nonatomic) IBOutlet UIButton *exchangeBtn;
 
 @property (nonatomic,strong) MyTicketModle * myTicketModle;
 
