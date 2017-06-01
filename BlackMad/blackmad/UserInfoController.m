@@ -90,14 +90,6 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //这是卡券页面
-    NSIndexPath * index = [NSIndexPath indexPathForRow:1 inSection:0];
-    if (indexPath == index) {
-        [self pushToController:_pushArr[indexPath.section][indexPath.row]
-                WithStoyBordID:@"User"
-                      WithForm:self
-                      WithInfo:@{}];
-    }
     [self pushToController:_pushArr[indexPath.section][indexPath.row]
             WithStoyBordID:@"User"
                   WithForm:self

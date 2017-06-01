@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navBar.isAppearLineView = YES;
     [self.navBar configNavBarTitle:@"新手帮助" WithLeftView:@"back" WithRigthView:nil];
 }
 

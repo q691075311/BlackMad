@@ -128,6 +128,7 @@ typedef enum: NSUInteger{
     MyTicketCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyTicketCell"];
     MyTicketModle * modle = _myTicketArr[indexPath.row];
     cell.myTicketModle = modle;
+    cell.exchangeBtn.tag = indexPath.row + 100;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -141,9 +142,14 @@ typedef enum: NSUInteger{
     }else{
         return 200+rect.size.height-40;
     }
-    return 0;
+    return 251;
 }
-
+- (IBAction)exchangeBtn:(UIButton *)sender {
+    NSLog(@"%ld",(long)sender.tag);
+}
+/**
+ *  动态计算lable高度
+ */
 - (CGRect)getLableRectWithText:(NSString *)str{
     CGRect rect = [str boundingRectWithSize:CGSizeMake(DWIDTH-121, MAXFLOAT)
                                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)

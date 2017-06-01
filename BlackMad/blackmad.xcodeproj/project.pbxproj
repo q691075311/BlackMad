@@ -19,6 +19,7 @@
 		4B12B0B31EDEA5760041196C /* MyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0B21EDEA5760041196C /* MyCollectionController.m */; };
 		4B12B0B61EDEAAD30041196C /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0B51EDEAAD30041196C /* HelpController.m */; };
 		4B12B0B91EDEAB290041196C /* AdviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12B0B81EDEAB290041196C /* AdviceViewController.m */; };
+		4B254AA41EDFC29300D215F3 /* MyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B254AA31EDFC29300D215F3 /* MyCollectionCell.m */; };
 		4B407C101E828F31004B94A6 /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C0F1E828F31004B94A6 /* LoginUser.m */; };
 		4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C121E82AAC6004B94A6 /* UserInfo.m */; };
 		4B708A751E8384310064CD11 /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B708A741E8384310064CD11 /* InterestModel.m */; };
@@ -154,6 +155,8 @@
 		4B12B0B51EDEAAD30041196C /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
 		4B12B0B71EDEAB290041196C /* AdviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviceViewController.h; sourceTree = "<group>"; };
 		4B12B0B81EDEAB290041196C /* AdviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdviceViewController.m; sourceTree = "<group>"; };
+		4B254AA21EDFC29300D215F3 /* MyCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionCell.h; sourceTree = "<group>"; };
+		4B254AA31EDFC29300D215F3 /* MyCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionCell.m; sourceTree = "<group>"; };
 		4B407C0E1E828F31004B94A6 /* LoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUser.h; sourceTree = "<group>"; };
 		4B407C0F1E828F31004B94A6 /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		4B407C111E82AAC6004B94A6 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
@@ -822,6 +825,8 @@
 				4BA157151E7636BB0087D279 /* InterestCell.m */,
 				4B7F2D841E77FA0D00832821 /* MyTicketCell.h */,
 				4B7F2D851E77FA0D00832821 /* MyTicketCell.m */,
+				4B254AA21EDFC29300D215F3 /* MyCollectionCell.h */,
+				4B254AA31EDFC29300D215F3 /* MyCollectionCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1076,6 +1081,7 @@
 				4BA1F0301E731BA500B4EED4 /* IQUIScrollView+Additions.m in Sources */,
 				4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */,
 				4BCC61AB1E77934C002C7FF9 /* AddressTableViewCell.m in Sources */,
+				4B254AA41EDFC29300D215F3 /* MyCollectionCell.m in Sources */,
 				4BA1F03C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				4B9E44361E8643CD00B4FABD /* MJRefreshBackFooter.m in Sources */,
 				4BA1F0391E731BA500B4EED4 /* IQPreviousNextView.m in Sources */,
