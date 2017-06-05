@@ -40,7 +40,7 @@
 /**
  *  动态计算lable的高度
  */
-+ (CGFloat)getLableRectWithText:(NSString *)str;
++ (CGFloat)getLableHeigthWithText:(NSString *)str withLableWidth:(float)width withTextFontOfSize:(float)size;
 /**
  *  配置TabBarItem
  */

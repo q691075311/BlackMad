@@ -90,6 +90,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSIndexPath * index = [NSIndexPath indexPathForRow:0 inSection:1];
+    if (indexPath == index) {
+        [SVProgressHUD showErrorWithStatus:@"暂未开放！"];
+        return;
+    }
     [self pushToController:_pushArr[indexPath.section][indexPath.row]
             WithStoyBordID:@"User"
                   WithForm:self

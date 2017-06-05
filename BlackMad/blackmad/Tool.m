@@ -29,6 +29,7 @@
 + (UITabBarController *)initTabbarBaseInfo{
     //初始化一个tabBar控制器
     UITabBarController *tb=[[UITabBarController alloc]init];
+    tb.tabBar.backgroundColor = [UIColor clearColor];
     //设置字体大小颜色
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[self appBlackTextColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[self appRedColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
@@ -55,6 +56,7 @@
 }
 + (void)configTabBarItem{
     UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+    window.backgroundColor = [UIColor clearColor];
     //获取Storyboard
     UIStoryboard * mainsb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     UIStoryboard * classsb = [UIStoryboard storyboardWithName:@"class" bundle:[NSBundle mainBundle]];
@@ -88,7 +90,7 @@
     [tb addChildViewController:userNav];
     window.rootViewController = tb;
 }
-+ (CGFloat)getLableRectWithText:(NSString *)str withLableWidth:(float)width withTextFontOfSize:(float)size{
++ (CGFloat)getLableHeigthWithText:(NSString *)str withLableWidth:(float)width withTextFontOfSize:(float)size{
     CGRect rect = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:size]}

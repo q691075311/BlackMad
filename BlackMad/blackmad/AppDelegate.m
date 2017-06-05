@@ -48,39 +48,6 @@
 #pragma mark--不是第一次启动
 - (void)everLaunch{
     [Tool configTabBarItem];
-//    //获取Storyboard
-//    UIStoryboard * mainsb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//    UIStoryboard * classsb = [UIStoryboard storyboardWithName:@"class" bundle:[NSBundle mainBundle]];
-//    UIStoryboard * usersb = [UIStoryboard storyboardWithName:@"User" bundle:[NSBundle mainBundle]];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    //创建TabBar
-//    UITabBarController * tb = [Tool initTabbarBaseInfo];
-//    //创建精选视图
-//    ViewController * mainVC = [mainsb instantiateViewControllerWithIdentifier:@"ViewController"];
-//    UINavigationController * mainNav = [[UINavigationController alloc] initWithRootViewController:mainVC];
-//    mainVC.tabBarItem.title = @"精选";
-//    [Tool setTabBarItemPropertyWithController:mainVC
-//                                    withImage:[UIImage imageNamed:@"mainnotselecter"]
-//                            withSelecterImage:[UIImage imageNamed:@"mainselecter"]];
-//    //创建分类的视图
-//    ClassController * classVC = [classsb instantiateViewControllerWithIdentifier:@"ClassController"];
-//    UINavigationController * classNav = [[UINavigationController alloc] initWithRootViewController:classVC];
-//    classVC.tabBarItem.title=@"分类";
-//    [Tool setTabBarItemPropertyWithController:classVC
-//                                    withImage:[UIImage imageNamed:@"classnotselecter"]
-//                            withSelecterImage:[UIImage imageNamed:@"classselecter"]];
-//    //创建个人中心的视图
-//    UserInfoController * userVC = [usersb instantiateViewControllerWithIdentifier:@"UserInfoController"];
-//    UINavigationController * userNav = [[UINavigationController alloc] initWithRootViewController:userVC];
-//    userVC.tabBarItem.title=@"我";
-//    [Tool setTabBarItemPropertyWithController:userVC
-//                                    withImage:[UIImage imageNamed:@"usernotselecter"]
-//                            withSelecterImage:[UIImage imageNamed:@"userselecter"]];
-//    
-//    [tb addChildViewController:mainNav];
-//    [tb addChildViewController:classNav];
-//    [tb addChildViewController:userNav];
-//    self.window.rootViewController = tb;
 }
 #pragma mark--控制键盘弹出的三方库
 - (void)initIQKeyboard{

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aS1-Kw-OBC">
-                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserInfoCell" rowHeight="60" id="sC2-jf-QZA" customClass="UserInfoCell">
@@ -75,7 +75,7 @@
                         <constraints>
                             <constraint firstItem="gSU-Np-YS2" firstAttribute="top" secondItem="aS1-Kw-OBC" secondAttribute="bottom" id="282-dw-qNH"/>
                             <constraint firstItem="aS1-Kw-OBC" firstAttribute="leading" secondItem="BjO-sp-dsp" secondAttribute="leading" id="nmG-EZ-d3u"/>
-                            <constraint firstItem="aS1-Kw-OBC" firstAttribute="top" secondItem="ErY-SU-EAT" secondAttribute="bottom" constant="35" id="yFc-D5-HAp"/>
+                            <constraint firstItem="aS1-Kw-OBC" firstAttribute="top" secondItem="ErY-SU-EAT" secondAttribute="bottom" constant="55" id="yFc-D5-HAp"/>
                             <constraint firstAttribute="trailing" secondItem="aS1-Kw-OBC" secondAttribute="trailing" id="ysQ-yd-UBy"/>
                         </constraints>
                     </view>
@@ -445,7 +445,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jwC-lj-Ra4">
-                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
                                 <connections>
                                     <segue destination="Kxw-Oe-jKr" kind="embed" id="8NE-Rl-fFF"/>
                                 </connections>
@@ -453,7 +453,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jwC-lj-Ra4" firstAttribute="top" secondItem="seq-f4-bd6" secondAttribute="bottom" constant="35" id="ArX-BX-7J6"/>
+                            <constraint firstItem="jwC-lj-Ra4" firstAttribute="top" secondItem="seq-f4-bd6" secondAttribute="bottom" constant="55" id="ArX-BX-7J6"/>
                             <constraint firstItem="fe5-By-KQ7" firstAttribute="top" secondItem="jwC-lj-Ra4" secondAttribute="bottom" id="C8O-6y-8ds"/>
                             <constraint firstAttribute="trailing" secondItem="jwC-lj-Ra4" secondAttribute="trailing" id="KZS-G7-Q8x"/>
                             <constraint firstItem="jwC-lj-Ra4" firstAttribute="leading" secondItem="rNY-Ax-96U" secondAttribute="leading" id="rW9-0T-Hoq"/>

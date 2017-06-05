@@ -560,6 +560,6 @@
         <image name="guodate" width="45" height="40"/>
         <image name="hdui" width="38" height="38"/>
         <image name="logo" width="120" height="120"/>
-        <image name="xingbake" width="38" height="38"/>
+        <image name="xingbake" width="31" height="31"/>
     </resources>
 </document>
