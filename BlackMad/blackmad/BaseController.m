@@ -20,12 +20,14 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _navBar = [[NavBar alloc]initWithFrame:CGRectMake(0, 0, DWIDTH, 75)];
+    _navBar = [[NavBar alloc]initWithFrame:CGRectMake(0, 0, DWIDTH, 64)];
     _navBar.delegate = self;
     _navBar.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_navBar];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

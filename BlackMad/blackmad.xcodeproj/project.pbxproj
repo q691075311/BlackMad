@@ -98,6 +98,9 @@
 		4BBB662B1E7FBDFE0076201D /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66031E7FBDFD0076201D /* AFURLSessionManager.m */; };
 		4BBB668B1E7FD15F0076201D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BBB66881E7FD15F0076201D /* SVProgressHUD.bundle */; };
 		4BBB668C1E7FD15F0076201D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */; };
+		4BBCB5AE1EE52B020015BE9C /* ClassHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCB5AD1EE52B020015BE9C /* ClassHeadView.m */; };
+		4BBCB5B01EE52BAB0015BE9C /* ClassHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BBCB5AF1EE52BAB0015BE9C /* ClassHeadView.xib */; };
+		4BBCB5B31EE52D0A0015BE9C /* ClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCB5B21EE52D0A0015BE9C /* ClassCell.m */; };
 		4BCC61A11E7792E7002C7FF9 /* AddressItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC61A01E7792E7002C7FF9 /* AddressItem.m */; };
 		4BCC61AB1E77934C002C7FF9 /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC61A51E77934C002C7FF9 /* AddressTableViewCell.m */; };
 		4BCC61AC1E77934C002C7FF9 /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BCC61A61E77934C002C7FF9 /* AddressTableViewCell.xib */; };
@@ -310,6 +313,11 @@
 		4BBB66881E7FD15F0076201D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		4BBB66891E7FD15F0076201D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		4BBCB5AC1EE52B020015BE9C /* ClassHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHeadView.h; sourceTree = "<group>"; };
+		4BBCB5AD1EE52B020015BE9C /* ClassHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassHeadView.m; sourceTree = "<group>"; };
+		4BBCB5AF1EE52BAB0015BE9C /* ClassHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassHeadView.xib; sourceTree = "<group>"; };
+		4BBCB5B11EE52D0A0015BE9C /* ClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassCell.h; sourceTree = "<group>"; };
+		4BBCB5B21EE52D0A0015BE9C /* ClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassCell.m; sourceTree = "<group>"; };
 		4BCC619F1E7792E7002C7FF9 /* AddressItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressItem.h; sourceTree = "<group>"; };
 		4BCC61A01E7792E7002C7FF9 /* AddressItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressItem.m; sourceTree = "<group>"; };
 		4BCC61A41E77934C002C7FF9 /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
@@ -497,6 +505,7 @@
 		4B7F8C621E6FE08800686040 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4BBCB5AB1EE52AC70015BE9C /* 分类头视图 */,
 				4BA157261E769B870087D279 /* 视图控件 */,
 				4B8EA2011E723FB30051EC5A /* 个人中心头视图 */,
 				4BB0761A1E70EA4F00D8DF4B /* 首页Btn视图 */,
@@ -827,6 +836,8 @@
 				4B7F2D851E77FA0D00832821 /* MyTicketCell.m */,
 				4B254AA21EDFC29300D215F3 /* MyCollectionCell.h */,
 				4B254AA31EDFC29300D215F3 /* MyCollectionCell.m */,
+				4BBCB5B11EE52D0A0015BE9C /* ClassCell.h */,
+				4BBCB5B21EE52D0A0015BE9C /* ClassCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -878,6 +889,16 @@
 				4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		4BBCB5AB1EE52AC70015BE9C /* 分类头视图 */ = {
+			isa = PBXGroup;
+			children = (
+				4BBCB5AC1EE52B020015BE9C /* ClassHeadView.h */,
+				4BBCB5AD1EE52B020015BE9C /* ClassHeadView.m */,
+				4BBCB5AF1EE52BAB0015BE9C /* ClassHeadView.xib */,
+			);
+			name = "分类头视图";
 			sourceTree = "<group>";
 		};
 		4BCC619E1E7792E7002C7FF9 /* AdressModel */ = {
@@ -1056,6 +1077,7 @@
 				4B7F8C5A1E6FBF6100686040 /* LaunchScreen.storyboard in Resources */,
 				4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */,
 				4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */,
+				4BBCB5B01EE52BAB0015BE9C /* ClassHeadView.xib in Resources */,
 				4B12B0A71EDE515B0041196C /* class.storyboard in Resources */,
 				4B8EA2061E7240290051EC5A /* UserInfoView.xib in Resources */,
 				4BCC61AC1E77934C002C7FF9 /* AddressTableViewCell.xib in Resources */,
@@ -1148,6 +1170,7 @@
 				4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */,
 				4B91F7591E88A0B00047F5E8 /* MainProductModle.m in Sources */,
 				4BA1F0381E731BA500B4EED4 /* IQBarButtonItem.m in Sources */,
+				4BBCB5B31EE52D0A0015BE9C /* ClassCell.m in Sources */,
 				4BA1572C1E769BD70087D279 /* ChooseBirthdayView.m in Sources */,
 				4BBB66261E7FBDFE0076201D /* AFHTTPSessionManager.m in Sources */,
 				4BE8745F1E80C415004F174E /* SDWebImageDecoder.m in Sources */,
@@ -1158,6 +1181,7 @@
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
 				4B7F2D861E77FA0D00832821 /* MyTicketCell.m in Sources */,
 				4B94CD251E8A449E00CBAE36 /* MyTicketModle.m in Sources */,
+				4BBCB5AE1EE52B020015BE9C /* ClassHeadView.m in Sources */,
 				4BA1F0351E731BA500B4EED4 /* IQKeyboardManager.m in Sources */,
 				4BCC61AD1E77934C002C7FF9 /* AddressView.m in Sources */,
 				4B708A751E8384310064CD11 /* InterestModel.m in Sources */,

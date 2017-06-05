@@ -200,10 +200,7 @@ typedef enum:NSUInteger{
 }
 #pragma mark--跳转登录页面
 - (void)toLogin{
-    [self pushToController:@"LoginController"
-            WithStoyBordID:@"Main"
-                  WithForm:self
-                  WithInfo:@{}];
+    [Tool presentLoginViewWithStr:@"isLogin" WithViewController:self];
 }
 #pragma mark--左btn按钮
 - (void)touchLeftBtn{

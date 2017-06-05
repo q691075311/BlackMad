@@ -56,7 +56,7 @@
 }
 + (void)configTabBarItem{
     UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
-    window.backgroundColor = [UIColor clearColor];
+    window.backgroundColor = [UIColor whiteColor];
     //获取Storyboard
     UIStoryboard * mainsb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     UIStoryboard * classsb = [UIStoryboard storyboardWithName:@"class" bundle:[NSBundle mainBundle]];

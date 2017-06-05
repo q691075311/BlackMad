@@ -31,7 +31,7 @@
 }
 - (void)configNavBarTitle:(NSString *)title WithLeftView:(NSString *)leftImageName WithRigthView:(NSString *)rigthImageName{
     //添加灰色的导航栏线条
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 75, DWIDTH, 1)];
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 64, DWIDTH, 1)];
     view.backgroundColor = COLORWITHRGB(238, 238, 238);
     [self addSubview:view];
     if (_isAppearLineView == NO) {
