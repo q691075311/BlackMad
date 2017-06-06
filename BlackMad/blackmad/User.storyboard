@@ -478,7 +478,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H8d-gw-2EN">
-                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCollectionCell" rowHeight="110" id="Wed-x9-VOa" customClass="MyCollectionCell">
@@ -566,7 +566,7 @@
                             <constraint firstItem="H8d-gw-2EN" firstAttribute="leading" secondItem="SKJ-BF-cST" secondAttribute="leading" id="JWV-V6-f4I"/>
                             <constraint firstItem="L6j-Od-0Ji" firstAttribute="top" secondItem="H8d-gw-2EN" secondAttribute="bottom" id="S1h-jK-ri7"/>
                             <constraint firstAttribute="trailing" secondItem="H8d-gw-2EN" secondAttribute="trailing" id="k7j-nx-dzL"/>
-                            <constraint firstItem="H8d-gw-2EN" firstAttribute="top" secondItem="GKb-FB-ORJ" secondAttribute="bottom" constant="55" id="z02-gb-hSk"/>
+                            <constraint firstItem="H8d-gw-2EN" firstAttribute="top" secondItem="GKb-FB-ORJ" secondAttribute="bottom" constant="44" id="z02-gb-hSk"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -610,10 +610,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="advicebg" translatesAutoresizingMaskIntoConstraints="NO" id="uYR-xk-UVC">
-                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amm-RF-wuY">
-                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投诉建议：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0t8-f7-z1L">
                                         <rect key="frame" x="20" y="25" width="100" height="22"/>
@@ -662,12 +662,12 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="uYR-xk-UVC" firstAttribute="top" secondItem="FFK-PB-mcc" secondAttribute="bottom" constant="55" id="3jo-IJ-bCC"/>
+                            <constraint firstItem="uYR-xk-UVC" firstAttribute="top" secondItem="FFK-PB-mcc" secondAttribute="bottom" constant="44" id="3jo-IJ-bCC"/>
                             <constraint firstAttribute="trailing" secondItem="amm-RF-wuY" secondAttribute="trailing" id="7yd-Id-88P"/>
                             <constraint firstItem="W9q-j4-III" firstAttribute="top" secondItem="uYR-xk-UVC" secondAttribute="bottom" id="APY-yH-trk"/>
                             <constraint firstAttribute="trailing" secondItem="uYR-xk-UVC" secondAttribute="trailing" id="NTh-Mi-l1Z"/>
                             <constraint firstItem="amm-RF-wuY" firstAttribute="leading" secondItem="7es-AO-fSZ" secondAttribute="leading" id="QkV-tM-pcp"/>
-                            <constraint firstItem="amm-RF-wuY" firstAttribute="top" secondItem="FFK-PB-mcc" secondAttribute="bottom" constant="55" id="b56-zd-rUf"/>
+                            <constraint firstItem="amm-RF-wuY" firstAttribute="top" secondItem="FFK-PB-mcc" secondAttribute="bottom" constant="44" id="b56-zd-rUf"/>
                             <constraint firstItem="W9q-j4-III" firstAttribute="top" secondItem="amm-RF-wuY" secondAttribute="bottom" id="oYj-ro-S3Q"/>
                             <constraint firstItem="uYR-xk-UVC" firstAttribute="leading" secondItem="7es-AO-fSZ" secondAttribute="leading" id="xsd-X0-2hs"/>
                         </constraints>
@@ -775,14 +775,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDT-na-8AS">
-                                <rect key="frame" x="0.0" y="75" width="375" height="52"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="52"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="awl-py-4pO"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="237" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nhd-IY-gcs">
-                                <rect key="frame" x="0.0" y="127" width="375" height="540"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyTicketCell" rowHeight="251" id="VFH-Ig-irt" customClass="MyTicketCell">
@@ -935,7 +935,7 @@
                             <constraint firstAttribute="trailing" secondItem="Nhd-IY-gcs" secondAttribute="trailing" id="Nfk-xY-yWs"/>
                             <constraint firstItem="Nhd-IY-gcs" firstAttribute="top" secondItem="iDT-na-8AS" secondAttribute="bottom" id="YEJ-Zi-XyE"/>
                             <constraint firstAttribute="trailing" secondItem="iDT-na-8AS" secondAttribute="trailing" id="dOh-nC-ORr"/>
-                            <constraint firstItem="iDT-na-8AS" firstAttribute="top" secondItem="Nwj-UL-lyd" secondAttribute="bottom" constant="55" id="qri-0X-eby"/>
+                            <constraint firstItem="iDT-na-8AS" firstAttribute="top" secondItem="Nwj-UL-lyd" secondAttribute="bottom" constant="44" id="qri-0X-eby"/>
                             <constraint firstItem="iDT-na-8AS" firstAttribute="leading" secondItem="8BU-p5-dyP" secondAttribute="leading" id="tIh-z1-biT"/>
                         </constraints>
                     </view>

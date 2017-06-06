@@ -8,6 +8,10 @@
 
 #import "ClassCell.h"
 
+@interface ClassCell ()
+
+@end
+
 @implementation ClassCell
 
 - (void)awakeFromNib {
@@ -15,7 +19,14 @@
     // Initialization code
     self.bgView.layer.masksToBounds = YES;
     self.bgView.layer.cornerRadius = 6;
-    self.contentView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
+    self.contentView.backgroundColor = COLORWITHRGB(239, 239, 239);
+    self.image1.image = [UIImage imageNamed:@"logo"];
+    self.image2.image = [UIImage imageNamed:@"logo"];
+    self.image3.image = [UIImage imageNamed:@"logo"];
+}
+
+- (IBAction)clickMore:(UIButton *)sender {
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
