@@ -147,7 +147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w0l-Uq-KRj">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClassDetailCell" rowHeight="95" id="qzi-g6-Wh4" customClass="ClassDetailCell">
@@ -249,7 +249,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="w0l-Uq-KRj" secondAttribute="trailing" id="6f7-oM-IWP"/>
-                            <constraint firstItem="w0l-Uq-KRj" firstAttribute="top" secondItem="6Bd-YI-rkX" secondAttribute="bottom" constant="44" id="LiD-CX-NmJ"/>
+                            <constraint firstItem="w0l-Uq-KRj" firstAttribute="top" secondItem="6Bd-YI-rkX" secondAttribute="bottom" constant="84" id="LiD-CX-NmJ"/>
                             <constraint firstItem="w0l-Uq-KRj" firstAttribute="leading" secondItem="R6X-fO-7fY" secondAttribute="leading" id="UNY-kz-leU"/>
                             <constraint firstItem="E0G-wC-MUU" firstAttribute="top" secondItem="w0l-Uq-KRj" secondAttribute="bottom" id="h0A-65-Hfp"/>
                         </constraints>

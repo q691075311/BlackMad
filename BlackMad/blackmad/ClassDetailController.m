@@ -8,6 +8,7 @@
 
 #import "ClassDetailController.h"
 #import "ClassDetailCell.h"
+#import "ClassDetailHeadView.h"
 
 @interface ClassDetailController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,7 +25,14 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self loadTopBarView];
     
+}
+//加载顶部View
+- (void)loadTopBarView{
+    ClassDetailHeadView * topView = [[ClassDetailHeadView alloc] initWithFrame:CGRectMake(0, 64, DWIDTH, 40)];
+    topView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:topView];
 }
 #pragma mark -- UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
