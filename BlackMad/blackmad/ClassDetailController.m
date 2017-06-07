@@ -1,63 +1,44 @@
 //
-//  ClassController.m
+//  ClassDetailController.m
 //  blackmad
 //
-//  Created by taobo on 17/5/31.
+//  Created by taobo on 17/6/7.
 //  Copyright © 2017年 rongyun. All rights reserved.
 //
 
-#import "ClassController.h"
-#import "ClassCell.h"
-#import "ClassHeadView.h"
+#import "ClassDetailController.h"
+#import "ClassDetailCell.h"
 
-@interface ClassController ()<UITableViewDelegate,UITableViewDataSource,ClassDelegate>
+@interface ClassDetailController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation ClassController
+@implementation ClassDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBar.hidden = YES;
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navBar.isAppearLineView = YES;
-    [self.navBar configNavBarTitle:@"分类" WithLeftView:nil WithRigthView:nil];
-    [self initTableViewHeadView];
-}
-//初始化tableView的头视图
-- (void)initTableViewHeadView{
+    [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
-    ClassHeadView * headView = [[ClassHeadView alloc]initWithFrame:CGRectMake(0, 0, DWIDTH, 52)];
-    self.tableView.tableHeaderView = headView;
+    
 }
-#pragma mark --UITableViewDataSource
+#pragma mark -- UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return 5;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ClassCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClassCell" forIndexPath:indexPath];
-    cell.delegate = self;
-    cell.moreBtn.tag = indexPath.row;
+    ClassDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClassDetailCell" forIndexPath:indexPath];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 165;
+    return 95;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-#pragma mark -- ClassDelegate
-- (void)cilckMoreBtn:(UIButton *)btn{
-//    NSLog(@"%d",btn.tag);
-    [self pushToController:@"ClassDetailController"
-            WithStoyBordID:@"class"
-                  WithForm:self
-                  WithInfo:@{}];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

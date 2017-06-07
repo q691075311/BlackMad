@@ -26,7 +26,9 @@
 }
 
 - (IBAction)clickMore:(UIButton *)sender {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(cilckMoreBtn:)]) {
+        [self.delegate cilckMoreBtn:sender];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

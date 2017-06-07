@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ClassDelegate <NSObject>
+
+- (void)cilckMoreBtn:(UIButton *)btn;
+
+@end
+
 @interface ClassCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 /**
  *  背景图1
@@ -26,5 +33,7 @@
  *  more按钮
  */
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
+
+@property (nonatomic,assign) id <ClassDelegate>delegate;
 
 @end

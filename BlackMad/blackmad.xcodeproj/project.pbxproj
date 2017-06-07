@@ -23,6 +23,9 @@
 		4B407C101E828F31004B94A6 /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C0F1E828F31004B94A6 /* LoginUser.m */; };
 		4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C121E82AAC6004B94A6 /* UserInfo.m */; };
 		4B708A751E8384310064CD11 /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B708A741E8384310064CD11 /* InterestModel.m */; };
+		4B7B2B5D1EE7C59F003C5DCB /* ClassDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B2B5C1EE7C59F003C5DCB /* ClassDetailController.m */; };
+		4B7B2B601EE7CF83003C5DCB /* ClassDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B2B5F1EE7CF83003C5DCB /* ClassDetailCell.m */; };
+		4B7B2B641EE7DB63003C5DCB /* ClassDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B2B631EE7DB63003C5DCB /* ClassDetailHeadView.m */; };
 		4B7F2D861E77FA0D00832821 /* MyTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F2D851E77FA0D00832821 /* MyTicketCell.m */; };
 		4B7F8C4C1E6FBF6100686040 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C4B1E6FBF6100686040 /* main.m */; };
 		4B7F8C4F1E6FBF6100686040 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F8C4E1E6FBF6100686040 /* AppDelegate.m */; };
@@ -166,6 +169,12 @@
 		4B407C121E82AAC6004B94A6 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		4B708A731E8384310064CD11 /* InterestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestModel.h; sourceTree = "<group>"; };
 		4B708A741E8384310064CD11 /* InterestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestModel.m; sourceTree = "<group>"; };
+		4B7B2B5B1EE7C59F003C5DCB /* ClassDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailController.h; sourceTree = "<group>"; };
+		4B7B2B5C1EE7C59F003C5DCB /* ClassDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailController.m; sourceTree = "<group>"; };
+		4B7B2B5E1EE7CF83003C5DCB /* ClassDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailCell.h; sourceTree = "<group>"; };
+		4B7B2B5F1EE7CF83003C5DCB /* ClassDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailCell.m; sourceTree = "<group>"; };
+		4B7B2B621EE7DB63003C5DCB /* ClassDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailHeadView.h; sourceTree = "<group>"; };
+		4B7B2B631EE7DB63003C5DCB /* ClassDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailHeadView.m; sourceTree = "<group>"; };
 		4B7F2D841E77FA0D00832821 /* MyTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketCell.h; sourceTree = "<group>"; };
 		4B7F2D851E77FA0D00832821 /* MyTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketCell.m; sourceTree = "<group>"; };
 		4B7F8C471E6FBF6100686040 /* blackmad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blackmad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -424,6 +433,8 @@
 			children = (
 				4B12B0A91EDE526E0041196C /* ClassController.h */,
 				4B12B0AA1EDE526E0041196C /* ClassController.m */,
+				4B7B2B5B1EE7C59F003C5DCB /* ClassDetailController.h */,
+				4B7B2B5C1EE7C59F003C5DCB /* ClassDetailController.m */,
 			);
 			name = "分类";
 			sourceTree = "<group>";
@@ -437,6 +448,15 @@
 				4B407C121E82AAC6004B94A6 /* UserInfo.m */,
 			);
 			name = "用户信息";
+			sourceTree = "<group>";
+		};
+		4B7B2B611EE7DB2B003C5DCB /* 分类头视图 */ = {
+			isa = PBXGroup;
+			children = (
+				4B7B2B621EE7DB63003C5DCB /* ClassDetailHeadView.h */,
+				4B7B2B631EE7DB63003C5DCB /* ClassDetailHeadView.m */,
+			);
+			name = "分类头视图";
 			sourceTree = "<group>";
 		};
 		4B7F8C3E1E6FBF6100686040 = {
@@ -505,6 +525,7 @@
 		4B7F8C621E6FE08800686040 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4B7B2B611EE7DB2B003C5DCB /* 分类头视图 */,
 				4BBCB5AB1EE52AC70015BE9C /* 分类头视图 */,
 				4BA157261E769B870087D279 /* 视图控件 */,
 				4B8EA2011E723FB30051EC5A /* 个人中心头视图 */,
@@ -838,6 +859,8 @@
 				4B254AA31EDFC29300D215F3 /* MyCollectionCell.m */,
 				4BBCB5B11EE52D0A0015BE9C /* ClassCell.h */,
 				4BBCB5B21EE52D0A0015BE9C /* ClassCell.m */,
+				4B7B2B5E1EE7CF83003C5DCB /* ClassDetailCell.h */,
+				4B7B2B5F1EE7CF83003C5DCB /* ClassDetailCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1139,6 +1162,7 @@
 				4BE874641E80C415004F174E /* UIButton+WebCache.m in Sources */,
 				4B9E44351E8643CD00B4FABD /* MJRefreshAutoFooter.m in Sources */,
 				4BA1F0341E731BA500B4EED4 /* IQUIWindow+Hierarchy.m in Sources */,
+				4B7B2B601EE7CF83003C5DCB /* ClassDetailCell.m in Sources */,
 				4BE874691E80C415004F174E /* UIImageView+WebCache.m in Sources */,
 				4B12B0B01EDE64A80041196C /* Tool.m in Sources */,
 				4B9E44401E8643CD00B4FABD /* MJRefreshGifHeader.m in Sources */,
@@ -1157,6 +1181,7 @@
 				4BA1F03A1E731BA500B4EED4 /* IQTitleBarButtonItem.m in Sources */,
 				4BA157201E766C580087D279 /* AccountManagementController.m in Sources */,
 				4B9E44441E8643CD00B4FABD /* MJRefreshConst.m in Sources */,
+				4B7B2B641EE7DB63003C5DCB /* ClassDetailHeadView.m in Sources */,
 				4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */,
 				4BE8745E1E80C415004F174E /* SDWebImageCompat.m in Sources */,
 				4B9E443A1E8643CD00B4FABD /* MJRefreshAutoGifFooter.m in Sources */,
@@ -1178,6 +1203,7 @@
 				4BCC61C31E7793AC002C7FF9 /* FMDatabaseQueue.m in Sources */,
 				4B009CEA1E81258000BB5B80 /* BannerListModle.m in Sources */,
 				4BA1F02F1E731BA500B4EED4 /* IQNSArray+Sort.m in Sources */,
+				4B7B2B5D1EE7C59F003C5DCB /* ClassDetailController.m in Sources */,
 				4B7F8C521E6FBF6100686040 /* ViewController.m in Sources */,
 				4B7F2D861E77FA0D00832821 /* MyTicketCell.m in Sources */,
 				4B94CD251E8A449E00CBAE36 /* MyTicketModle.m in Sources */,
