@@ -18,14 +18,14 @@
 #import "MJRefresh.h"
 #import "MainProductModle.h"
 #import "LoginController.h"
-
+#import "MainItemView.h"
 
 typedef enum:NSUInteger{
     refreshing,
     notRefresh
 }RefreshType;
 
-@interface ViewController ()<MainBtnViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface ViewController ()<MainBtnViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet XRCarouselView *XRCarouselView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet MainheadView *headView;
@@ -52,10 +52,18 @@ typedef enum:NSUInteger{
     self.navigationController.navigationBar.hidden = YES;
     [self.navBar configNavBarTitle:@"疯趣" WithLeftView:nil WithRigthView:nil];
     [self setFristLineView];
-    self.view.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
-    self.tableView.backgroundColor = COLORWITHRGB(246, 246, 246);
+    self.view.backgroundColor = COLORWITHRGB(238, 238, 238);
     [self setMJRefreshFooter];
     _refreshType = notRefresh;
+    [self initDateAndTableView];
+    [self netWorkRequest];
+    [self requestBannerProductType];
+    [self loadTableViewHeadTitle];
+    [self loadSearchBar];
+//    [self isShowLogin];
+    
+}
+- (void)initDateAndTableView{
     _mainBtnListArr = [[NSMutableArray alloc] init];
     _productImageArr = [[NSMutableArray alloc] init];
     _productTitleArr = [[NSMutableArray alloc] init];
@@ -66,21 +74,21 @@ typedef enum:NSUInteger{
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = _headView;
-    self.navigationController.navigationBar.hidden = YES;
+    self.tableView.backgroundColor = COLORWITHRGB(255, 255, 255);
+    self.tableView.sectionHeaderHeight = 32;
     
-    [self netWorkRequest];
-    [self requestBannerProductType];
-    [self isShowLogin];
-    
+    //创建3个Btn
+    MainItemView * view = [[MainItemView alloc] initWithFrame:CGRectMake(0, 240, DWIDTH, 145)];
+    [_headView addSubview:view];
 }
 - (void)isShowLogin{
-    NSString * loginName = [USERDEF objectForKey:@"username"];
-    NSString * pwd = [USERDEF objectForKey:@"pwd"];
-    if ([self.isAD isEqualToString:@"FormAD"]) {
-        [self presentLoginViewWithStr:@"isReg"];
-    }else if(!loginName && !pwd){
-        [self presentLoginViewWithStr:nil];
-    }
+//    NSString * loginName = [USERDEF objectForKey:@"username"];
+//    NSString * pwd = [USERDEF objectForKey:@"pwd"];
+//    if ([self.isAD isEqualToString:@"FormAD"]) {
+//        [self presentLoginViewWithStr:@"isReg"];
+//    }else if(!loginName && !pwd){
+//        [self presentLoginViewWithStr:nil];
+//    }
 }
 - (void)setMJRefreshFooter{
     if ([self.tableView.mj_footer isRefreshing]) {
@@ -111,18 +119,69 @@ typedef enum:NSUInteger{
         [_productTitleArr addObject:modle.productListTitle];
         [_productImageArr addObject:modle.productListImage];
     }
-    _btnView = [[MainBtnView alloc] initWithFrame:CGRectMake(0, 190, DWIDTH, 88)
-                                    WithProductID:_productIDArr
-                                 WithProductImage:_productImageArr
-                              WithProductTitleArr:_productTitleArr];
-    _btnView.delegate = self;
-    [_headView addSubview:_btnView];
+}
+//加载搜索框
+- (void)loadSearchBar{
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 180, DWIDTH, 60)];
+    view.backgroundColor = [UIColor whiteColor];
+    UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, DWIDTH-20, 60-20)];
+    UIView * leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 90+11, 60)];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(9, 19, 62, 18)];
+    label.text = @"疯趣热搜";
+    label.font = [UIFont systemFontOfSize:15];
+    label.textColor = [Tool appRedColor];
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(75, 20, 15, 15)];
+    imageView.image = [UIImage imageNamed:@"searchLeft"];
+    [leftView addSubview:label];
+    [leftView addSubview:imageView];
+    textField.backgroundColor = COLORWITHRGB(244, 244, 244);
+    textField.layer.masksToBounds = YES;
+    textField.layer.cornerRadius = 5;
+    textField.leftView = leftView;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.delegate = self;
+    textField.returnKeyType = UIReturnKeySearch;
+    textField.placeholder = @"千万产品任君挑选";
+    textField.font = [UIFont systemFontOfSize:14];
+    [view addSubview:textField];
+    [_headView addSubview:view];
+}
+//加载tableView的标题
+- (void)loadTableViewHeadTitle{
+    UIView * view = [[UIView alloc] init];
+    view.frame = CGRectMake(0, 386, DWIDTH, 32);
+    view.backgroundColor = [UIColor whiteColor];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 70, 22)];
+    label.text = @"热门推荐";
+    label.textColor = COLORWITHRGB(169, 143, 93);
+    label.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(DWIDTH-55, 10, 45, 20);
+    btn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
+    [btn setTitleColor:COLORWITHRGB(169, 143, 93) forState:UIControlStateNormal];
+    [btn setTitle:@"More>" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(moreBtn) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btn];
+    [view addSubview:label];
+    [_headView addSubview:view];
+}
+#pragma mark -- More点击事件
+- (void)moreBtn{
+    NSLog(@"首页moreBtn");
+}
+#pragma mark -- UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self pushToController:@"ClassDetailController"
+            WithStoyBordID:@"class"
+                  WithForm:self
+                  WithInfo:@{}];
+    return YES;
 }
 
 - (void)setFristLineView{
     _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 278, VIEWWIDTH, 1)];
     _lineView.backgroundColor = [UIColor whiteColor];
-    [_headView addSubview:_lineView];
+//    [_headView addSubview:_lineView];
 }
 #pragma mark--MainBtnViewDelegate
 - (void)touchBtnWithBtn:(UIButton *)btn WithProductID:(NSNumber *)productID{
@@ -174,6 +233,9 @@ typedef enum:NSUInteger{
     };
 }
 #pragma mark--UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _mainProductArr.count;
 }
@@ -195,6 +257,10 @@ typedef enum:NSUInteger{
         [self toLogin];
     }
 }
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//
+//    return view;
+//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 250;
 }
@@ -204,15 +270,7 @@ typedef enum:NSUInteger{
 }
 #pragma mark--左btn按钮
 - (void)touchLeftBtn{
-//    if ([LoginUser shareUser].isLogin) {
-//        //进入个人中心
-//        [self pushToController:@"UserInfoController"
-//                WithStoyBordID:@"Main"
-//                      WithForm:self
-//                      WithInfo:@{}];
-//    }else{
-//        [Tool presentLoginViewWithStr:@"isLogin" WithViewController:self];
-//    }
+    
 }
 #pragma mark--网络请求
 

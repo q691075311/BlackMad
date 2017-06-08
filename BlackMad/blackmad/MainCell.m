@@ -16,12 +16,12 @@
     self.backView.layer.masksToBounds = YES;
     self.backView.layer.cornerRadius = 5;
     self.backView.backgroundColor = [UIColor whiteColor];
-    self.contentView.backgroundColor = [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1];
+    self.contentView.backgroundColor = COLORWITHRGB(255, 255, 255);
     self.title.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
-    self.title.textColor = [UIColor colorWithRed:74/255.0 green:74/255.0 blue:74/255.0 alpha:1/1.0];
+    self.title.textColor = COLORWITHRGB(74, 74, 74);
     
     self.time.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
-    self.time.textColor = [UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1/1.0];
+    self.time.textColor = COLORWITHRGB(150, 150, 150);
     [self.image sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png"] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
 }
 

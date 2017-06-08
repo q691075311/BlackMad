@@ -94,6 +94,7 @@
 		4BB0761F1E70EAA100D8DF4B /* MainBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB0761E1E70EAA100D8DF4B /* MainBtnView.xib */; };
 		4BB076231E712DD300D8DF4B /* MainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB076221E712DD300D8DF4B /* MainCell.m */; };
 		4BB0762B1E71427100D8DF4B /* UserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0762A1E71427100D8DF4B /* UserInfoController.m */; };
+		4BB840D81EE9027C00DD55A8 /* MainItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB840D71EE9027C00DD55A8 /* MainItemView.m */; };
 		4BBB66261E7FBDFE0076201D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB65F81E7FBDFD0076201D /* AFHTTPSessionManager.m */; };
 		4BBB66271E7FBDFE0076201D /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB65FB1E7FBDFD0076201D /* AFNetworkReachabilityManager.m */; };
 		4BBB66281E7FBDFE0076201D /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB65FD1E7FBDFD0076201D /* AFSecurityPolicy.m */; };
@@ -306,6 +307,8 @@
 		4BB076221E712DD300D8DF4B /* MainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCell.m; sourceTree = "<group>"; };
 		4BB076291E71427100D8DF4B /* UserInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoController.h; sourceTree = "<group>"; };
 		4BB0762A1E71427100D8DF4B /* UserInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoController.m; sourceTree = "<group>"; };
+		4BB840D61EE9027C00DD55A8 /* MainItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainItemView.h; sourceTree = "<group>"; };
+		4BB840D71EE9027C00DD55A8 /* MainItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainItemView.m; sourceTree = "<group>"; };
 		4BBB65F71E7FBDFD0076201D /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		4BBB65F81E7FBDFD0076201D /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		4BBB65F91E7FBDFD0076201D /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -737,6 +740,8 @@
 				4BA1572B1E769BD70087D279 /* ChooseBirthdayView.m */,
 				4BA1572D1E769BEA0087D279 /* ChooseAdressView.h */,
 				4BA1572E1E769BEA0087D279 /* ChooseAdressView.m */,
+				4BB840D61EE9027C00DD55A8 /* MainItemView.h */,
+				4BB840D71EE9027C00DD55A8 /* MainItemView.m */,
 			);
 			name = "视图控件";
 			sourceTree = "<group>";
@@ -1133,6 +1138,7 @@
 				4B254AA41EDFC29300D215F3 /* MyCollectionCell.m in Sources */,
 				4BA1F03C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				4B9E44361E8643CD00B4FABD /* MJRefreshBackFooter.m in Sources */,
+				4BB840D81EE9027C00DD55A8 /* MainItemView.m in Sources */,
 				4BA1F0391E731BA500B4EED4 /* IQPreviousNextView.m in Sources */,
 				4B12B0B61EDEAAD30041196C /* HelpController.m in Sources */,
 				4B9E44371E8643CD00B4FABD /* MJRefreshComponent.m in Sources */,
