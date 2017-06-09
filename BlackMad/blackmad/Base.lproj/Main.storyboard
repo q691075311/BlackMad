@@ -52,7 +52,92 @@
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OkH-Pd-9bH">
                                                     <rect key="frame" x="10" y="5" width="355" height="191"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainsmallimage" translatesAutoresizingMaskIntoConstraints="NO" id="T1y-8p-L6L">
+                                                            <rect key="frame" x="110" y="19" width="28" height="22"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="22" id="Brf-QY-2Fi"/>
+                                                                <constraint firstAttribute="width" constant="28" id="n1V-DX-iu1"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首家网5元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZq-eR-uFN">
+                                                            <rect key="frame" x="69" y="51" width="109" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="109" id="Hhh-1h-JcC"/>
+                                                                <constraint firstAttribute="height" constant="23" id="J1n-SE-YKU"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可获得一张暴风半折优惠券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TA-Tx-EAk">
+                                                            <rect key="frame" x="5" y="111" width="217" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="9x6-20-sm6"/>
+                                                                <constraint firstAttribute="width" constant="217" id="zoV-RH-d5Q"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暴风雪5折优惠券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykw-hB-YdN">
+                                                            <rect key="frame" x="10" y="160" width="165" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="8xg-qw-dux"/>
+                                                                <constraint firstAttribute="width" constant="165" id="Cu2-NP-Ovf"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dairy Queen" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZC-YQ-B9B">
+                                                            <rect key="frame" x="232" y="62" width="111" height="26"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="111" id="bMV-ZW-UQR"/>
+                                                                <constraint firstAttribute="height" constant="26" id="ey5-tt-YA2"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.62" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥30.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBb-VT-wsA">
+                                                            <rect key="frame" x="237" y="109" width="87" height="26"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="26" id="6HP-6F-2Td"/>
+                                                                <constraint firstAttribute="width" constant="87" id="vUN-Ry-1NA"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥26.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQy-OU-Wid">
+                                                            <rect key="frame" x="225" y="141" width="99" height="33"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="99" id="wIx-Ye-MX5"/>
+                                                                <constraint firstAttribute="height" constant="33" id="xnA-Jj-MZb"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="lQy-OU-Wid" firstAttribute="trailing" secondItem="lBb-VT-wsA" secondAttribute="trailing" id="2Rr-Lm-KCy"/>
+                                                        <constraint firstItem="zZq-eR-uFN" firstAttribute="top" secondItem="T1y-8p-L6L" secondAttribute="bottom" constant="10" id="6C5-T4-XXf"/>
+                                                        <constraint firstItem="lBb-VT-wsA" firstAttribute="top" secondItem="CZC-YQ-B9B" secondAttribute="bottom" constant="21" id="M16-w4-7p6"/>
+                                                        <constraint firstItem="zZq-eR-uFN" firstAttribute="leading" secondItem="OkH-Pd-9bH" secondAttribute="leading" constant="69" id="S7f-SN-fXP"/>
+                                                        <constraint firstItem="5TA-Tx-EAk" firstAttribute="leading" secondItem="OkH-Pd-9bH" secondAttribute="leading" constant="5" id="Sly-Yf-Kjm"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Ykw-hB-YdN" secondAttribute="bottom" constant="10" id="TFa-Q7-MtS"/>
+                                                        <constraint firstItem="Ykw-hB-YdN" firstAttribute="leading" secondItem="OkH-Pd-9bH" secondAttribute="leading" constant="10" id="VL0-YP-dso"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lBb-VT-wsA" secondAttribute="trailing" constant="31" id="c3N-jK-cqW"/>
+                                                        <constraint firstItem="lQy-OU-Wid" firstAttribute="top" secondItem="lBb-VT-wsA" secondAttribute="bottom" constant="6" id="dcQ-0h-sTQ"/>
+                                                        <constraint firstItem="T1y-8p-L6L" firstAttribute="top" secondItem="OkH-Pd-9bH" secondAttribute="top" constant="19" id="eDa-iT-FTl"/>
+                                                        <constraint firstItem="CZC-YQ-B9B" firstAttribute="top" secondItem="OkH-Pd-9bH" secondAttribute="top" constant="62" id="oOS-08-Vit"/>
+                                                        <constraint firstItem="5TA-Tx-EAk" firstAttribute="top" secondItem="zZq-eR-uFN" secondAttribute="bottom" constant="37" id="pF7-sB-6Uf"/>
+                                                        <constraint firstAttribute="trailing" secondItem="CZC-YQ-B9B" secondAttribute="trailing" constant="12" id="sLK-Hq-vC9"/>
+                                                        <constraint firstItem="T1y-8p-L6L" firstAttribute="leading" secondItem="OkH-Pd-9bH" secondAttribute="leading" constant="110" id="v6g-kb-xpW"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -89,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1959.5" y="1068.5"/>
+            <point key="canvasLocation" x="1959.5" y="1068"/>
         </scene>
         <!--Black Web Controller-->
         <scene sceneID="erd-Ra-l70">
@@ -529,6 +614,7 @@
         <image name="hdui" width="38" height="38"/>
         <image name="logo" width="120" height="120"/>
         <image name="maincellbg" width="355" height="192"/>
+        <image name="mainsmallimage" width="60" height="60"/>
         <image name="xingbake" width="31" height="31"/>
     </resources>
 </document>

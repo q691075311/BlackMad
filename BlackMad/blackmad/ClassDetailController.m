@@ -21,7 +21,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navBar.isAppearLineView = YES;
-    [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:nil];
+    if ([self.userInfo[@"form"] isEqualToString:@"Main"]) {
+        self.navBar.isAppearSearchView = YES;
+        [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:@"搜索"];
+    }else{
+        [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:nil];
+    }
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -47,6 +52,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+#pragma mark -- touchRigth
+- (void)touchRigthBtn{
+    NSLog(@"搜索！！！！");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

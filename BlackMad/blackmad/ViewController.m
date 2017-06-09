@@ -174,7 +174,7 @@ typedef enum:NSUInteger{
     [self pushToController:@"ClassDetailController"
             WithStoyBordID:@"class"
                   WithForm:self
-                  WithInfo:@{}];
+                  WithInfo:@{@"form":@"Main"}];
     return YES;
 }
 
@@ -257,12 +257,9 @@ typedef enum:NSUInteger{
         [self toLogin];
     }
 }
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//
-//    return view;
-//}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 250;
+    return 202;
 }
 #pragma mark--跳转登录页面
 - (void)toLogin{

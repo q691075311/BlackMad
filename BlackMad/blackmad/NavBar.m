@@ -25,9 +25,21 @@
 }
 - (void)awakeFromNib{
     [super awakeFromNib];
+    [self addSearchBarView];
     _rigthBtn.hidden = YES;
     _leftBtn.hidden = YES;
+//    _searchBar.hidden = YES;
     
+}
+- (void)addSearchBarView{
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchhui"]];
+    imageView.frame = CGRectMake(9, 7, 15, 15);
+    [view addSubview:imageView];
+    _searchBar.layer.masksToBounds = YES;
+    _searchBar.layer.cornerRadius = 5;
+    _searchBar.leftView = view;
+    _searchBar.leftViewMode = UITextFieldViewModeAlways;
 }
 - (void)configNavBarTitle:(NSString *)title WithLeftView:(NSString *)leftImageName WithRigthView:(NSString *)rigthImageName{
     //添加灰色的导航栏线条
@@ -39,6 +51,7 @@
     }else{
         view.hidden = NO;
     }
+    _searchBar.hidden = _isAppearSearchView == NO ? YES : NO;
     //配置导航栏数据
     _title.text = title;
     _rigthBtn.hidden = NO;
@@ -47,7 +60,11 @@
         [_leftBtn setBackgroundImage:[UIImage imageNamed:leftImageName] forState:UIControlStateNormal];
     }
     if (rigthImageName) {
-        [_rigthBtn setBackgroundImage:[UIImage imageNamed:rigthImageName] forState:UIControlStateNormal];
+        if (![UIImage imageNamed:rigthImageName]) {
+            [_rigthBtn setTitle:rigthImageName forState:UIControlStateNormal];
+        }else{
+            [_rigthBtn setBackgroundImage:[UIImage imageNamed:rigthImageName] forState:UIControlStateNormal];
+        }
     }
 }
 - (IBAction)leftBtn:(UIButton *)sender {
