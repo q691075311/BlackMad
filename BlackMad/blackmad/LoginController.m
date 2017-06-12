@@ -23,6 +23,10 @@ typedef enum :NSUInteger{
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registeredBtn;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextField *validationField;
+@property (weak, nonatomic) IBOutlet UITextField *SMSValidationField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnH;
 @property (nonatomic,assign) userType type;
 @end
 
@@ -36,13 +40,14 @@ typedef enum :NSUInteger{
     }else{
         _type = userType_Login;
     }
-    
-    
     self.navigationController.navigationBar.hidden = YES;
     _loginPhone.delegate = self;
     _pwdField.delegate = self;
+    _validationField.delegate = self;
+    _SMSValidationField.delegate = self;
     IQKeyboardReturnKeyHandler * returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] init];
     returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyNext;
+    _scrollView.contentSize = CGSizeMake(DWIDTH, DHIGTH+500);
     [self initUI];
     
 }
@@ -60,22 +65,26 @@ typedef enum :NSUInteger{
         self.pwdField.text = [USERDEF objectForKey:@"pwd"];
     }
 }
+//设置页面的UI
 - (void)initUI{
     if (_type == userType_Login) {
         [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-        [_registeredBtn setTitle:@"点击注册" forState:UIControlStateNormal];
-        //_headImage.image = [UIImage imageNamed:@"logo"];
+        [_registeredBtn setTitle:@"若已注册疯趣公众号请用公众号账号登录" forState:UIControlStateNormal];
         NSString * headImageStr = [USERDEF objectForKey:@"headImage"];
         [_headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,headImageStr]] placeholderImage:[UIImage imageNamed:@"headimage"]];
         _pwdField.placeholder = @"请输入密码";
+        _btnH.constant = -48;
+        _SMSValidationField.hidden = YES;
+        
     }else if (_type == userType_Registered){
         [self.navBar configNavBarTitle:@"账户注册" WithLeftView:nil WithRigthView:nil];
         [_loginBtn setTitle:@"注册" forState:UIControlStateNormal];
-        [_registeredBtn setTitle:@"有账号？返回登录" forState:UIControlStateNormal];
+        [_registeredBtn setTitle:@"若已注册疯趣公众号请用公众号账号登录" forState:UIControlStateNormal];
         _headImage.image = [UIImage imageNamed:@"logo"];
         _pwdField.placeholder = @"请输入密码（6-18位字符）";
-        
+        _btnH.constant = 24;
+        _SMSValidationField.hidden = NO;
     }
     //设置用户名的textfield的左边框
     [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
@@ -85,11 +94,25 @@ typedef enum :NSUInteger{
     _pwdField.secureTextEntry = YES;
     [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
     [self changeTextFieldLayer:_pwdField];
+    //设置验证码的textfield的左边框和右视图
+    [self changeTextFieldLayer:_validationField];
+    _validationField.leftView = [self validationFieldLeftView];
+    _validationField.rightView = [self validationFieldRightView];
+    //设置短信验证码的SMSValidationField的左边框和右视图
+    [self changeTextFieldLayer:_SMSValidationField];
+    [self changeTextFieldStyleWith:_SMSValidationField WithLeftView:@"SMSyanzheng" WithR:192 WithG:192 WithB:192];
+    _SMSValidationField.rightView = [self addSMSValidationRightView];
+    
     //设置登录btn的边框
     _loginBtn.layer.masksToBounds = YES;
     _loginBtn.layer.cornerRadius = 24;
+    _loginBtn.layer.borderWidth = 1;
+    _loginBtn.layer.borderColor = COLORWITHRGB(166, 166, 166).CGColor;
+    
     _headImage.layer.masksToBounds = YES;
     _headImage.layer.cornerRadius = 60;
+    _headImage.layer.borderWidth = 1;
+    _headImage.layer.borderColor = COLORWITHRGB(166, 166, 166).CGColor;
     
 }
 - (void)changeTextFieldLayer:(UITextField *)textField{
@@ -97,36 +120,84 @@ typedef enum :NSUInteger{
     textField.layer.cornerRadius = 24;
     textField.layer.borderWidth = 1;
     textField.leftViewMode = UITextFieldViewModeAlways;
-}
-#pragma mark--UITextFieldDelegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    if (textField == _pwdField) {
-        //如果选中密码框
-        [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"userh" WithR:192 WithG:192 WithB:192];
-        [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdleft" WithR:205 WithG:48 WithB:44];
-    }else{
-        [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
-        [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
-    }
+    textField.rightViewMode = UITextFieldViewModeAlways;
 }
 //改变UITextField的状态
 - (void)changeTextFieldStyleWith:(UITextField *)textField WithLeftView:(NSString *)imageURL WithR:(int)R WithG:(int)G WithB:(int)B{
-    UIView * view = [self textFildLeftViewWithImage:imageURL];
+    UIView * view;
+    if (textField == _validationField) {
+        view = [self validationFieldLeftView];
+    }else{
+        view = [self textFildLeftViewWithImage:imageURL];
+    }
     textField.leftView = view;
     textField.layer.borderColor = COLORWITHRGB(R, G, B).CGColor;
 }
 
-#pragma mark--自定义UITextField的leftView
+#pragma mark--自定义UITextField的leftView和rightView
 - (UIView *)textFildLeftViewWithImage:(NSString *)imageURL{
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 24)];
     UIView * leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 24)];
     UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageURL]];
-
     imageView.frame = CGRectMake(20, 0, 24, 24);
     [view addSubview:leftView];
     [view addSubview:imageView];
     return view;
 }
+//验证码的左右视图
+- (UILabel *)validationFieldLeftView{
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 84, 48)];
+    label.text = @"验证码：";
+    label.font = [UIFont systemFontOfSize:16];
+    label.textAlignment = NSTextAlignmentRight;
+    label.textColor = COLORWITHRGB(74, 74, 74);
+    _validationField.layer.borderColor = [Tool appGrayColor].CGColor;
+    return label;
+}
+- (UIView *)validationFieldRightView{
+    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(_validationField.bounds.size.width-85, 7, 85, 34)];
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 69, 34)];
+    [bgView addSubview:imageView];
+    imageView.image = [UIImage imageNamed:@"vaimage"];
+    return bgView;
+}
+//add短信验证码的右视图
+- (UIView *)addSMSValidationRightView{
+    UIView * BGView = [[UIView alloc] initWithFrame:CGRectMake(_SMSValidationField.frame.size.width-102, 12, 102, 24)];
+    UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 24)];
+    lineView.backgroundColor = [Tool appGrayColor];
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(9, 0, 80, 22);
+    btn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [btn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(getSMSValidationCode) forControlEvents:UIControlEventTouchUpInside];
+    [btn setTitleColor:COLORWITHRGB(74, 74, 74) forState:UIControlStateNormal];
+    
+    [BGView addSubview:btn];
+    [BGView addSubview:lineView];
+    return BGView;
+}
+#pragma mark--UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"userh" WithR:192 WithG:192 WithB:192];
+    [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
+    [self changeTextFieldStyleWith:_validationField WithLeftView:@"userh" WithR:192 WithG:192 WithB:192];
+    [self changeTextFieldStyleWith:_SMSValidationField WithLeftView:@"SMSyanzheng" WithR:192 WithG:192 WithB:192];
+    if (textField == _loginPhone) {
+        [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
+    }else if (textField == _pwdField){
+        [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdleft" WithR:205 WithG:48 WithB:44];
+    }else if (textField == _validationField){
+        [self changeTextFieldStyleWith:_validationField WithLeftView:@"userh" WithR:205 WithG:48 WithB:44];
+    }else if (textField == _SMSValidationField){
+        [self changeTextFieldStyleWith:_SMSValidationField WithLeftView:@"SMSyanzhengH" WithR:205 WithG:48 WithB:44];
+    }
+}
+//获取短信验证码
+- (void)getSMSValidationCode{
+    
+}
+
 /**
  *  登录
  *
@@ -228,6 +299,7 @@ typedef enum :NSUInteger{
     }else if (_type == userType_Registered){
         _type = userType_Login;
     }
+    _scrollView.contentSize = CGSizeMake(DWIDTH, DHIGTH+500);
     [self initUI];
     
 }
