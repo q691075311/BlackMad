@@ -8,6 +8,9 @@
 
 #import "BaseController.h"
 #import "AccountManagementController.h"
+#import "ViewController.h"
+#import "UserInfoController.h"
+#import "ClassController.h"
 
 @interface BaseController ()<NavBarDelegate>
 
@@ -27,6 +30,11 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if ([self isKindOfClass:[ViewController class]] || [self isKindOfClass:[UserInfoController class]] || [self isKindOfClass:[ClassController class]]) {
+        self.tabBarController.tabBar.hidden = NO;
+    }else{
+        self.tabBarController.tabBar.hidden = YES;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

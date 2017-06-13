@@ -27,6 +27,14 @@ typedef enum :NSUInteger{
 @property (weak, nonatomic) IBOutlet UITextField *validationField;
 @property (weak, nonatomic) IBOutlet UITextField *SMSValidationField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnH;
+/**
+ *  图形验证码
+ */
+@property (nonatomic,strong) UIImageView * verifyImage;
+/**
+ *  图形验证码ID
+ */
+@property (nonatomic,strong) NSString *verifyID;
 @property (nonatomic,assign) userType type;
 @end
 
@@ -37,8 +45,10 @@ typedef enum :NSUInteger{
     // Do any additional setup after loading the view.
     if ([self.fromFlag isEqualToString:@"ad"]) {
         _type = userType_Registered;
+        [self getVerifyImageRequestWithType:@"0"];
     }else{
         _type = userType_Login;
+        [self getVerifyImageRequestWithType:@"3"];
     }
     self.navigationController.navigationBar.hidden = YES;
     _loginPhone.delegate = self;
@@ -47,10 +57,9 @@ typedef enum :NSUInteger{
     _SMSValidationField.delegate = self;
     IQKeyboardReturnKeyHandler * returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] init];
     returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyNext;
-    _scrollView.contentSize = CGSizeMake(DWIDTH, DHIGTH+500);
     [self initUI];
-    
 }
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // 禁用 iOS7 返回手势
@@ -76,7 +85,7 @@ typedef enum :NSUInteger{
         _pwdField.placeholder = @"请输入密码";
         _btnH.constant = -48;
         _SMSValidationField.hidden = YES;
-        
+        _scrollView.contentSize = CGSizeMake(DWIDTH, 537);
     }else if (_type == userType_Registered){
         [self.navBar configNavBarTitle:@"账户注册" WithLeftView:nil WithRigthView:nil];
         [_loginBtn setTitle:@"注册" forState:UIControlStateNormal];
@@ -85,7 +94,10 @@ typedef enum :NSUInteger{
         _pwdField.placeholder = @"请输入密码（6-18位字符）";
         _btnH.constant = 24;
         _SMSValidationField.hidden = NO;
+        _scrollView.contentSize = CGSizeMake(DWIDTH, 600);
     }
+    
+//    _scrollView.contentSize = CGSizeMake(DWIDTH, 1500);
     //设置用户名的textfield的左边框
     [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
     [self changeTextFieldLayer:_loginPhone];
@@ -94,7 +106,7 @@ typedef enum :NSUInteger{
     _pwdField.secureTextEntry = YES;
     [self changeTextFieldStyleWith:_pwdField WithLeftView:@"pwdh" WithR:192 WithG:192 WithB:192];
     [self changeTextFieldLayer:_pwdField];
-    //设置验证码的textfield的左边框和右视图
+    //设置图形验证码的textfield的左边框和右视图
     [self changeTextFieldLayer:_validationField];
     _validationField.leftView = [self validationFieldLeftView];
     _validationField.rightView = [self validationFieldRightView];
@@ -102,7 +114,6 @@ typedef enum :NSUInteger{
     [self changeTextFieldLayer:_SMSValidationField];
     [self changeTextFieldStyleWith:_SMSValidationField WithLeftView:@"SMSyanzheng" WithR:192 WithG:192 WithB:192];
     _SMSValidationField.rightView = [self addSMSValidationRightView];
-    
     //设置登录btn的边框
     _loginBtn.layer.masksToBounds = YES;
     _loginBtn.layer.cornerRadius = 24;
@@ -155,10 +166,13 @@ typedef enum :NSUInteger{
     return label;
 }
 - (UIView *)validationFieldRightView{
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeImageVerCode)];
     UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(_validationField.bounds.size.width-85, 7, 85, 34)];
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 69, 34)];
-    [bgView addSubview:imageView];
-    imageView.image = [UIImage imageNamed:@"vaimage"];
+    _verifyImage = [[UIImageView alloc] init];
+    _verifyImage.frame = CGRectMake(0, 0, 69, 34);
+    _verifyImage.userInteractionEnabled = YES;
+    [_verifyImage addGestureRecognizer:tap];
+    [bgView addSubview:_verifyImage];
     return bgView;
 }
 //add短信验证码的右视图
@@ -193,9 +207,10 @@ typedef enum :NSUInteger{
         [self changeTextFieldStyleWith:_SMSValidationField WithLeftView:@"SMSyanzhengH" WithR:205 WithG:48 WithB:44];
     }
 }
-//获取短信验证码
-- (void)getSMSValidationCode{
-    
+
+//切换图形验证码
+- (void)changeImageVerCode{
+    _type == userType_Login ? [self getVerifyImageRequestWithType:@"3"] : [self getVerifyImageRequestWithType:@"0"];
 }
 
 /**
@@ -224,6 +239,9 @@ typedef enum :NSUInteger{
     [AFNRequest requestWithDataURL:registered
                       WithUserName:self.loginPhone.text
                           WithPwsd:self.pwdField.text
+                      withVerifyId:_verifyID
+                    withVerifyCode:_validationField.text
+                       withSMSCode:_SMSValidationField.text
                       WithComplete:^(NSDictionary *dic) {
                           [SVProgressHUD dismiss];
                           [SVProgressHUD showSuccessWithStatus:@"注册成功"];
@@ -231,13 +249,18 @@ typedef enum :NSUInteger{
                           [USERDEF removeObjectForKey:@"headImage"];
                           [USERDEF synchronize];
                           _type = userType_Login;
+                          _validationField.text = @"";
+                          _SMSValidationField.text = @"";
                           [self initUI];
+                          [self getVerifyImageRequestWithType:@"3"];
                           [self.view endEditing:YES];
                       }];
 }
 //登录请求
 - (void)loginRequest{
     [AFNRequest requestLoginWithURL:loginURL
+                       withVerifyID:_verifyID
+                     withVerifyCode:_validationField.text
                        WithUserName:self.loginPhone.text
                            WithPwsd:self.pwdField.text
                        WithComplete:^(NSDictionary *dic) {
@@ -288,6 +311,31 @@ typedef enum :NSUInteger{
                               }
                           }];
 }
+//获取图形验证码请求
+- (void)getVerifyImageRequestWithType:(NSString *)type{
+    [SVProgressHUD show];
+    [AFNRequest getImageVerifyCodeWithUseingID:type WithComplete:^(NSDictionary *dic) {
+        NSLog(@"%@",dic);
+        NSDictionary * diction = dic[@"attribute"];
+        NSString *verifyID = diction[@"verifyId"];
+        _verifyID = verifyID;
+        NSData * imageData = [[NSData alloc] initWithBase64Encoding:diction[@"imageBase"]];
+        UIImage * image = [UIImage imageWithData:imageData];
+        _verifyImage.image = image;
+        [SVProgressHUD dismiss];
+    }];
+}
+//获取短信验证码
+- (void)getSMSValidationCode{
+    [AFNRequest getSMSVerifyCodeWithUsering:@"0"
+                                  withPhone:_loginPhone.text
+                                 withUserId:@""
+                               withComplete:^(NSDictionary *dic) {
+                                   NSLog(@"%@",dic);
+                                   NSString * smsCode = [dic[@"attribute"] objectForKey:@"smsCode"];
+                                   _SMSValidationField.text = smsCode;
+                               }];
+}
 /**
  *  切换注册登录页面
  *
@@ -296,13 +344,14 @@ typedef enum :NSUInteger{
 - (IBAction)registeredBtn:(UIButton *)sender {
     if (_type == userType_Login) {
         _type = userType_Registered;
+        [self getVerifyImageRequestWithType:@"0"];
     }else if (_type == userType_Registered){
         _type = userType_Login;
+        [self getVerifyImageRequestWithType:@"3"];
     }
-    _scrollView.contentSize = CGSizeMake(DWIDTH, DHIGTH+500);
     [self initUI];
-    
 }
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }

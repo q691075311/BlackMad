@@ -30,7 +30,7 @@
 /**
  *  测试接口
  */
-#define BASEURL @"http://116.62.7.43/d"
+#define BASEURL @"http://m.funqu.cn/d"
 
 //图片的URL
 #define IMAGEURL @"http://116.62.7.43"
@@ -56,8 +56,14 @@
 #define MyTicketURL @"/phone/user/cardVolume"
 //保存用户信息
 #define SaveInfoURL @"/phone/user/saveorupdate"
-
-
+//获取图形验证码
+#define getVerifyCode @"/phone/commons/verifyCode"
+//获取短信验证码
+#define getSMSVerifyCode @"/phone/commons/smsCode"
+//投诉建议
+#define COMPLAINTS @"/phone/complaint/add"
+//分类-活动
+#define CLASSACT @"/phone/type/productList"
 
 /**
  *  生产接口

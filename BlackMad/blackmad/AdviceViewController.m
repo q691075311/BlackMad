@@ -24,6 +24,10 @@
     [self.navBar configNavBarTitle:@"投诉建议" WithLeftView:@"back" WithRigthView:nil];
     [self setViewUI];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = YES;
+}
 - (void)setViewUI{
     self.submitBtn.layer.masksToBounds = YES;
     self.submitBtn.layer.cornerRadius = self.submitBtn.bounds.size.height/2;
@@ -34,7 +38,11 @@
 }
 
 - (IBAction)submitClicok:(UIButton *)sender {
-    
+    [SVProgressHUD show];
+    [AFNRequest complaintsWithContent:self.adviceText.text withComplete:^(NSDictionary *dic) {
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showSuccessWithStatus:@"提交成功！"];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

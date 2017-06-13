@@ -22,6 +22,10 @@
 		4B254AA41EDFC29300D215F3 /* MyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B254AA31EDFC29300D215F3 /* MyCollectionCell.m */; };
 		4B407C101E828F31004B94A6 /* LoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C0F1E828F31004B94A6 /* LoginUser.m */; };
 		4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B407C121E82AAC6004B94A6 /* UserInfo.m */; };
+		4B46D3A91EEFCACD002A60E7 /* ActAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B46D3A11EEFCACD002A60E7 /* ActAttribute.m */; };
+		4B46D3AA1EEFCACD002A60E7 /* ActClassActModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B46D3A31EEFCACD002A60E7 /* ActClassActModle.m */; };
+		4B46D3AB1EEFCACD002A60E7 /* ActList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B46D3A51EEFCACD002A60E7 /* ActList.m */; };
+		4B46D3AC1EEFCACD002A60E7 /* ActProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B46D3A71EEFCACD002A60E7 /* ActProductList.m */; };
 		4B708A751E8384310064CD11 /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B708A741E8384310064CD11 /* InterestModel.m */; };
 		4B7B2B5D1EE7C59F003C5DCB /* ClassDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B2B5C1EE7C59F003C5DCB /* ClassDetailController.m */; };
 		4B7B2B601EE7CF83003C5DCB /* ClassDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B2B5F1EE7CF83003C5DCB /* ClassDetailCell.m */; };
@@ -169,6 +173,15 @@
 		4B407C0F1E828F31004B94A6 /* LoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUser.m; sourceTree = "<group>"; };
 		4B407C111E82AAC6004B94A6 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		4B407C121E82AAC6004B94A6 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		4B46D3A01EEFCACD002A60E7 /* ActAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActAttribute.h; sourceTree = "<group>"; };
+		4B46D3A11EEFCACD002A60E7 /* ActAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActAttribute.m; sourceTree = "<group>"; };
+		4B46D3A21EEFCACD002A60E7 /* ActClassActModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActClassActModle.h; sourceTree = "<group>"; };
+		4B46D3A31EEFCACD002A60E7 /* ActClassActModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActClassActModle.m; sourceTree = "<group>"; };
+		4B46D3A41EEFCACD002A60E7 /* ActList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActList.h; sourceTree = "<group>"; };
+		4B46D3A51EEFCACD002A60E7 /* ActList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActList.m; sourceTree = "<group>"; };
+		4B46D3A61EEFCACD002A60E7 /* ActProductList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActProductList.h; sourceTree = "<group>"; };
+		4B46D3A71EEFCACD002A60E7 /* ActProductList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActProductList.m; sourceTree = "<group>"; };
+		4B46D3A81EEFCACD002A60E7 /* DataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModels.h; sourceTree = "<group>"; };
 		4B708A731E8384310064CD11 /* InterestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestModel.h; sourceTree = "<group>"; };
 		4B708A741E8384310064CD11 /* InterestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestModel.m; sourceTree = "<group>"; };
 		4B7B2B5B1EE7C59F003C5DCB /* ClassDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailController.h; sourceTree = "<group>"; };
@@ -556,6 +569,15 @@
 				4B91F7581E88A0B00047F5E8 /* MainProductModle.m */,
 				4B94CD231E8A449E00CBAE36 /* MyTicketModle.h */,
 				4B94CD241E8A449E00CBAE36 /* MyTicketModle.m */,
+				4B46D3A01EEFCACD002A60E7 /* ActAttribute.h */,
+				4B46D3A11EEFCACD002A60E7 /* ActAttribute.m */,
+				4B46D3A21EEFCACD002A60E7 /* ActClassActModle.h */,
+				4B46D3A31EEFCACD002A60E7 /* ActClassActModle.m */,
+				4B46D3A41EEFCACD002A60E7 /* ActList.h */,
+				4B46D3A51EEFCACD002A60E7 /* ActList.m */,
+				4B46D3A61EEFCACD002A60E7 /* ActProductList.h */,
+				4B46D3A71EEFCACD002A60E7 /* ActProductList.m */,
+				4B46D3A81EEFCACD002A60E7 /* DataModels.h */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -1167,6 +1189,7 @@
 				4B7F8C751E6FF51300686040 /* BaseController.m in Sources */,
 				4BA157231E766C7C0087D279 /* MyTicketController.m in Sources */,
 				4BCC61C91E7793DB002C7FF9 /* CitiesDataTool.m in Sources */,
+				4B46D3AB1EEFCACD002A60E7 /* ActList.m in Sources */,
 				4B12B0B91EDEAB290041196C /* AdviceViewController.m in Sources */,
 				4B9E44391E8643CD00B4FABD /* MJRefreshHeader.m in Sources */,
 				4BE874641E80C415004F174E /* UIButton+WebCache.m in Sources */,
@@ -1176,6 +1199,7 @@
 				4BE874691E80C415004F174E /* UIImageView+WebCache.m in Sources */,
 				4B12B0B01EDE64A80041196C /* Tool.m in Sources */,
 				4B9E44401E8643CD00B4FABD /* MJRefreshGifHeader.m in Sources */,
+				4B46D3AA1EEFCACD002A60E7 /* ActClassActModle.m in Sources */,
 				4BA1F0311E731BA500B4EED4 /* IQUITextFieldView+Additions.m in Sources */,
 				4BCC61A11E7792E7002C7FF9 /* AddressItem.m in Sources */,
 				4BE874601E80C415004F174E /* SDWebImageDownloader.m in Sources */,
@@ -1232,11 +1256,13 @@
 				4B9E443C1E8643CD00B4FABD /* MJRefreshAutoStateFooter.m in Sources */,
 				4B9E44481E8643CD00B4FABD /* UIView+MJExtension.m in Sources */,
 				4BBB66281E7FBDFE0076201D /* AFSecurityPolicy.m in Sources */,
+				4B46D3AC1EEFCACD002A60E7 /* ActProductList.m in Sources */,
 				4BE8745B1E80C415004F174E /* MKAnnotationView+WebCache.m in Sources */,
 				4B9E443B1E8643CD00B4FABD /* MJRefreshAutoNormalFooter.m in Sources */,
 				4B7F8C4C1E6FBF6100686040 /* main.m in Sources */,
 				4BA1F0321E731BA500B4EED4 /* IQUIView+Hierarchy.m in Sources */,
 				4B9E44471E8643CD00B4FABD /* UIScrollView+MJRefresh.m in Sources */,
+				4B46D3A91EEFCACD002A60E7 /* ActAttribute.m in Sources */,
 				4BE874611E80C415004F174E /* SDWebImageDownloaderOperation.m in Sources */,
 				4BE8745C1E80C415004F174E /* NSData+ImageContentType.m in Sources */,
 				4BE874681E80C415004F174E /* UIImageView+HighlightedWebCache.m in Sources */,

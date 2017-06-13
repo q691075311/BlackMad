@@ -10,15 +10,20 @@
 
 @implementation AFNRequest
 //发送注册请求
-+ (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void (^)(NSDictionary *dic))block{
++ (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd withVerifyId:(NSString *)verifyId withVerifyCode:(NSString *)verifyCode withSMSCode:(NSString *)smsCode WithComplete:(void (^)(NSDictionary *dic))block{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager.requestSerializer setValue:@"application/json;charset=utf-8"forHTTPHeaderField:@"Content-Type"];
     //请求URL
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    int i = [verifyId intValue];
+    NSNumber * verifyNum = [NSNumber numberWithInt:i];
     NSDictionary * dic = @{@"username":userName,
                            @"password":pwd,
-                          @"regDevice":@"ios"};
+                           @"regDevice":@"ios",
+                           @"verifyId":verifyNum,
+                           @"verifyCode":verifyCode,
+                           @"smsCode":smsCode};
     NSString * parameter = [self dictionaryToJson:dic];
     //发起请求
     [manager POST:url parameters:parameter progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -36,14 +41,16 @@
     
 }
 //登录请求
-+ (void)requestLoginWithURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void (^)(NSDictionary *dic))block{
++ (void)requestLoginWithURL:(NSString *)URL withVerifyID:(NSString *)verifyID withVerifyCode:(NSString *)verifyCode WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void (^)(NSDictionary *dic))block{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager.requestSerializer setValue:@"application/json;charset=utf-8"forHTTPHeaderField:@"Content-Type"];
     //请求URL
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSDictionary * dic = @{@"username":userName,
-                           @"password":pwd};
+                           @"password":pwd,
+                           @"verifyId":verifyID,
+                           @"verifyCode":verifyCode};
     NSString * parameter = [self dictionaryToJson:dic];
     //发起请求
     [manager POST:url parameters:parameter progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -284,6 +291,97 @@
     
     
 }
+//获取图形验证码
++ (void)getImageVerifyCodeWithUseingID:(NSString *)useingID WithComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    //请求URL
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,getVerifyCode] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //请求的参数
+    NSDictionary * userDic = @{@"useing":useingID};
+    NSDictionary * dic = @{@"sms":userDic};
+    NSString * parameter = [self dictionaryToJson:dic];
+    //发送请求
+    [manager POST:url
+       parameters:parameter
+         progress:^(NSProgress * _Nonnull uploadProgress) {
+             
+         }
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+              if ([self judgeStatusCodeWithDic:dic]) {
+                  block(dic);
+              }else{
+                  return;
+              }
+         }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              NSLog(@"%@",error.userInfo);
+          }];
+}
+//短信验证码
++ (void)getSMSVerifyCodeWithUsering:(NSString *)usering withPhone:(NSString *)phone withUserId:(NSString *)userId withComplete:(void (^)(NSDictionary *dic))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,getSMSVerifyCode] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSDictionary * parDic = @{@"useing":usering,
+                              @"phone":phone,
+                              @"userId":userId};
+    NSDictionary * dic = @{@"sms":parDic};
+    NSString * parameter = [self dictionaryToJson:dic];
+    [manager POST:url parameters:parameter progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+//投诉建议
++ (void)complaintsWithContent:(NSString *)content withComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,COMPLAINTS] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //head
+    [manager.requestSerializer setValue:[LoginUser shareUser].token forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[LoginUser shareUser].uid forHTTPHeaderField:@"uid"];
+    //body参数
+    NSDictionary * dic = @{@"content":content};
+    NSString * parameter = [self dictionaryToJson:dic];
+    [manager POST:url parameters:parameter progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+//分类-活动
++ (void)classActWithComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,CLASSACT] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [manager POST:url parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+
+
 //字典转为Json字符串
 + (NSString *)dictionaryToJson:(NSDictionary *)dic
 {
@@ -309,9 +407,16 @@
             str = @"用户密码错误";
         }else if ([dic[@"statusCode"] isEqualToString:@"4303"]){
             str = @"该账号已存在";
+        }else if ([dic[@"statusCode"] isEqualToString:@"4701"]){
+            str = @"图形验证码错误";
+        }else if ([dic[@"statusCode"] isEqualToString:@"-1"]){
+            str = @"系统异常";
+        }else if ([dic[@"statusCode"] isEqualToString:@"4101"]){
+            str = @"缺少参数";
+        }else if ([dic[@"statusCode"] isEqualToString:@"4501"]){
+            str = @"1分钟内已发送过验证码，请勿重复申请";
         }
         
-//        NSString * errorStr = dic[@"statusMessage"];
         [SVProgressHUD showErrorWithStatus:str];
         return NO;
     }else{

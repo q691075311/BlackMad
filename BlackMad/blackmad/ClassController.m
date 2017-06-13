@@ -26,6 +26,12 @@
     [self.navBar configNavBarTitle:@"分类" WithLeftView:nil WithRigthView:nil];
     [self initTableViewHeadView];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [AFNRequest classActWithComplete:^(NSDictionary *dic) {
+        NSLog(@"%@",dic);
+    }];
+}
 //初始化tableView的头视图
 - (void)initTableViewHeadView{
     self.tableView.delegate = self;

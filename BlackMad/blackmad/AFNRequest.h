@@ -13,11 +13,11 @@
 /**
  *  发送注册请求
  */
-+ (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void(^)(NSDictionary *dic))block;
++ (void)requestWithDataURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd withVerifyId:(NSString *)verifyId withVerifyCode:(NSString *)verifyCode withSMSCode:(NSString *)smsCode WithComplete:(void(^)(NSDictionary *dic))block;
 /**
  *  发送登录请求
  */
-+ (void)requestLoginWithURL:(NSString *)URL WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void(^)(NSDictionary *dic))block;
++ (void)requestLoginWithURL:(NSString *)URL withVerifyID:(NSString *)verifyID withVerifyCode:(NSString *)verifyCode WithUserName:(NSString *)userName WithPwsd:(NSString *)pwd WithComplete:(void(^)(NSDictionary *dic))block;
 /**
  *  发送用户信息请求
  */
@@ -55,7 +55,27 @@
  */
 + (void)requestWithBannerURL:(NSString *)URL WithComplete:(void (^)(NSDictionary *dic))block;
 /**
+ *  获取图形验证码    注释:Using 0 :新用户注册，3：登录
+ */
++ (void)getImageVerifyCodeWithUseingID:(NSString *)useingID WithComplete:(void (^)(NSDictionary *dic))block;
+
+/**
+ *  短信验证码请求
+ */
++ (void)getSMSVerifyCodeWithUsering:(NSString *)usering withPhone:(NSString *)phone withUserId:(NSString *)userId withComplete:(void (^)(NSDictionary *dic))block;
+/**
+ *  投诉建议
+ */
++ (void)complaintsWithContent:(NSString *)content withComplete:(void (^)(NSDictionary *dic))block;
+/**
+ *  分类-活动
+ */
++ (void)classActWithComplete:(void (^)(NSDictionary *dic))block;
+
+
+/**
  *  字典转为Json字符串
  */
 + (NSString *)dictionaryToJson:(NSDictionary *)dic;
+
 @end
