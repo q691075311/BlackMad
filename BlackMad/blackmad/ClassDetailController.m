@@ -100,7 +100,6 @@
                                   withProductTypeId:@""
                                        withComplete:^(NSDictionary *dic) {
                                            [self.tableView.mj_footer endRefreshing];
-                                           
                                            NSDictionary * diction = dic[@"attribute"];
                                            NSArray * arr = diction[@"list"];
                                            if (arr.count>0) {

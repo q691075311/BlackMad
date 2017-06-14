@@ -272,6 +272,18 @@ typedef enum:NSUInteger{
 #pragma mark--网络请求
 
 - (void)netWorkRequest{
+    [AFNRequest recommendProductItemWithCurrentPage:@"1"
+                                     withOrderGuize:@"create_date desc"
+                                  withProductTypeId:@""
+                                       withComplete:^(NSDictionary *dic) {
+                                           NSLog(@"%@",dic);
+                                           NSDictionary * diction = dic[@"attribute"];
+                                           NSArray * arr = diction[@"list"];
+                                           NSLog(@"%@",arr);
+                                           
+                                       }];
+
+    
     //请求产品类型列表
     [AFNRequest requestWithDataURL:productTypeList
                       WithComplete:^(NSDictionary *dic) {
