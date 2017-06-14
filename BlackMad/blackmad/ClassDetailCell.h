@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClassInfo.h"
 
 @interface ClassDetailCell : UITableViewCell
 /**
@@ -29,5 +30,7 @@
  *  cell老价格
  */
 @property (weak, nonatomic) IBOutlet UILabel *oldPrice;
+
+@property (nonatomic,strong) ClassInfo * classInfo;
 
 @end

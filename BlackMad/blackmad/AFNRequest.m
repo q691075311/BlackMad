@@ -7,6 +7,9 @@
 //033a74e7e7c9a12593f6431b9019d9cc
 
 #import "AFNRequest.h"
+#import "ActClassActModle.h"
+
+#import "YYModel.h"
 
 @implementation AFNRequest
 //发送注册请求
@@ -364,12 +367,38 @@
     }];
 }
 //分类-活动
-+ (void)classActWithComplete:(void (^)(NSDictionary *))block{
++ (void)classActWithComplete:(void (^)(id))block{
     AFHTTPSessionManager * manager = [self getHttpManager];
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,CLASSACT] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [manager POST:url parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(responseObject);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+
+//推荐-产品Item
++ (void)recommendProductItemWithCurrentPage:(NSString *)currentPage withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,RECOMMEND] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //参数
+    NSDictionary * page = @{@"currentPage":currentPage};
+    NSDictionary * dic = @{@"page":page,
+                           @"orderGuize":orderGuize,
+                           @"productTypeId":productTypeId};
+    NSString * parameter = [self dictionaryToJson:dic];
+    [manager POST:url parameters:parameter progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if ([self judgeStatusCodeWithDic:dic]) {
             block(dic);
@@ -379,7 +408,11 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error.userInfo);
     }];
+    
 }
+//+ (void)recommendProductItemWithCurrentPage:(NSString *)currentPage withOrderGuize:(NSString *)orderGuize withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withComplete:(void (^)(NSDictionary *))block{
+//    
+//}
 
 
 //字典转为Json字符串

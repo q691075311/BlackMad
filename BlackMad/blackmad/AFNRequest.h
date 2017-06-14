@@ -64,13 +64,20 @@
  */
 + (void)getSMSVerifyCodeWithUsering:(NSString *)usering withPhone:(NSString *)phone withUserId:(NSString *)userId withComplete:(void (^)(NSDictionary *dic))block;
 /**
+ *  推荐-产品Item
+ */
++ (void)recommendProductItemWithCurrentPage:(NSString *)currentPage withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withComplete:(void (^)(NSDictionary *dic))block;
+
+
+/**
  *  投诉建议
  */
 + (void)complaintsWithContent:(NSString *)content withComplete:(void (^)(NSDictionary *dic))block;
 /**
  *  分类-活动
  */
-+ (void)classActWithComplete:(void (^)(NSDictionary *dic))block;
++ (void)classActWithComplete:(void (^)(id))block;
+
 
 
 /**

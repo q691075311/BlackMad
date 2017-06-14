@@ -24,6 +24,15 @@
     
 }
 
+- (void)setClassInfo:(ClassInfo *)classInfo{
+    [_classImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,classInfo.promotionalPicturePath]]];
+    _classTitle.text = classInfo.productName;
+    _classDate.text = classInfo.activityEndDate;
+    _classDate.text = [NSString stringWithFormat:@"截止日期:%@",classInfo.activityEndDate];
+    _classNewPrice.hidden = YES;
+    _oldPrice.hidden = YES;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

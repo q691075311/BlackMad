@@ -107,6 +107,11 @@
 		4BBB662B1E7FBDFE0076201D /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB66031E7FBDFD0076201D /* AFURLSessionManager.m */; };
 		4BBB668B1E7FD15F0076201D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BBB66881E7FD15F0076201D /* SVProgressHUD.bundle */; };
 		4BBB668C1E7FD15F0076201D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */; };
+		4BBB75B71EF0C50A00807B93 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4BBB75AF1EF0C50A00807B93 /* LICENSE */; };
+		4BBB75B81EF0C50A00807B93 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB75B01EF0C50A00807B93 /* README.md */; };
+		4BBB75B91EF0C50A00807B93 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB75B31EF0C50A00807B93 /* NSObject+YYModel.m */; };
+		4BBB75BA1EF0C50A00807B93 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB75B51EF0C50A00807B93 /* YYClassInfo.m */; };
+		4BBB75BE1EF10FB400807B93 /* ClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB75BD1EF10FB400807B93 /* ClassInfo.m */; };
 		4BBCB5AE1EE52B020015BE9C /* ClassHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCB5AD1EE52B020015BE9C /* ClassHeadView.m */; };
 		4BBCB5B01EE52BAB0015BE9C /* ClassHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BBCB5AF1EE52BAB0015BE9C /* ClassHeadView.xib */; };
 		4BBCB5B31EE52D0A0015BE9C /* ClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCB5B21EE52D0A0015BE9C /* ClassCell.m */; };
@@ -340,6 +345,15 @@
 		4BBB66881E7FD15F0076201D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		4BBB66891E7FD15F0076201D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		4BBB668A1E7FD15F0076201D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		4BBB75AF1EF0C50A00807B93 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		4BBB75B01EF0C50A00807B93 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4BBB75B21EF0C50A00807B93 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
+		4BBB75B31EF0C50A00807B93 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		4BBB75B41EF0C50A00807B93 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		4BBB75B51EF0C50A00807B93 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		4BBB75B61EF0C50A00807B93 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		4BBB75BC1EF10FB400807B93 /* ClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfo.h; sourceTree = "<group>"; };
+		4BBB75BD1EF10FB400807B93 /* ClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfo.m; sourceTree = "<group>"; };
 		4BBCB5AC1EE52B020015BE9C /* ClassHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassHeadView.h; sourceTree = "<group>"; };
 		4BBCB5AD1EE52B020015BE9C /* ClassHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassHeadView.m; sourceTree = "<group>"; };
 		4BBCB5AF1EE52BAB0015BE9C /* ClassHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassHeadView.xib; sourceTree = "<group>"; };
@@ -426,6 +440,7 @@
 		4B00A2DA1E702DFC0084ADF6 /* 第三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				4BBB75AE1EF0C50A00807B93 /* YYModel */,
 				4B9E44061E8643CD00B4FABD /* MJRefresh */,
 				4BE874391E80C415004F174E /* SDWebImage */,
 				4BBB66871E7FD15F0076201D /* SVProgressHUD */,
@@ -558,6 +573,7 @@
 		4B7F8C631E6FE08B00686040 /* Modle */ = {
 			isa = PBXGroup;
 			children = (
+				4BBB75BB1EF0C52700807B93 /* 分类-活动 */,
 				4B407C0D1E828F12004B94A6 /* 用户信息 */,
 				4B009CE51E80FC5300BB5B80 /* MainBtnListModle.h */,
 				4B009CE61E80FC5300BB5B80 /* MainBtnListModle.m */,
@@ -569,15 +585,8 @@
 				4B91F7581E88A0B00047F5E8 /* MainProductModle.m */,
 				4B94CD231E8A449E00CBAE36 /* MyTicketModle.h */,
 				4B94CD241E8A449E00CBAE36 /* MyTicketModle.m */,
-				4B46D3A01EEFCACD002A60E7 /* ActAttribute.h */,
-				4B46D3A11EEFCACD002A60E7 /* ActAttribute.m */,
-				4B46D3A21EEFCACD002A60E7 /* ActClassActModle.h */,
-				4B46D3A31EEFCACD002A60E7 /* ActClassActModle.m */,
-				4B46D3A41EEFCACD002A60E7 /* ActList.h */,
-				4B46D3A51EEFCACD002A60E7 /* ActList.m */,
-				4B46D3A61EEFCACD002A60E7 /* ActProductList.h */,
-				4B46D3A71EEFCACD002A60E7 /* ActProductList.m */,
-				4B46D3A81EEFCACD002A60E7 /* DataModels.h */,
+				4BBB75BC1EF10FB400807B93 /* ClassInfo.h */,
+				4BBB75BD1EF10FB400807B93 /* ClassInfo.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -944,6 +953,44 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		4BBB75AE1EF0C50A00807B93 /* YYModel */ = {
+			isa = PBXGroup;
+			children = (
+				4BBB75AF1EF0C50A00807B93 /* LICENSE */,
+				4BBB75B01EF0C50A00807B93 /* README.md */,
+				4BBB75B11EF0C50A00807B93 /* YYModel */,
+			);
+			path = YYModel;
+			sourceTree = "<group>";
+		};
+		4BBB75B11EF0C50A00807B93 /* YYModel */ = {
+			isa = PBXGroup;
+			children = (
+				4BBB75B21EF0C50A00807B93 /* NSObject+YYModel.h */,
+				4BBB75B31EF0C50A00807B93 /* NSObject+YYModel.m */,
+				4BBB75B41EF0C50A00807B93 /* YYClassInfo.h */,
+				4BBB75B51EF0C50A00807B93 /* YYClassInfo.m */,
+				4BBB75B61EF0C50A00807B93 /* YYModel.h */,
+			);
+			path = YYModel;
+			sourceTree = "<group>";
+		};
+		4BBB75BB1EF0C52700807B93 /* 分类-活动 */ = {
+			isa = PBXGroup;
+			children = (
+				4B46D3A01EEFCACD002A60E7 /* ActAttribute.h */,
+				4B46D3A11EEFCACD002A60E7 /* ActAttribute.m */,
+				4B46D3A21EEFCACD002A60E7 /* ActClassActModle.h */,
+				4B46D3A31EEFCACD002A60E7 /* ActClassActModle.m */,
+				4B46D3A41EEFCACD002A60E7 /* ActList.h */,
+				4B46D3A51EEFCACD002A60E7 /* ActList.m */,
+				4B46D3A61EEFCACD002A60E7 /* ActProductList.h */,
+				4B46D3A71EEFCACD002A60E7 /* ActProductList.m */,
+				4B46D3A81EEFCACD002A60E7 /* DataModels.h */,
+			);
+			name = "分类-活动";
+			sourceTree = "<group>";
+		};
 		4BBCB5AB1EE52AC70015BE9C /* 分类头视图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1131,6 +1178,7 @@
 				4B7F8C6F1E6FE2B400686040 /* NavBar.xib in Resources */,
 				4B7B2B661EE7E22A003C5DCB /* ClassDetailHeadView.xib in Resources */,
 				4B00A2E01E702E1E0084ADF6 /* XRPlaceholder.png in Resources */,
+				4BBB75B71EF0C50A00807B93 /* LICENSE in Resources */,
 				4BBCB5B01EE52BAB0015BE9C /* ClassHeadView.xib in Resources */,
 				4B12B0A71EDE515B0041196C /* class.storyboard in Resources */,
 				4B8EA2061E7240290051EC5A /* UserInfoView.xib in Resources */,
@@ -1152,8 +1200,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BBB75BE1EF10FB400807B93 /* ClassInfo.m in Sources */,
 				4B8EA2091E72440C0051EC5A /* UserInfoCell.m in Sources */,
 				4BE874621E80C415004F174E /* SDWebImageManager.m in Sources */,
+				4BBB75B91EF0C50A00807B93 /* NSObject+YYModel.m in Sources */,
 				4BA1F0301E731BA500B4EED4 /* IQUIScrollView+Additions.m in Sources */,
 				4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */,
 				4BCC61AB1E77934C002C7FF9 /* AddressTableViewCell.m in Sources */,
@@ -1176,8 +1226,10 @@
 				4B8906A61E81676D006D9A4A /* AFNRequest.m in Sources */,
 				4BE874651E80C415004F174E /* UIImage+GIF.m in Sources */,
 				4B9E443E1E8643CD00B4FABD /* MJRefreshBackNormalFooter.m in Sources */,
+				4BBB75B81EF0C50A00807B93 /* README.md in Sources */,
 				4B8EA20D1E7278200051EC5A /* LaunchController.m in Sources */,
 				4BA1572F1E769BEA0087D279 /* ChooseAdressView.m in Sources */,
+				4BBB75BA1EF0C50A00807B93 /* YYClassInfo.m in Sources */,
 				4BE874631E80C415004F174E /* SDWebImagePrefetcher.m in Sources */,
 				4BA1F03B1E731BA500B4EED4 /* IQToolbar.m in Sources */,
 				4BBB662B1E7FBDFE0076201D /* AFURLSessionManager.m in Sources */,

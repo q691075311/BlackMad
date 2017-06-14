@@ -27,7 +27,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         ClassHeadView * view = [[[NSBundle mainBundle] loadNibNamed:@"ClassHeadView" owner:self options:nil] lastObject];
-        self.frame = view.frame;
+        view.frame = self.frame ;
         view.autoresizingMask = self.autoresizingMask;
         return view;
     }

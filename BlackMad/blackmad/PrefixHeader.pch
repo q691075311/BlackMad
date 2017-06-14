@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 #import "AFNRequest.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "SDWebImage/UIButton+WebCache.h"
 #import "LoginUser.h"
 #import "Tool.h"
 #define DWIDTH [UIScreen mainScreen].bounds.size.width
@@ -33,7 +34,7 @@
 #define BASEURL @"http://m.funqu.cn/d"
 
 //图片的URL
-#define IMAGEURL @"http://116.62.7.43"
+#define IMAGEURL @"http://m.funqu.cn"
 //注册
 #define registered @"/phone/register"
 //登录
@@ -48,14 +49,14 @@
 #define interest @"/phone/interestInquirer/list"
 //保存兴趣
 #define saveinterestURL @"/phone/interestInquirer/saveUserInterest"
-//产品列表
-#define ProductList @"/phone/product/list"
 //上传图片
 #define upImageURL @"/phone/fileUpload"
 //我的券列表
 #define MyTicketURL @"/phone/user/cardVolume"
 //保存用户信息
 #define SaveInfoURL @"/phone/user/saveorupdate"
+
+
 //获取图形验证码
 #define getVerifyCode @"/phone/commons/verifyCode"
 //获取短信验证码
@@ -64,6 +65,17 @@
 #define COMPLAINTS @"/phone/complaint/add"
 //分类-活动
 #define CLASSACT @"/phone/type/productList"
+//推荐3个Item
+#define RECOMMEND @"/phone/product/list"
+
+
+
+
+
+
+
+
+
 
 /**
  *  生产接口

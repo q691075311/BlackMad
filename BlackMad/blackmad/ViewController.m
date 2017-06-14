@@ -314,7 +314,7 @@ typedef enum:NSUInteger{
 }
 //请求产品的列表内容
 - (void)requestProductListWithCurrentPage:(NSString *)currentPage WithProductTypeId:(NSString *)productTypeId{
-    [AFNRequest requestProductListWithURL:ProductList
+    [AFNRequest requestProductListWithURL:RECOMMEND
                           WithCurrentPage:currentPage
                         WithProductTypeId:productTypeId
                              WithComplete:^(NSDictionary *dic) {
