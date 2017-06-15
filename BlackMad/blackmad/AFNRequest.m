@@ -410,9 +410,59 @@
     }];
     
 }
-//+ (void)recommendProductItemWithCurrentPage:(NSString *)currentPage withOrderGuize:(NSString *)orderGuize withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withComplete:(void (^)(NSDictionary *))block{
-//    
-//}
+//精选-热门推荐
++ (void)hotRecommendWithCurrentPage:(NSString *)currentPage withItemsperpage:(NSString *)itemsperpage withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withSearchName:(NSString *)searchName withComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,HOTRECOMMEND] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //参数
+//    {"page":{"currentPage":1,"itemsperpage":3},"orderGuize":" recommended_level desc"
+//    ,"productTypeId":"","searchName":""}
+
+    NSDictionary * page = @{@"currentPage":currentPage,@"itemsperpage":itemsperpage};
+    NSDictionary * dic = @{@"page":page,
+                           @"orderGuize":orderGuize,
+                           @"productTypeId":productTypeId,
+                           @"searchName":searchName};
+    NSString * parameter = [self dictionaryToJson:dic];
+    [manager POST:url parameters:parameter progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+//卡券详情
++ (void)ticketInfoWithCardVolumeId:(NSString *)cardVolumeId withComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,TICKETINFO] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //head
+    [manager.requestSerializer setValue:[LoginUser shareUser].token forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[LoginUser shareUser].uid forHTTPHeaderField:@"uid"];
+    //参数
+//    {"cardVolumeId":"7"}
+    NSDictionary * dic = @{@"cardVolumeId":cardVolumeId};
+    NSString * par = [self dictionaryToJson:dic];
+    [manager POST:url parameters:par progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
 
 
 //字典转为Json字符串

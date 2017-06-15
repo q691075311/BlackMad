@@ -10,9 +10,9 @@
 
 @interface MyTicketModle : NSObject
 /**
- *  券code
+ *  券内容
  */
-@property (nonatomic,copy) NSString *cardCode;
+@property (nonatomic,copy) NSString *cardContent;
 /**
  *  券名字
  */
@@ -26,21 +26,25 @@
  */
 @property (nonatomic,copy) NSString *cardRemark;
 /**
- *  券的数量
+ *  券的类型
  */
-@property (nonatomic,strong) NSNumber *cardVolumeAmount;
+@property (nonatomic,strong) NSString *cardType;
 /**
- *  券的过期状态    0是未过期  1是未开始  2是已过期
+ *  券的原始价格
  */
-@property (nonatomic,copy) NSString *cardVolumeStatus;
+@property (nonatomic,assign) NSNumber * cardVolumeOriginalPrice;
 /**
- *  券的结束时间
+ *  券的当前价格
  */
-@property (nonatomic,copy) NSString *effectiveEndDate;
+@property (nonatomic,assign) NSNumber * cardVolumePresentPrice;
 /**
- *  券的开始时间
+ *  券的ID
  */
-@property (nonatomic,copy) NSString *effectiveStartDate;
+@property (nonatomic,assign) NSNumber * ID;
+/**
+ *  券是否收藏
+ */
+@property (nonatomic,assign) BOOL collection;
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
 

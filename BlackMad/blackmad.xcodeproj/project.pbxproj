@@ -92,6 +92,7 @@
 		4BA1F03B1E731BA500B4EED4 /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1F02A1E731BA500B4EED4 /* IQToolbar.m */; };
 		4BA1F03C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA1F02C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m */; };
 		4BA1F03D1E731BA500B4EED4 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BA1F02E1E731BA500B4EED4 /* IQKeyboardManager.bundle */; };
+		4BA362961EF2660300C6FF80 /* TicketInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA362951EF2660300C6FF80 /* TicketInfoController.m */; };
 		4BAF8F2A1E821CDE009FE028 /* BlackWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF8F291E821CDE009FE028 /* BlackWebController.m */; };
 		4BAF8F2E1E825C9A009FE028 /* ChooseHeadTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF8F2D1E825C9A009FE028 /* ChooseHeadTypeView.m */; };
 		4BB0761D1E70EA8E00D8DF4B /* MainBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0761C1E70EA8E00D8DF4B /* MainBtnView.m */; };
@@ -314,6 +315,8 @@
 		4BA1F02B1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
 		4BA1F02C1E731BA500B4EED4 /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		4BA1F02E1E731BA500B4EED4 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		4BA362941EF2660300C6FF80 /* TicketInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketInfoController.h; sourceTree = "<group>"; };
+		4BA362951EF2660300C6FF80 /* TicketInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketInfoController.m; sourceTree = "<group>"; };
 		4BAF8F281E821CDE009FE028 /* BlackWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackWebController.h; sourceTree = "<group>"; };
 		4BAF8F291E821CDE009FE028 /* BlackWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackWebController.m; sourceTree = "<group>"; };
 		4BAF8F2C1E825C9A009FE028 /* ChooseHeadTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseHeadTypeView.h; sourceTree = "<group>"; };
@@ -909,6 +912,8 @@
 			children = (
 				4B7F8C501E6FBF6100686040 /* ViewController.h */,
 				4B7F8C511E6FBF6100686040 /* ViewController.m */,
+				4BA362941EF2660300C6FF80 /* TicketInfoController.h */,
+				4BA362951EF2660300C6FF80 /* TicketInfoController.m */,
 			);
 			name = "推荐";
 			sourceTree = "<group>";
@@ -1204,6 +1209,7 @@
 				4B8EA2091E72440C0051EC5A /* UserInfoCell.m in Sources */,
 				4BE874621E80C415004F174E /* SDWebImageManager.m in Sources */,
 				4BBB75B91EF0C50A00807B93 /* NSObject+YYModel.m in Sources */,
+				4BA362961EF2660300C6FF80 /* TicketInfoController.m in Sources */,
 				4BA1F0301E731BA500B4EED4 /* IQUIScrollView+Additions.m in Sources */,
 				4B00A2E31E702F4A0084ADF6 /* MainheadView.m in Sources */,
 				4BCC61AB1E77934C002C7FF9 /* AddressTableViewCell.m in Sources */,

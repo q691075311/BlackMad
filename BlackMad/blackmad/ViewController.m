@@ -19,28 +19,35 @@
 #import "MainProductModle.h"
 #import "LoginController.h"
 #import "MainItemView.h"
+#import "ActProductList.h"
+#import "MyTicketModle.h"
+#import "TicketInfoController.h"
+
+
 
 typedef enum:NSUInteger{
     refreshing,
     notRefresh
 }RefreshType;
 
-@interface ViewController ()<MainBtnViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface ViewController ()<MainBtnViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,MainItemDelegate>
 @property (weak, nonatomic) IBOutlet XRCarouselView *XRCarouselView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet MainheadView *headView;
 @property (nonatomic,strong) MainBtnView * btnView;
 @property (nonatomic,strong) UIView * lineView;
 @property (nonatomic,strong) NSMutableArray * mainBtnListArr;
-@property (nonatomic,strong) NSMutableArray * productIDArr;
-@property (nonatomic,strong) NSMutableArray * productImageArr;
-@property (nonatomic,strong) NSMutableArray * productTitleArr;
+//@property (nonatomic,strong) NSMutableArray * productIDArr;
+//@property (nonatomic,strong) NSMutableArray * productImageArr;
+//@property (nonatomic,strong) NSMutableArray * productTitleArr;
 @property (nonatomic,strong) NSMutableArray * bannerListArr;
 @property (nonatomic,strong) NSMutableArray * mainProductArr;
 @property (nonatomic,assign) RefreshType refreshType;
 @property (nonatomic,copy) NSString * lastID;//记录上个产品ID
 @property (nonatomic,copy) NSString * currentId;
 @property (nonatomic,assign) int pageNum;
+@property (nonatomic,strong) NSMutableArray * mainBtnArr;
+@property (nonatomic,strong) NSMutableArray * ticketArr;
 @end
 
 @implementation ViewController
@@ -51,25 +58,23 @@ typedef enum:NSUInteger{
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.hidden = YES;
     [self.navBar configNavBarTitle:@"疯趣" WithLeftView:nil WithRigthView:nil];
-    [self setFristLineView];
     self.view.backgroundColor = COLORWITHRGB(238, 238, 238);
-    [self setMJRefreshFooter];
+//    [self setMJRefreshFooter];
     _refreshType = notRefresh;
     [self initDateAndTableView];
     [self netWorkRequest];
     [self requestBannerProductType];
     [self loadTableViewHeadTitle];
     [self loadSearchBar];
-//    [self isShowLogin];
+    [self requestProductListWithCurrentPage:@"" WithProductTypeId:@""];
     
 }
 - (void)initDateAndTableView{
     _mainBtnListArr = [[NSMutableArray alloc] init];
-    _productImageArr = [[NSMutableArray alloc] init];
-    _productTitleArr = [[NSMutableArray alloc] init];
-    _productIDArr = [[NSMutableArray alloc] init];
     _bannerListArr = [[NSMutableArray alloc] init];
     _mainProductArr = [[NSMutableArray alloc] init];
+    _mainBtnArr = [NSMutableArray array];
+    _ticketArr = [NSMutableArray array];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -77,19 +82,8 @@ typedef enum:NSUInteger{
     self.tableView.backgroundColor = COLORWITHRGB(255, 255, 255);
     self.tableView.sectionHeaderHeight = 32;
     
-    //创建3个Btn
-    MainItemView * view = [[MainItemView alloc] initWithFrame:CGRectMake(0, 240, DWIDTH, 145)];
-    [_headView addSubview:view];
 }
-- (void)isShowLogin{
-//    NSString * loginName = [USERDEF objectForKey:@"username"];
-//    NSString * pwd = [USERDEF objectForKey:@"pwd"];
-//    if ([self.isAD isEqualToString:@"FormAD"]) {
-//        [self presentLoginViewWithStr:@"isReg"];
-//    }else if(!loginName && !pwd){
-//        [self presentLoginViewWithStr:nil];
-//    }
-}
+
 - (void)setMJRefreshFooter{
     if ([self.tableView.mj_footer isRefreshing]) {
         return;
@@ -99,27 +93,15 @@ typedef enum:NSUInteger{
         NSLog(@"上拉获取新数据");
         _pageNum++;
         NSLog(@"%d",_pageNum);
-        [self requestProductListWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum] WithProductTypeId:_currentId];
+//        [self requestProductListWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum] WithProductTypeId:_currentId];
     }];
     
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self starAnimateWithBtnTag:0];
     
 }
 
-//加载首页btn的view
-- (void)loadMainBtnView{
-    [_productImageArr removeAllObjects];
-    [_productTitleArr removeAllObjects];
-    [_productIDArr removeAllObjects];
-    for (MainBtnListModle * modle in _mainBtnListArr) {
-        [_productIDArr addObject:modle.productListID];
-        [_productTitleArr addObject:modle.productListTitle];
-        [_productImageArr addObject:modle.productListImage];
-    }
-}
 //加载搜索框
 - (void)loadSearchBar{
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 180, DWIDTH, 60)];
@@ -177,12 +159,17 @@ typedef enum:NSUInteger{
                   WithInfo:@{@"form":@"Main"}];
     return YES;
 }
-
-- (void)setFristLineView{
-    _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 278, VIEWWIDTH, 1)];
-    _lineView.backgroundColor = [UIColor whiteColor];
-//    [_headView addSubview:_lineView];
+#pragma mark -- MainItemDelegate
+- (void)chooseBtnTag:(NSInteger)tag{
+    ActProductList * actPro = [[ActProductList alloc] initWithDictionary:_mainBtnArr[tag]];
+    [self pushToController:@"BlackWebController"
+            WithStoyBordID:@"Main"
+                  WithForm:self
+                  WithInfo:@{@"webviewURL":actPro.promotionalWapLink}];
+    
+    NSLog(@"%ld",(long)tag);
 }
+
 #pragma mark--MainBtnViewDelegate
 - (void)touchBtnWithBtn:(UIButton *)btn WithProductID:(NSNumber *)productID{
     [self setMJRefreshFooter];
@@ -200,14 +187,8 @@ typedef enum:NSUInteger{
     [self requestProductListWithCurrentPage:@"1"
                           WithProductTypeId:[NSString stringWithFormat:@"%@",productID]];
     _pageNum = 1;
-    [self starAnimateWithBtnTag:btn.tag-100];
 }
-- (void)starAnimateWithBtnTag:(long)i{
-    [UIView animateWithDuration:0.3 animations:^{
-        _lineView.backgroundColor = [UIColor whiteColor];
-        _lineView.frame = CGRectMake(i*(VIEWWIDTH+1), 278, VIEWWIDTH, 1);
-    }];
-}
+
 //加载广告页
 - (void)loadXRCarouselView{
     NSMutableArray * arr = [[NSMutableArray alloc] init];
@@ -237,22 +218,21 @@ typedef enum:NSUInteger{
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _mainProductArr.count;
+    return _ticketArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MainCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MainCell" forIndexPath:indexPath];
-    cell.productModle = _mainProductArr[indexPath.row];
+    cell.ticketModle = _ticketArr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([LoginUser shareUser].isLogin) {
-        MainProductModle * modle = _mainProductArr[indexPath.row];
-        [self pushToController:@"BlackWebController"
-                WithStoyBordID:@"Main"
-                      WithForm:self
-                      WithInfo:@{@"webviewURL":modle.promotionalWapLink}];
+        MyTicketModle * ticketModle = _ticketArr[indexPath.row];
+        TicketInfoController * ticketInfo = [[TicketInfoController alloc] init];
+        ticketInfo.ticketModle = ticketModle;
+        [self.navigationController pushViewController:ticketInfo animated:YES];
     }else{
         [self toLogin];
     }
@@ -272,43 +252,49 @@ typedef enum:NSUInteger{
 #pragma mark--网络请求
 
 - (void)netWorkRequest{
-    [AFNRequest recommendProductItemWithCurrentPage:@"1"
+    [AFNRequest recommendProductItemWithCurrentPage:@""
                                      withOrderGuize:@"create_date desc"
                                   withProductTypeId:@""
                                        withComplete:^(NSDictionary *dic) {
-                                           NSLog(@"%@",dic);
+                                           
                                            NSDictionary * diction = dic[@"attribute"];
                                            NSArray * arr = diction[@"list"];
-                                           NSLog(@"%@",arr);
-                                           
+                                           for (NSDictionary * dictionary in arr) {
+                                               ActProductList * actPro = (ActProductList *)dictionary;
+                                               [_mainBtnArr addObject:actPro];
+                                           }
+                                           //加载首页Btn
+                                           MainItemView * view = [[MainItemView alloc] initWithData:_mainBtnArr];
+                                           view.delegate = self;
+                                           [_headView addSubview:view];
                                        }];
 
     
     //请求产品类型列表
-    [AFNRequest requestWithDataURL:productTypeList
-                      WithComplete:^(NSDictionary *dic) {
-                          [_mainBtnListArr removeAllObjects];
-                          NSDictionary * mainDic = dic[@"attribute"];
-                          NSArray * arr = mainDic[@"list"];
-                          for (NSDictionary * dic1 in arr) {
-                              MainBtnListModle * modle = [[MainBtnListModle alloc] initWithDic:dic1];
-                              [_mainBtnListArr addObject:modle];
-                          }
-                          //添加全部的分类
-                          MainBtnListModle * allModle = [[MainBtnListModle alloc] init];
-                          allModle.productListID = @(-1);
-                          allModle.productListImage = @"";
-                          allModle.productListTitle = @"全部";
-                          [_mainBtnListArr insertObject:allModle atIndex:0];
-                          
-                          MainBtnListModle * modle = _mainBtnListArr[0];
-                          [self loadMainBtnView];
-                          [self requestProductListWithCurrentPage:@"1"
-                                                WithProductTypeId:@""];
-                          self.lastID = [NSString stringWithFormat:@"%@",modle.productListID];
-                          self.currentId = [NSString stringWithFormat:@"%@",modle.productListID];
-                          self.pageNum = 1;
-                      }];
+//    [AFNRequest requestWithDataURL:productTypeList
+//                      WithComplete:^(NSDictionary *dic) {
+//                          [_mainBtnListArr removeAllObjects];
+//                          NSDictionary * mainDic = dic[@"attribute"];
+//                          NSArray * arr = mainDic[@"list"];
+//                          for (NSDictionary * dic1 in arr) {
+//                              MainBtnListModle * modle = [[MainBtnListModle alloc] initWithDic:dic1];
+//                              [_mainBtnListArr addObject:modle];
+//                          }
+//                          //添加全部的分类
+//                          MainBtnListModle * allModle = [[MainBtnListModle alloc] init];
+//                          allModle.productListID = @(-1);
+//                          allModle.productListImage = @"";
+//                          allModle.productListTitle = @"全部";
+//                          [_mainBtnListArr insertObject:allModle atIndex:0];
+//                          
+//                          MainBtnListModle * modle = _mainBtnListArr[0];
+//                          [self loadMainBtnView];
+//                          [self requestProductListWithCurrentPage:@"1"
+//                                                WithProductTypeId:@""];
+//                          self.lastID = [NSString stringWithFormat:@"%@",modle.productListID];
+//                          self.currentId = [NSString stringWithFormat:@"%@",modle.productListID];
+//                          self.pageNum = 1;
+//                      }];
 }
 //请求banner产品的列表
 - (void)requestBannerProductType{
@@ -326,38 +312,49 @@ typedef enum:NSUInteger{
 }
 //请求产品的列表内容
 - (void)requestProductListWithCurrentPage:(NSString *)currentPage WithProductTypeId:(NSString *)productTypeId{
-    [AFNRequest requestProductListWithURL:RECOMMEND
-                          WithCurrentPage:currentPage
-                        WithProductTypeId:productTypeId
-                             WithComplete:^(NSDictionary *dic) {
-                                 NSLog(@"%@",dic);
-                                 [self.tableView.mj_footer endRefreshing];
-                                 NSDictionary * dic1 = dic[@"attribute"];
-                                 NSArray * arr = dic1[@"list"];
-                                 if (arr.count > 0) {
-                                     for (NSDictionary * dic2 in arr) {
-                                         MainProductModle * proModle = [[MainProductModle alloc] initWithDic:dic2];
-                                         [_mainProductArr addObject:proModle];
-                                     }
-                                 }else{
-                                     NSLog(@"没有更多数据了");
-                                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                                 }
-                                 
-                                 [self.tableView reloadData];
-                             }];
-}
-//模态弹出登录界面
-- (void)presentLoginViewWithStr:(NSString *)str{
-//    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//    LoginController * vc = [sb instantiateViewControllerWithIdentifier:@"LoginController"];
-//    if ([str isEqualToString:@"isReg"]) {
-//        vc.fromFlag = @"ad";
-//    }else{
-//        
-//    }
-//    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:vc];
-//    [self.navigationController presentViewController:nav animated:YES completion:nil];
+    [AFNRequest hotRecommendWithCurrentPage:@"1"
+                           withItemsperpage:@"100"
+                             withOrderGuize:@"recommended_level desc"
+                          withProductTypeId:@""
+                             withSearchName:@""
+                               withComplete:^(NSDictionary *dic) {
+                                   NSDictionary * diction = dic[@"attribute"];
+                                   NSArray * arr = diction[@"list"];
+                                   for (NSDictionary * dictionary in arr) {
+                                       MyTicketModle * ticket = [[MyTicketModle alloc] initWithDic:dictionary];
+                                       [_ticketArr addObject:ticket];
+                                   }
+                                   NSLog(@"%@",_ticketArr);
+                                   [self.tableView reloadData];
+                               }];
+    
+    
+    
+    
+//    [AFNRequest requestProductListWithURL:RECOMMEND
+//                          WithCurrentPage:currentPage
+//                        WithProductTypeId:productTypeId
+//                             WithComplete:^(NSDictionary *dic) {
+//                                 NSLog(@"%@",dic);
+//                                 [self.tableView.mj_footer endRefreshing];
+//                                 NSDictionary * dic1 = dic[@"attribute"];
+//                                 NSArray * arr = dic1[@"list"];
+//                                 if (arr.count > 0) {
+//                                     for (NSDictionary * dic2 in arr) {
+//                                         MainProductModle * proModle = [[MainProductModle alloc] initWithDic:dic2];
+//                                         [_mainProductArr addObject:proModle];
+//                                     }
+//                                 }else{
+//                                     NSLog(@"没有更多数据了");
+//                                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//                                 }
+//                                 
+//                                 [self.tableView reloadData];
+//                             }];
+    
+    
+    
+    
     
 }
 

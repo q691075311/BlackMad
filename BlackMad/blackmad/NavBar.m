@@ -51,7 +51,7 @@
     }else{
         view.hidden = NO;
     }
-    _searchBar.hidden = _isAppearSearchView == NO ? YES : NO;
+    _searchBar.hidden = _isAppearSearchView == YES ? NO : YES;
     //配置导航栏数据
     _title.text = title;
     _rigthBtn.hidden = NO;

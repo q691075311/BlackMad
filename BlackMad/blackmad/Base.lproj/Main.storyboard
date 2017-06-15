@@ -60,7 +60,7 @@
                                                                 <constraint firstAttribute="width" constant="28" id="n1V-DX-iu1"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首家网5元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZq-eR-uFN">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZq-eR-uFN">
                                                             <rect key="frame" x="69" y="51" width="109" height="23"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="109" id="Hhh-1h-JcC"/>
@@ -151,6 +151,14 @@
                                                 <constraint firstItem="bp2-m4-wa8" firstAttribute="leading" secondItem="T8O-Py-I5S" secondAttribute="leading" constant="10" id="znt-3a-rwn"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="currentPrice" destination="lQy-OU-Wid" id="vDa-9x-H3h"/>
+                                            <outlet property="oldPrice" destination="lBb-VT-wsA" id="aJb-th-dig"/>
+                                            <outlet property="ticketImage" destination="T1y-8p-L6L" id="V8N-Yd-pli"/>
+                                            <outlet property="ticketMark" destination="Ykw-hB-YdN" id="8bH-db-J3H"/>
+                                            <outlet property="ticketName" destination="CZC-YQ-B9B" id="3ia-UA-jjU"/>
+                                            <outlet property="ticketSub" destination="5TA-Tx-EAk" id="7Ob-WR-SOW"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

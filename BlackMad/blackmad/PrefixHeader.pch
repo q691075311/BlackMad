@@ -67,8 +67,10 @@
 #define CLASSACT @"/phone/type/productList"
 //推荐3个Item
 #define RECOMMEND @"/phone/product/list"
-
-
+//精选-热门推荐
+#define HOTRECOMMEND @"/phone/cardVolume/list"
+//卡券-详情
+#define TICKETINFO @"/phone/cardVolume/detail"
 
 
 

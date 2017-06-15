@@ -67,12 +67,19 @@
  *  推荐-产品Item
  */
 + (void)recommendProductItemWithCurrentPage:(NSString *)currentPage withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withComplete:(void (^)(NSDictionary *dic))block;
-
-
+/**
+ *  精选-热门推荐
+ */
++ (void)hotRecommendWithCurrentPage:(NSString *)currentPage withItemsperpage:(NSString *)itemsperpage withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withSearchName:(NSString *)searchName withComplete:(void (^)(NSDictionary *dic))block;
 /**
  *  投诉建议
  */
 + (void)complaintsWithContent:(NSString *)content withComplete:(void (^)(NSDictionary *dic))block;
+/**
+ *  卡券详情
+ */
++ (void)ticketInfoWithCardVolumeId:(NSString *)cardVolumeId withComplete:(void (^)(NSDictionary *dic))block;
+
 /**
  *  分类-活动
  */

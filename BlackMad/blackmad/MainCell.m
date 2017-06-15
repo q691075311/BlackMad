@@ -13,22 +13,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.backView.layer.masksToBounds = YES;
-    self.backView.layer.cornerRadius = 5;
-    self.backView.backgroundColor = [UIColor whiteColor];
-    self.contentView.backgroundColor = COLORWITHRGB(255, 255, 255);
-    self.title.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
-    self.title.textColor = COLORWITHRGB(74, 74, 74);
     
-    self.time.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
-    self.time.textColor = COLORWITHRGB(150, 150, 150);
-    [self.image sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png"] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
 }
-
-- (void)setProductModle:(MainProductModle *)productModle{
-    self.title.text = productModle.productName;
-    self.time.text = [NSString stringWithFormat:@"活动时间：%@ - %@",productModle.activityStartDate,productModle.activityEndDate];
-    [self.image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,productModle.promotionalPicturePath]] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+- (void)setTicketModle:(MyTicketModle *)ticketModle{
+    [self.ticketImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,ticketModle.cardPictureAddress]]];
+    self.ticketSub.text = ticketModle.cardName;
+    self.ticketMark.text = ticketModle.cardRemark;
+    self.ticketName.text = ticketModle.cardType;
+    self.oldPrice.text = [NSString stringWithFormat:@"￥%@.00",ticketModle.cardVolumeOriginalPrice];
+    self.currentPrice.text = [NSString stringWithFormat:@"￥%@.00",ticketModle.cardVolumePresentPrice];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
