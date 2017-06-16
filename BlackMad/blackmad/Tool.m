@@ -91,12 +91,30 @@
     window.rootViewController = tb;
 }
 + (CGFloat)getLableHeigthWithText:(NSString *)str withLableWidth:(float)width withTextFontOfSize:(float)size{
+    
+//    NSAttributedString *con = [[NSAttributedString alloc] initWithString:str attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:size]}];
+//    CGRect rect = [con boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+//    return rect.size.height;
+    
     CGRect rect = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:size]}
                                     context:nil];
     return rect.size.height;
 }
+
++ (CGRect)height:(UILabel *)label frame:(CGRect)frame{
+    label.lineBreakMode=NSLineBreakByWordWrapping;
+    label.numberOfLines=0;
+    CGRect txtFrame = label.frame;
+    label.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width,
+                             txtFrame.size.height =[label.text boundingRectWithSize:
+                                                    CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
+                                                                            options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                                         attributes:[NSDictionary dictionaryWithObjectsAndKeys:label.font,NSFontAttributeName, nil] context:nil].size.height);
+    return CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, txtFrame.size.height);
+}
+
 
 
 @end

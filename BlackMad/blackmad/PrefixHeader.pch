@@ -71,8 +71,8 @@
 #define HOTRECOMMEND @"/phone/cardVolume/list"
 //卡券-详情
 #define TICKETINFO @"/phone/cardVolume/detail"
-
-
+//卡券-收藏
+#define KACOLLECTION @"/phone/cardVolume/collection"
 
 
 

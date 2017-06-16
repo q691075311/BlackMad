@@ -464,6 +464,31 @@
     }];
 }
 
+//收藏请求
++ (void)ticketCollectionWithCardID:(NSString *)cardID withComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,KACOLLECTION] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //head
+    [manager.requestSerializer setValue:[LoginUser shareUser].token forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[LoginUser shareUser].uid forHTTPHeaderField:@"uid"];
+    //参数
+    NSDictionary * dic = @{@"cardVolumeId":cardID};
+    NSString * par = [self dictionaryToJson:dic];
+    [manager POST:url parameters:par progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+
 
 //字典转为Json字符串
 + (NSString *)dictionaryToJson:(NSDictionary *)dic

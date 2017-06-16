@@ -79,6 +79,10 @@
  *  卡券详情
  */
 + (void)ticketInfoWithCardVolumeId:(NSString *)cardVolumeId withComplete:(void (^)(NSDictionary *dic))block;
+/**
+ *  收藏请求
+ */
++ (void)ticketCollectionWithCardID:(NSString *)cardID withComplete:(void (^)(NSDictionary *dic))block;
 
 /**
  *  分类-活动

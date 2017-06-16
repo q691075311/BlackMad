@@ -41,6 +41,7 @@
  *  动态计算lable的高度
  */
 + (CGFloat)getLableHeigthWithText:(NSString *)str withLableWidth:(float)width withTextFontOfSize:(float)size;
++ (CGRect)height:(UILabel *)label frame:(CGRect)frame;
 /**
  *  配置TabBarItem
  */
