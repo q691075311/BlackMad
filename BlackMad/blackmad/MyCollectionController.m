@@ -26,6 +26,12 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self collectionListRequest];
+}
+
 #pragma mark--UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 5;
@@ -41,6 +47,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+#pragma mark -- network
+- (void)collectionListRequest{
+    [AFNRequest getCollectionListDataWithComplete:^(NSDictionary *dic) {
+        
+    }];
+}
+
 #pragma mark--取消收藏Btn
 - (IBAction)cancleCollection:(UIButton *)sender {
     NSLog(@"%ld",(long)sender.tag);

@@ -83,14 +83,18 @@
  *  收藏请求
  */
 + (void)ticketCollectionWithCardID:(NSString *)cardID withComplete:(void (^)(NSDictionary *dic))block;
+/**
+ *  收藏列表
+ */
++ (void)getCollectionListDataWithComplete:(void (^)(NSDictionary *dic))block;
+
+
+
 
 /**
  *  分类-活动
  */
 + (void)classActWithComplete:(void (^)(id))block;
-
-
-
 /**
  *  字典转为Json字符串
  */

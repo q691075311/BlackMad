@@ -73,8 +73,10 @@
 #define TICKETINFO @"/phone/cardVolume/detail"
 //卡券-收藏
 #define KACOLLECTION @"/phone/cardVolume/collection"
-
-
+//卡券收藏列表
+#define COLLECTIONLISTDATA @"/phone/cardVolume/collectionList"
+//分类-卡卷
+#define TYPECARD @"/phone/type/cardVolumeList"
 
 
 

@@ -143,13 +143,18 @@
 }
 
 - (void)clickOtherBtn:(UIButton *)btn{
-    if (btn.tag == 1) {
+    if (btn.tag == 0) {
+        //回到首页
+        [Tool configTabBarItem];
+    }else if (btn.tag == 1) {
         if (_isCollect) {
             [SVProgressHUD showErrorWithStatus:@"已经收藏过了"];
             return;
         }
         //收藏请求
         [self cardCollectionRequest];
+    }else if (btn.tag == 2){
+        self.tabBarController.selectedIndex = 2;
     }
 }
 

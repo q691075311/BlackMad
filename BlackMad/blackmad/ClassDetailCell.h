@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ClassInfo.h"
+#import "MyTicketModle.h"
 
 @interface ClassDetailCell : UITableViewCell
 /**
@@ -30,7 +31,13 @@
  *  cell老价格
  */
 @property (weak, nonatomic) IBOutlet UILabel *oldPrice;
-
+/**
+ *  活动的cell
+ */
 @property (nonatomic,strong) ClassInfo * classInfo;
+/**
+ *  卡券cell
+ */
+@property (nonatomic,strong) MyTicketModle * ticketModle;
 
 @end

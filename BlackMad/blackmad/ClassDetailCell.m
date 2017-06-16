@@ -23,7 +23,7 @@
     self.classImage.layer.cornerRadius = 5;
     
 }
-
+//配置活动cell
 - (void)setClassInfo:(ClassInfo *)classInfo{
     [_classImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,classInfo.promotionalPicturePath]]];
     _classTitle.text = classInfo.productName;
@@ -32,6 +32,17 @@
     _classNewPrice.hidden = YES;
     _oldPrice.hidden = YES;
 }
+//配置卡券的cell
+- (void)setTicketModle:(MyTicketModle *)ticketModle{
+    _classNewPrice.hidden = NO;
+    _oldPrice.hidden = NO;
+    [_classImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,ticketModle.cardPictureAddress]]];
+    _classTitle.text = ticketModle.cardName;
+    _classNewPrice.text = [NSString stringWithFormat:@"¥%@.00",ticketModle.cardVolumePresentPrice];
+    _oldPrice.text = [NSString stringWithFormat:@"¥%@.00",ticketModle.cardVolumeOriginalPrice];
+    
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

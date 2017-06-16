@@ -91,11 +91,6 @@
     window.rootViewController = tb;
 }
 + (CGFloat)getLableHeigthWithText:(NSString *)str withLableWidth:(float)width withTextFontOfSize:(float)size{
-    
-//    NSAttributedString *con = [[NSAttributedString alloc] initWithString:str attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:size]}];
-//    CGRect rect = [con boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-//    return rect.size.height;
-    
     CGRect rect = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:size]}
