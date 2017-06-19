@@ -44,7 +44,7 @@
 /**
  *  券是否收藏
  */
-@property (nonatomic,assign) BOOL collection;
+@property (nonatomic,assign) NSNumber * collection;
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
 

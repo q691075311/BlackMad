@@ -156,7 +156,9 @@ typedef enum:NSUInteger{
     [self pushToController:@"ClassDetailController"
             WithStoyBordID:@"class"
                   WithForm:self
-                  WithInfo:@{@"form":@"Main"}];
+                  WithInfo:@{@"form":@"Main",
+                             @"parameter":textField.text}];
+    [self.view endEditing:YES];
     return YES;
 }
 #pragma mark -- MainItemDelegate
@@ -167,7 +169,6 @@ typedef enum:NSUInteger{
                   WithForm:self
                   WithInfo:@{@"webviewURL":actPro.promotionalWapLink}];
     
-    NSLog(@"%ld",(long)tag);
 }
 
 #pragma mark--MainBtnViewDelegate
@@ -250,7 +251,7 @@ typedef enum:NSUInteger{
     
 }
 #pragma mark--网络请求
-
+//首页Btn的请求
 - (void)netWorkRequest{
     [AFNRequest recommendProductItemWithCurrentPage:@""
                                      withOrderGuize:@"create_date desc"
@@ -268,33 +269,6 @@ typedef enum:NSUInteger{
                                            view.delegate = self;
                                            [_headView addSubview:view];
                                        }];
-
-    
-    //请求产品类型列表
-//    [AFNRequest requestWithDataURL:productTypeList
-//                      WithComplete:^(NSDictionary *dic) {
-//                          [_mainBtnListArr removeAllObjects];
-//                          NSDictionary * mainDic = dic[@"attribute"];
-//                          NSArray * arr = mainDic[@"list"];
-//                          for (NSDictionary * dic1 in arr) {
-//                              MainBtnListModle * modle = [[MainBtnListModle alloc] initWithDic:dic1];
-//                              [_mainBtnListArr addObject:modle];
-//                          }
-//                          //添加全部的分类
-//                          MainBtnListModle * allModle = [[MainBtnListModle alloc] init];
-//                          allModle.productListID = @(-1);
-//                          allModle.productListImage = @"";
-//                          allModle.productListTitle = @"全部";
-//                          [_mainBtnListArr insertObject:allModle atIndex:0];
-//                          
-//                          MainBtnListModle * modle = _mainBtnListArr[0];
-//                          [self loadMainBtnView];
-//                          [self requestProductListWithCurrentPage:@"1"
-//                                                WithProductTypeId:@""];
-//                          self.lastID = [NSString stringWithFormat:@"%@",modle.productListID];
-//                          self.currentId = [NSString stringWithFormat:@"%@",modle.productListID];
-//                          self.pageNum = 1;
-//                      }];
 }
 //请求banner产品的列表
 - (void)requestBannerProductType{
@@ -327,35 +301,6 @@ typedef enum:NSUInteger{
                                    NSLog(@"%@",_ticketArr);
                                    [self.tableView reloadData];
                                }];
-    
-    
-    
-    
-//    [AFNRequest requestProductListWithURL:RECOMMEND
-//                          WithCurrentPage:currentPage
-//                        WithProductTypeId:productTypeId
-//                             WithComplete:^(NSDictionary *dic) {
-//                                 NSLog(@"%@",dic);
-//                                 [self.tableView.mj_footer endRefreshing];
-//                                 NSDictionary * dic1 = dic[@"attribute"];
-//                                 NSArray * arr = dic1[@"list"];
-//                                 if (arr.count > 0) {
-//                                     for (NSDictionary * dic2 in arr) {
-//                                         MainProductModle * proModle = [[MainProductModle alloc] initWithDic:dic2];
-//                                         [_mainProductArr addObject:proModle];
-//                                     }
-//                                 }else{
-//                                     NSLog(@"没有更多数据了");
-//                                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//                                 }
-//                                 
-//                                 [self.tableView reloadData];
-//                             }];
-    
-    
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -11,10 +11,20 @@
 #import "ClassDetailHeadView.h"
 #import "ClassInfo.h"
 #import "MJRefresh.h"
+#import "MyTicketModle.h"
+#import "TicketInfoController.h"
+
+
+typedef enum :NSUInteger{
+    Type_Act,
+    Type_Ticket
+}contentType;
 
 @interface ClassDetailController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,assign) contentType type;
 @property (nonatomic,strong) NSMutableArray * actArr;
+@property (nonatomic,strong) NSMutableArray * ticketArr;
 @property (nonatomic,assign) int pageNum;
 @end
 
@@ -24,20 +34,37 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navBar.isAppearLineView = YES;
-    if ([self.userInfo[@"form"] isEqualToString:@"Main"]) {
-        self.navBar.isAppearSearchView = YES;
-        [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:@"搜索"];
-    }else{
-        [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:nil];
-    }
     self.actArr = [NSMutableArray array];
+    self.ticketArr = [NSMutableArray array];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _pageNum = 1;
+    [self setNavBarData];
     [self loadTopBarView];
     [self setMJRefreshFooter];
     
+}
+
+- (void)setNavBarData{
+    if ([self.userInfo[@"form"] isEqualToString:@"Main"]) {
+        self.type = Type_Ticket;
+        self.navBar.isAppearSearchView = YES;
+        [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:@"搜索"];
+        [self hotRecommendSearchWithCurrentPage:@"1"
+                               withItemsperpage:@"100"
+                                 withOrderGuize:@""
+                              withProductTypeId:@""
+                                 withSearchName:self.userInfo[@"parameter"]];
+    }else{
+        self.type = Type_Act;
+        [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:nil];
+        [_actArr removeAllObjects];
+        NSString * productID = self.userInfo[@"productID"];
+        [self getActOrQuanInfoRequestWithPage:@"1"
+                                withProductID:productID
+                               withOrderGuize:@"create_date desc"];
+    }
 }
 
 - (void)setMJRefreshFooter{
@@ -48,20 +75,23 @@
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         NSLog(@"上拉获取新数据");
         _pageNum++;
-        [self getActOrQuanInfoRequestWithPage:[NSString stringWithFormat:@"%d",_pageNum]
-                                withProductID:productID
-                               withOrderGuize:@"create_date desc"];
-        
+        if (_type == Type_Act) {
+            [self getActOrQuanInfoRequestWithPage:[NSString stringWithFormat:@"%d",_pageNum]
+                                    withProductID:productID
+                                   withOrderGuize:@"create_date desc"];
+        }else{
+            [self hotRecommendSearchWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum]
+                                   withItemsperpage:@"100"
+                                     withOrderGuize:@"create_date desc"
+                                  withProductTypeId:@""
+                                     withSearchName:self.userInfo[@"parameter"]];
+        }
     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [_actArr removeAllObjects];
-    NSString * productID = self.userInfo[@"productID"];
-    [self getActOrQuanInfoRequestWithPage:@"1"
-                            withProductID:productID
-                           withOrderGuize:@"create_date desc"];
+    
 }
 
 
@@ -73,11 +103,20 @@
 }
 #pragma mark -- UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _actArr.count;
+    
+    if (_type == Type_Act) {
+        return _actArr.count;
+    }else{
+        return _ticketArr.count;
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ClassDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ClassDetailCell" forIndexPath:indexPath];
-    cell.classInfo = _actArr[indexPath.row];
+    if (_type == Type_Act) {
+        cell.classInfo = _actArr[indexPath.row];
+    }else{
+        cell.ticketModle = _ticketArr[indexPath.row];
+    }
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -85,15 +124,31 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ClassInfo * info = self.actArr[indexPath.row];
-    [self pushToController:@"BlackWebController"
-            WithStoyBordID:@"Main"
-                  WithForm:self
-                  WithInfo:@{@"webviewURL":info.promotionalWapLink}];
     
+    if (_type == Type_Act) {
+        ClassInfo * info = self.actArr[indexPath.row];
+        if ([LoginUser shareUser].isLogin) {
+            [self pushToController:@"BlackWebController"
+                    WithStoyBordID:@"Main"
+                          WithForm:self
+                          WithInfo:@{@"webviewURL":info.promotionalWapLink}];
+        }else{
+            [Tool presentLoginViewWithStr:@"isLogin" WithViewController:self];
+        }
+    }else{
+        MyTicketModle * ticketModle = _ticketArr[indexPath.row];
+        if ([LoginUser shareUser].isLogin) {
+            TicketInfoController * ticketInfo = [[TicketInfoController alloc] init];
+            ticketInfo.ticketModle = ticketModle;
+            [self.navigationController pushViewController:ticketInfo animated:YES];
+        }else{
+            [Tool presentLoginViewWithStr:@"isLogin" WithViewController:self];
+        }
+    }
 }
 
 #pragma mark -- network
+//推荐-产品列表
 - (void)getActOrQuanInfoRequestWithPage:(NSString *)page withProductID:(NSString *)productID withOrderGuize:(NSString *)orderGuize{
     [AFNRequest recommendProductItemWithCurrentPage:@"1"
                                      withOrderGuize:@"create_date desc"
@@ -113,11 +168,33 @@
                                            [self.tableView reloadData];
                                        }];
 }
-
+//搜索的方法
+- (void)hotRecommendSearchWithCurrentPage:(NSString *)currentPage withItemsperpage:(NSString *)itemsperpage withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withSearchName:(NSString *)searchName{
+    [AFNRequest hotRecommendWithCurrentPage:currentPage
+                           withItemsperpage:itemsperpage
+                             withOrderGuize:orderGuize
+                          withProductTypeId:productTypeId
+                             withSearchName:searchName
+                               withComplete:^(NSDictionary *dic) {
+                                   NSLog(@"------------------%@",dic);
+                                   NSDictionary * diction = dic[@"attribute"];
+                                   NSArray * arr = diction[@"list"];
+                                   for (NSDictionary * dictionary in arr) {
+                                       MyTicketModle * ticket = [[MyTicketModle alloc] initWithDic:dictionary];
+                                       [_ticketArr addObject:ticket];
+                                   }
+                                   [self.tableView reloadData];
+                               }];
+}
 
 #pragma mark -- touchRigth
 - (void)touchRigthBtn{
-    NSLog(@"搜索！！！！");
+    NSLog(@"%@",self.navBar.searchBar.text);
+    [self hotRecommendSearchWithCurrentPage:@"1"
+                           withItemsperpage:@"100"
+                             withOrderGuize:@""
+                          withProductTypeId:@""
+                             withSearchName:self.navBar.searchBar.text];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

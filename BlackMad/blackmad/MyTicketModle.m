@@ -20,7 +20,7 @@
         self.cardType = dic[@"cardType"];
         self.cardVolumeOriginalPrice = (NSNumber *)dic[@"cardVolumeOriginalPrice"];
         self.cardVolumePresentPrice = (NSNumber *)dic[@"cardVolumePresentPrice"];
-        self.collection = (BOOL)dic[@"collection"];
+        self.collection = (NSNumber *)dic[@"collection"];
     }
     return self;
 }
