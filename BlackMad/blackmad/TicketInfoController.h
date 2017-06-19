@@ -13,6 +13,6 @@
 /**
  *  卡券
  */
-@property (nonatomic,strong) MyTicketModle * ticketModle;
+@property (nonatomic,strong) NSNumber * ticketModleID;
 
 @end

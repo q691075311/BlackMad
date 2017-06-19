@@ -13,14 +13,15 @@
 #import "MJRefresh.h"
 #import "MyTicketModle.h"
 #import "TicketInfoController.h"
-
+#import "DataModels.h"
+#import "TicketDataModels.h"
 
 typedef enum :NSUInteger{
     Type_Act,
     Type_Ticket
 }contentType;
 
-@interface ClassDetailController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ClassDetailController ()<UITableViewDelegate,UITableViewDataSource,ClassHeadViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,assign) contentType type;
 @property (nonatomic,strong) NSMutableArray * actArr;
@@ -48,6 +49,7 @@ typedef enum :NSUInteger{
 
 - (void)setNavBarData{
     if ([self.userInfo[@"form"] isEqualToString:@"Main"]) {
+        //搜索界面跳转过来的
         self.type = Type_Ticket;
         self.navBar.isAppearSearchView = YES;
         [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:@"搜索"];
@@ -56,7 +58,17 @@ typedef enum :NSUInteger{
                                  withOrderGuize:@""
                               withProductTypeId:@""
                                  withSearchName:self.userInfo[@"parameter"]];
+    }else if ([self.userInfo[@"flg"] isEqualToString:@"tick"]){
+        //分类-卡券-More
+        self.type = Type_Ticket;
+        [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:nil];
+        [self hotRecommendSearchWithCurrentPage:@"1"
+                               withItemsperpage:@"100"
+                                 withOrderGuize:@""
+                              withProductTypeId:self.userInfo[@"productID"]
+                                 withSearchName:@""];
     }else{
+        //分类-活动-More
         self.type = Type_Act;
         [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:nil];
         [_actArr removeAllObjects];
@@ -76,10 +88,12 @@ typedef enum :NSUInteger{
         NSLog(@"上拉获取新数据");
         _pageNum++;
         if (_type == Type_Act) {
+            
             [self getActOrQuanInfoRequestWithPage:[NSString stringWithFormat:@"%d",_pageNum]
                                     withProductID:productID
                                    withOrderGuize:@"create_date desc"];
         }else{
+            
             [self hotRecommendSearchWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum]
                                    withItemsperpage:@"100"
                                      withOrderGuize:@"create_date desc"
@@ -97,10 +111,33 @@ typedef enum :NSUInteger{
 
 //加载顶部View
 - (void)loadTopBarView{
-    ClassDetailHeadView * topView = [[ClassDetailHeadView alloc] initWithFrame:CGRectMake(0, 64, DWIDTH, 40)];
+    NSArray * arr = self.userInfo[@"titleArr"];
+    NSMutableArray * nameArr = [NSMutableArray array];
+    [nameArr insertObject:@"全部" atIndex:0];
+    if (_type == Type_Act) {
+        for (ActList *list in arr) {
+            [nameArr addObject:list.typeName];
+        }
+    }else if (_type == Type_Ticket){
+        for (TicketList * ticketList in arr) {
+            [nameArr addObject:ticketList.typeName];
+        }
+    }
+    ClassDetailHeadView * topView = [[ClassDetailHeadView alloc] initWithShowArr:nameArr];
+    topView.classArr = nameArr;
+    topView.orderArr = @[@"默认",@"首字母",@"时间",@"价格"];
     topView.backgroundColor = [UIColor whiteColor];
+    topView.delegate = self;
     [self.view addSubview:topView];
 }
+#pragma mark -- ClassHeadViewDelegate
+- (void)chooseClassBtnTag:(NSInteger)btnTag{
+    NSLog(@"class---%d",btnTag);
+}
+- (void)chooseOrderbtnTag:(NSInteger)btnTag{
+    NSLog(@"order---%d",btnTag);
+}
+
 #pragma mark -- UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -139,7 +176,7 @@ typedef enum :NSUInteger{
         MyTicketModle * ticketModle = _ticketArr[indexPath.row];
         if ([LoginUser shareUser].isLogin) {
             TicketInfoController * ticketInfo = [[TicketInfoController alloc] init];
-            ticketInfo.ticketModle = ticketModle;
+            ticketInfo.ticketModleID = ticketModle.ID;
             [self.navigationController pushViewController:ticketInfo animated:YES];
         }else{
             [Tool presentLoginViewWithStr:@"isLogin" WithViewController:self];
@@ -152,7 +189,7 @@ typedef enum :NSUInteger{
 - (void)getActOrQuanInfoRequestWithPage:(NSString *)page withProductID:(NSString *)productID withOrderGuize:(NSString *)orderGuize{
     [AFNRequest recommendProductItemWithCurrentPage:@"1"
                                      withOrderGuize:@"create_date desc"
-                                  withProductTypeId:@""
+                                  withProductTypeId:productID
                                        withComplete:^(NSDictionary *dic) {
                                            [self.tableView.mj_footer endRefreshing];
                                            NSDictionary * diction = dic[@"attribute"];
@@ -190,6 +227,7 @@ typedef enum :NSUInteger{
 #pragma mark -- touchRigth
 - (void)touchRigthBtn{
     NSLog(@"%@",self.navBar.searchBar.text);
+    [_ticketArr removeAllObjects];
     [self hotRecommendSearchWithCurrentPage:@"1"
                            withItemsperpage:@"100"
                              withOrderGuize:@""

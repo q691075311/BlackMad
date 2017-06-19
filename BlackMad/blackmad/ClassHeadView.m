@@ -63,7 +63,9 @@
         point.x = btn.center.x;
         _lineView.center = point;
     } completion:^(BOOL finished) {
-        
+        if (_delegate && [_delegate respondsToSelector:@selector(chooseTopbarClass:)]) {
+            [_delegate chooseTopbarClass:btn.tag];
+        }
     }];
 }
 

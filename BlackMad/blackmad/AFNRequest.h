@@ -87,14 +87,15 @@
  *  收藏列表
  */
 + (void)getCollectionListDataWithComplete:(void (^)(NSDictionary *dic))block;
-
-
-
-
 /**
  *  分类-活动
  */
 + (void)classActWithComplete:(void (^)(id))block;
+/**
+ *  分类卡券
+ */
++ (void)classTicketListWithComplete:(void (^)(id))block;
+
 /**
  *  字典转为Json字符串
  */

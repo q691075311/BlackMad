@@ -232,7 +232,7 @@ typedef enum:NSUInteger{
     if ([LoginUser shareUser].isLogin) {
         MyTicketModle * ticketModle = _ticketArr[indexPath.row];
         TicketInfoController * ticketInfo = [[TicketInfoController alloc] init];
-        ticketInfo.ticketModle = ticketModle;
+        ticketInfo.ticketModleID = ticketModle.ID;
         [self.navigationController pushViewController:ticketInfo animated:YES];
     }else{
         [self toLogin];

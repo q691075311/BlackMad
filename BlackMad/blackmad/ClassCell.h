@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "DataModels.h"
+#import "TicketDataModels.h"
+#import "ClassController.h"
+
 
 @protocol ClassDelegate <NSObject>
 
 - (void)cilckMoreBtn:(UIButton *)btn;
 
 - (void)cilckCellBtnWithActProductList:(ActProductList *)actPro;
+
+- (void)cilckCellBtnWithTicketList:(TicketCardVolumeList *)tickCard;
 
 @end
 
@@ -33,6 +38,7 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 @property (nonatomic,strong) ActList * actList;
+@property (nonatomic,strong) TicketList * ticketList;
 @property (nonatomic,assign) id <ClassDelegate>delegate;
 
 @end

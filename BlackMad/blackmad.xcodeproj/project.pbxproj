@@ -27,6 +27,10 @@
 		4B46D3AB1EEFCACD002A60E7 /* ActList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B46D3A51EEFCACD002A60E7 /* ActList.m */; };
 		4B46D3AC1EEFCACD002A60E7 /* ActProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B46D3A71EEFCACD002A60E7 /* ActProductList.m */; };
 		4B708A751E8384310064CD11 /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B708A741E8384310064CD11 /* InterestModel.m */; };
+		4B7188F11EF798AB0095A884 /* TicketAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7188E91EF798AB0095A884 /* TicketAttribute.m */; };
+		4B7188F21EF798AB0095A884 /* TicketCardVolumeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7188EB1EF798AB0095A884 /* TicketCardVolumeList.m */; };
+		4B7188F31EF798AB0095A884 /* TicketList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7188EE1EF798AB0095A884 /* TicketList.m */; };
+		4B7188F41EF798AB0095A884 /* TicketTicketList2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7188F01EF798AB0095A884 /* TicketTicketList2.m */; };
 		4B7B2B5D1EE7C59F003C5DCB /* ClassDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B2B5C1EE7C59F003C5DCB /* ClassDetailController.m */; };
 		4B7B2B601EE7CF83003C5DCB /* ClassDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B2B5F1EE7CF83003C5DCB /* ClassDetailCell.m */; };
 		4B7B2B641EE7DB63003C5DCB /* ClassDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B2B631EE7DB63003C5DCB /* ClassDetailHeadView.m */; };
@@ -190,6 +194,15 @@
 		4B46D3A81EEFCACD002A60E7 /* DataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModels.h; sourceTree = "<group>"; };
 		4B708A731E8384310064CD11 /* InterestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestModel.h; sourceTree = "<group>"; };
 		4B708A741E8384310064CD11 /* InterestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestModel.m; sourceTree = "<group>"; };
+		4B7188E81EF798AB0095A884 /* TicketAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketAttribute.h; sourceTree = "<group>"; };
+		4B7188E91EF798AB0095A884 /* TicketAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketAttribute.m; sourceTree = "<group>"; };
+		4B7188EA1EF798AB0095A884 /* TicketCardVolumeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketCardVolumeList.h; sourceTree = "<group>"; };
+		4B7188EB1EF798AB0095A884 /* TicketCardVolumeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketCardVolumeList.m; sourceTree = "<group>"; };
+		4B7188EC1EF798AB0095A884 /* TicketDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDataModels.h; sourceTree = "<group>"; };
+		4B7188ED1EF798AB0095A884 /* TicketList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketList.h; sourceTree = "<group>"; };
+		4B7188EE1EF798AB0095A884 /* TicketList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketList.m; sourceTree = "<group>"; };
+		4B7188EF1EF798AB0095A884 /* TicketTicketList2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketTicketList2.h; sourceTree = "<group>"; };
+		4B7188F01EF798AB0095A884 /* TicketTicketList2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketTicketList2.m; sourceTree = "<group>"; };
 		4B7B2B5B1EE7C59F003C5DCB /* ClassDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailController.h; sourceTree = "<group>"; };
 		4B7B2B5C1EE7C59F003C5DCB /* ClassDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailController.m; sourceTree = "<group>"; };
 		4B7B2B5E1EE7CF83003C5DCB /* ClassDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailCell.h; sourceTree = "<group>"; };
@@ -486,6 +499,22 @@
 			name = "用户信息";
 			sourceTree = "<group>";
 		};
+		4B7188E71EF7987D0095A884 /* 分类-卡券 */ = {
+			isa = PBXGroup;
+			children = (
+				4B7188E81EF798AB0095A884 /* TicketAttribute.h */,
+				4B7188E91EF798AB0095A884 /* TicketAttribute.m */,
+				4B7188EA1EF798AB0095A884 /* TicketCardVolumeList.h */,
+				4B7188EB1EF798AB0095A884 /* TicketCardVolumeList.m */,
+				4B7188EC1EF798AB0095A884 /* TicketDataModels.h */,
+				4B7188ED1EF798AB0095A884 /* TicketList.h */,
+				4B7188EE1EF798AB0095A884 /* TicketList.m */,
+				4B7188EF1EF798AB0095A884 /* TicketTicketList2.h */,
+				4B7188F01EF798AB0095A884 /* TicketTicketList2.m */,
+			);
+			name = "分类-卡券";
+			sourceTree = "<group>";
+		};
 		4B7B2B611EE7DB2B003C5DCB /* 分类头视图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +605,7 @@
 		4B7F8C631E6FE08B00686040 /* Modle */ = {
 			isa = PBXGroup;
 			children = (
+				4B7188E71EF7987D0095A884 /* 分类-卡券 */,
 				4BBB75BB1EF0C52700807B93 /* 分类-活动 */,
 				4B407C0D1E828F12004B94A6 /* 用户信息 */,
 				4B009CE51E80FC5300BB5B80 /* MainBtnListModle.h */,
@@ -1256,6 +1286,7 @@
 				4B7B2B601EE7CF83003C5DCB /* ClassDetailCell.m in Sources */,
 				4BE874691E80C415004F174E /* UIImageView+WebCache.m in Sources */,
 				4B12B0B01EDE64A80041196C /* Tool.m in Sources */,
+				4B7188F21EF798AB0095A884 /* TicketCardVolumeList.m in Sources */,
 				4B9E44401E8643CD00B4FABD /* MJRefreshGifHeader.m in Sources */,
 				4B46D3AA1EEFCACD002A60E7 /* ActClassActModle.m in Sources */,
 				4BA1F0311E731BA500B4EED4 /* IQUITextFieldView+Additions.m in Sources */,
@@ -1263,6 +1294,7 @@
 				4BE874601E80C415004F174E /* SDWebImageDownloader.m in Sources */,
 				4BCC61C21E7793AC002C7FF9 /* FMDatabasePool.m in Sources */,
 				4B00A2DF1E702E1E0084ADF6 /* XRCarouselView.m in Sources */,
+				4B7188F31EF798AB0095A884 /* TicketList.m in Sources */,
 				4BE874671E80C415004F174E /* UIImage+WebP.m in Sources */,
 				4BBB668C1E7FD15F0076201D /* SVProgressHUD.m in Sources */,
 				4B8EA2121E7282940051EC5A /* LoginController.m in Sources */,
@@ -1301,6 +1333,7 @@
 				4B94CD251E8A449E00CBAE36 /* MyTicketModle.m in Sources */,
 				4BBCB5AE1EE52B020015BE9C /* ClassHeadView.m in Sources */,
 				4BA1F0351E731BA500B4EED4 /* IQKeyboardManager.m in Sources */,
+				4B7188F11EF798AB0095A884 /* TicketAttribute.m in Sources */,
 				4BCC61AD1E77934C002C7FF9 /* AddressView.m in Sources */,
 				4B708A751E8384310064CD11 /* InterestModel.m in Sources */,
 				4B9E443D1E8643CD00B4FABD /* MJRefreshBackGifFooter.m in Sources */,
@@ -1316,6 +1349,7 @@
 				4BBB66281E7FBDFE0076201D /* AFSecurityPolicy.m in Sources */,
 				4B46D3AC1EEFCACD002A60E7 /* ActProductList.m in Sources */,
 				4BE8745B1E80C415004F174E /* MKAnnotationView+WebCache.m in Sources */,
+				4B7188F41EF798AB0095A884 /* TicketTicketList2.m in Sources */,
 				4B9E443B1E8643CD00B4FABD /* MJRefreshAutoNormalFooter.m in Sources */,
 				4B7F8C4C1E6FBF6100686040 /* main.m in Sources */,
 				4BA1F0321E731BA500B4EED4 /* IQUIView+Hierarchy.m in Sources */,
