@@ -38,16 +38,16 @@
     }
     return self;
 }
-- (instancetype)initWithShowArr:(NSArray *)arr{
-    self = [super initWithFrame:CGRectMake(0, 64, DWIDTH, 40)];
-    if (self) {
-        ClassDetailHeadView * view = [[[NSBundle mainBundle] loadNibNamed:@"ClassDetailHeadView" owner:self options:nil] lastObject];
-        view.autoresizingMask = self.autoresizingMask;
-        view.frame = self.frame;
-        return view;
-    }
-    return self;
-}
+//- (instancetype)initWithShowArr:(NSArray *)arr{
+//    self = [super initWithFrame:CGRectMake(0, 64, DWIDTH, 40)];
+//    if (self) {
+//        ClassDetailHeadView * view = [[[NSBundle mainBundle] loadNibNamed:@"ClassDetailHeadView" owner:self options:nil] lastObject];
+//        view.autoresizingMask = self.autoresizingMask;
+//        view.frame = self.frame;
+//        return view;
+//    }
+//    return self;
+//}
 
 //类别Btn
 - (IBAction)classBtn:(UIButton *)sender {

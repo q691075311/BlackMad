@@ -15,6 +15,8 @@
 #import "TicketInfoController.h"
 #import "DataModels.h"
 #import "TicketDataModels.h"
+#import "ClassTypeList.h"
+
 
 typedef enum :NSUInteger{
     Type_Act,
@@ -26,7 +28,19 @@ typedef enum :NSUInteger{
 @property (nonatomic,assign) contentType type;
 @property (nonatomic,strong) NSMutableArray * actArr;
 @property (nonatomic,strong) NSMutableArray * ticketArr;
+@property (nonatomic,strong) NSMutableArray * classType;
+@property (nonatomic,copy) NSArray * orderTicketArr;
+@property (nonatomic,copy) NSArray * orderClassArr;
 @property (nonatomic,assign) int pageNum;
+//搜索内容
+@property (nonatomic,copy) NSString * searchStr;
+//productID
+@property (nonatomic,copy) NSString * productIDNum;
+//排序方式
+@property (nonatomic,copy) NSString * orderContent;
+//排序类型
+@property (nonatomic,copy) NSString * orderType;
+
 @end
 
 @implementation ClassDetailController
@@ -37,16 +51,34 @@ typedef enum :NSUInteger{
     self.navBar.isAppearLineView = YES;
     self.actArr = [NSMutableArray array];
     self.ticketArr = [NSMutableArray array];
+    self.classType = [NSMutableArray array];
+    _orderTicketArr = @[@"recommended_level desc",@"card_type desc",@"create_date desc",@"card_volume_present_price asc"];
+    _orderClassArr = @[@"recommended_level desc",@"product_name desc",@"create_date desc"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _pageNum = 1;
+    //初始化页面全部变量的值
+    _orderContent = @"";
+    if (self.userInfo[@"productID"] == nil) {
+        _productIDNum = @"";
+    }else{
+        _productIDNum = self.userInfo[@"productID"];
+    }
+    if (self.userInfo[@"parameter"] == nil) {
+        _searchStr = @"";
+    }else{
+        _searchStr = self.userInfo[@"parameter"];
+    }
+    
     [self setNavBarData];
-    [self loadTopBarView];
+    [self getClassMoreListRequest];
     [self setMJRefreshFooter];
     
 }
 
+
+//获取请求的数据（设置导航栏）
 - (void)setNavBarData{
     if ([self.userInfo[@"form"] isEqualToString:@"Main"]) {
         //搜索界面跳转过来的
@@ -57,7 +89,7 @@ typedef enum :NSUInteger{
                                withItemsperpage:@"100"
                                  withOrderGuize:@""
                               withProductTypeId:@""
-                                 withSearchName:self.userInfo[@"parameter"]];
+                                 withSearchName:_searchStr];
     }else if ([self.userInfo[@"flg"] isEqualToString:@"tick"]){
         //分类-卡券-More
         self.type = Type_Ticket;
@@ -65,22 +97,20 @@ typedef enum :NSUInteger{
         [self hotRecommendSearchWithCurrentPage:@"1"
                                withItemsperpage:@"100"
                                  withOrderGuize:@""
-                              withProductTypeId:self.userInfo[@"productID"]
+                              withProductTypeId:_productIDNum
                                  withSearchName:@""];
     }else{
         //分类-活动-More
         self.type = Type_Act;
         [self.navBar configNavBarTitle:@"分类" WithLeftView:@"back" WithRigthView:nil];
         [_actArr removeAllObjects];
-        NSString * productID = self.userInfo[@"productID"];
         [self getActOrQuanInfoRequestWithPage:@"1"
-                                withProductID:productID
-                               withOrderGuize:@"create_date desc"];
+                                withProductID:_productIDNum
+                               withOrderGuize:@""];
     }
 }
-
+//设置上拉加载的逻辑
 - (void)setMJRefreshFooter{
-    NSString * productID = self.userInfo[@"productID"];
     if ([self.tableView.mj_footer isRefreshing]) {
         return;
     }
@@ -88,17 +118,26 @@ typedef enum :NSUInteger{
         NSLog(@"上拉获取新数据");
         _pageNum++;
         if (_type == Type_Act) {
-            
+            //分类-活动-More
             [self getActOrQuanInfoRequestWithPage:[NSString stringWithFormat:@"%d",_pageNum]
-                                    withProductID:productID
-                                   withOrderGuize:@"create_date desc"];
+                                    withProductID:_productIDNum
+                                   withOrderGuize:_orderContent];
         }else{
-            
-            [self hotRecommendSearchWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum]
-                                   withItemsperpage:@"100"
-                                     withOrderGuize:@"create_date desc"
-                                  withProductTypeId:@""
-                                     withSearchName:self.userInfo[@"parameter"]];
+            if ([self.userInfo[@"form"] isEqualToString:@"Main"]) {
+                //搜索界面跳转过来的
+                [self hotRecommendSearchWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum]
+                                       withItemsperpage:@"100"
+                                         withOrderGuize:_orderContent
+                                      withProductTypeId:_productIDNum
+                                         withSearchName:_searchStr];
+            }else if ([self.userInfo[@"flg"] isEqualToString:@"tick"]){
+                //分类-卡券-More
+                [self hotRecommendSearchWithCurrentPage:[NSString stringWithFormat:@"%d",_pageNum]
+                                       withItemsperpage:@"100"
+                                         withOrderGuize:_orderContent
+                                      withProductTypeId:_productIDNum
+                                         withSearchName:_searchStr];
+            }
         }
     }];
 }
@@ -109,33 +148,88 @@ typedef enum :NSUInteger{
 }
 
 
+
 //加载顶部View
 - (void)loadTopBarView{
-    NSArray * arr = self.userInfo[@"titleArr"];
     NSMutableArray * nameArr = [NSMutableArray array];
-    [nameArr insertObject:@"全部" atIndex:0];
+    ClassDetailHeadView * topView = [[ClassDetailHeadView alloc] initWithFrame:CGRectMake(0, 64, DWIDTH, 40)];
     if (_type == Type_Act) {
-        for (ActList *list in arr) {
-            [nameArr addObject:list.typeName];
-        }
+        topView.orderArr = @[@"默认",@"首字母排序",@"时间排序"];
     }else if (_type == Type_Ticket){
-        for (TicketList * ticketList in arr) {
-            [nameArr addObject:ticketList.typeName];
-        }
+        topView.orderArr = @[@"默认",@"首字母排序",@"时间排序",@"价格排序"];
     }
-    ClassDetailHeadView * topView = [[ClassDetailHeadView alloc] initWithShowArr:nameArr];
+    for (ClassTypeList * typeList in self.classType) {
+        [nameArr addObject:typeList.typeName];
+    }
     topView.classArr = nameArr;
-    topView.orderArr = @[@"默认",@"首字母",@"时间",@"价格"];
     topView.backgroundColor = [UIColor whiteColor];
     topView.delegate = self;
     [self.view addSubview:topView];
 }
 #pragma mark -- ClassHeadViewDelegate
 - (void)chooseClassBtnTag:(NSInteger)btnTag{
-    NSLog(@"class---%d",btnTag);
+    //分类选项的选择
+    [_actArr removeAllObjects];
+    [_ticketArr removeAllObjects];
+    _pageNum = 1;
+    //获取ID
+    ClassTypeList * typeList = _classType[btnTag];
+    NSString * proID = [NSString stringWithFormat:@"%@",typeList.ID];
+    if ([proID isEqualToString:@"-10086"]) {
+        proID = @"";
+    }
+    _productIDNum = proID;
+    if (_type == Type_Act) {
+        [self getActOrQuanInfoRequestWithPage:@"1"
+                                withProductID:_productIDNum
+                               withOrderGuize:_orderContent];
+    }else if (_type == Type_Ticket){
+        if ([self.userInfo[@"form"] isEqualToString:@"Main"]) {
+            //搜索界面跳转过来的
+            [self hotRecommendSearchWithCurrentPage:@"1"
+                                   withItemsperpage:@"100"
+                                     withOrderGuize:_orderContent
+                                  withProductTypeId:_productIDNum
+                                     withSearchName:_searchStr];
+        }else if ([self.userInfo[@"flg"] isEqualToString:@"tick"]){
+            //分类-卡券-More
+            [self hotRecommendSearchWithCurrentPage:@"1"
+                                   withItemsperpage:@"100"
+                                     withOrderGuize:_orderContent
+                                  withProductTypeId:_productIDNum
+                                     withSearchName:@""];
+        }
+    }
 }
 - (void)chooseOrderbtnTag:(NSInteger)btnTag{
-    NSLog(@"order---%d",btnTag);
+    [_actArr removeAllObjects];
+    [_ticketArr removeAllObjects];
+    _pageNum = 1;
+    //排序选项的选择
+//    NSString * productID = self.userInfo[@"productID"];
+    if (_type == Type_Act) {
+        _orderContent = _orderClassArr[btnTag];
+        [self getActOrQuanInfoRequestWithPage:@"1"
+                                withProductID:_productIDNum
+                               withOrderGuize:_orderContent];
+    }else if (_type == Type_Ticket){
+        _orderContent = _orderTicketArr[btnTag];
+        if ([self.userInfo[@"form"] isEqualToString:@"Main"]) {
+            //搜索页面
+            [self hotRecommendSearchWithCurrentPage:@"1"
+                                   withItemsperpage:@"100"
+                                     withOrderGuize:_orderContent
+                                  withProductTypeId:_productIDNum
+                                     withSearchName:_searchStr];
+        }else if ([self.userInfo[@"flg"] isEqualToString:@"tick"]){
+            //分类卡券-More
+            [self hotRecommendSearchWithCurrentPage:@"1"
+                                   withItemsperpage:@"100"
+                                     withOrderGuize:_orderContent
+                                  withProductTypeId:_productIDNum
+                                     withSearchName:@""];
+        }
+    }
 }
 
 #pragma mark -- UITableViewDataSource
@@ -188,7 +282,7 @@ typedef enum :NSUInteger{
 //推荐-产品列表
 - (void)getActOrQuanInfoRequestWithPage:(NSString *)page withProductID:(NSString *)productID withOrderGuize:(NSString *)orderGuize{
     [AFNRequest recommendProductItemWithCurrentPage:@"1"
-                                     withOrderGuize:@"create_date desc"
+                                     withOrderGuize:orderGuize
                                   withProductTypeId:productID
                                        withComplete:^(NSDictionary *dic) {
                                            [self.tableView.mj_footer endRefreshing];
@@ -205,7 +299,7 @@ typedef enum :NSUInteger{
                                            [self.tableView reloadData];
                                        }];
 }
-//搜索的方法
+//搜索的方法   卡券的请求
 - (void)hotRecommendSearchWithCurrentPage:(NSString *)currentPage withItemsperpage:(NSString *)itemsperpage withOrderGuize:(NSString *)orderGuize withProductTypeId:(NSString *)productTypeId withSearchName:(NSString *)searchName{
     [AFNRequest hotRecommendWithCurrentPage:currentPage
                            withItemsperpage:itemsperpage
@@ -214,19 +308,51 @@ typedef enum :NSUInteger{
                              withSearchName:searchName
                                withComplete:^(NSDictionary *dic) {
                                    NSLog(@"------------------%@",dic);
+                                   [self.tableView.mj_footer endRefreshing];
                                    NSDictionary * diction = dic[@"attribute"];
                                    NSArray * arr = diction[@"list"];
-                                   for (NSDictionary * dictionary in arr) {
-                                       MyTicketModle * ticket = [[MyTicketModle alloc] initWithDic:dictionary];
-                                       [_ticketArr addObject:ticket];
+                                   if (arr.count>0) {
+                                       for (NSDictionary * dictionary in arr) {
+                                           MyTicketModle * ticket = [[MyTicketModle alloc] initWithDic:dictionary];
+                                           [_ticketArr addObject:ticket];
+                                       }
+                                   }else{
+                                       [self.tableView.mj_footer endRefreshingWithNoMoreData];
                                    }
+                                   
                                    [self.tableView reloadData];
                                }];
+}
+
+//获取topView的请求
+- (void)getClassMoreListRequest{
+    NSString * type;
+    if (_type == Type_Act) {
+        type = @"ACT";
+    }else{
+        type = @"CARD";
+    }
+    [AFNRequest getClassMoreTypeListWithType:type withComplete:^(NSDictionary *dic) {
+        NSDictionary * diction = dic[@"attribute"];
+        NSArray * arr = diction[@"list"];
+        ClassTypeList * type0 = [[ClassTypeList alloc] init];
+        type0.ID = @(-10086);
+        type0.pictureAddress = @"";
+        type0.typeName = @"全部";
+        [self.classType insertObject:type0 atIndex:0];
+        for (NSDictionary * dictionary in arr) {
+            ClassTypeList * typeList = [[ClassTypeList alloc] initWithDic:dictionary];
+            [self.classType addObject:typeList];
+        }
+        //加载topView
+        [self loadTopBarView];
+    }];
 }
 
 #pragma mark -- touchRigth
 - (void)touchRigthBtn{
     NSLog(@"%@",self.navBar.searchBar.text);
+    _pageNum = 1;
     [_ticketArr removeAllObjects];
     [self hotRecommendSearchWithCurrentPage:@"1"
                            withItemsperpage:@"100"

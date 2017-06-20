@@ -53,6 +53,7 @@
 		4B8EA2121E7282940051EC5A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8EA2111E7282940051EC5A /* LoginController.m */; };
 		4B91F7591E88A0B00047F5E8 /* MainProductModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B91F7581E88A0B00047F5E8 /* MainProductModle.m */; };
 		4B94CD251E8A449E00CBAE36 /* MyTicketModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B94CD241E8A449E00CBAE36 /* MyTicketModle.m */; };
+		4B9BD3D01EF8C5F000041633 /* ClassTypeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9BD3CF1EF8C5F000041633 /* ClassTypeList.m */; };
 		4B9E44351E8643CD00B4FABD /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E44091E8643CD00B4FABD /* MJRefreshAutoFooter.m */; };
 		4B9E44361E8643CD00B4FABD /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E440B1E8643CD00B4FABD /* MJRefreshBackFooter.m */; };
 		4B9E44371E8643CD00B4FABD /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E440D1E8643CD00B4FABD /* MJRefreshComponent.m */; };
@@ -241,6 +242,8 @@
 		4B91F7581E88A0B00047F5E8 /* MainProductModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProductModle.m; sourceTree = "<group>"; };
 		4B94CD231E8A449E00CBAE36 /* MyTicketModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketModle.h; sourceTree = "<group>"; };
 		4B94CD241E8A449E00CBAE36 /* MyTicketModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketModle.m; sourceTree = "<group>"; };
+		4B9BD3CE1EF8C5F000041633 /* ClassTypeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassTypeList.h; sourceTree = "<group>"; };
+		4B9BD3CF1EF8C5F000041633 /* ClassTypeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassTypeList.m; sourceTree = "<group>"; };
 		4B9E44081E8643CD00B4FABD /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4B9E44091E8643CD00B4FABD /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		4B9E440A1E8643CD00B4FABD /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -620,6 +623,8 @@
 				4B94CD241E8A449E00CBAE36 /* MyTicketModle.m */,
 				4BBB75BC1EF10FB400807B93 /* ClassInfo.h */,
 				4BBB75BD1EF10FB400807B93 /* ClassInfo.m */,
+				4B9BD3CE1EF8C5F000041633 /* ClassTypeList.h */,
+				4B9BD3CF1EF8C5F000041633 /* ClassTypeList.m */,
 			);
 			name = Modle;
 			sourceTree = "<group>";
@@ -1319,6 +1324,7 @@
 				4B407C131E82AAC6004B94A6 /* UserInfo.m in Sources */,
 				4B91F7591E88A0B00047F5E8 /* MainProductModle.m in Sources */,
 				4BA1F0381E731BA500B4EED4 /* IQBarButtonItem.m in Sources */,
+				4B9BD3D01EF8C5F000041633 /* ClassTypeList.m in Sources */,
 				4BBCB5B31EE52D0A0015BE9C /* ClassCell.m in Sources */,
 				4BA1572C1E769BD70087D279 /* ChooseBirthdayView.m in Sources */,
 				4BBB66261E7FBDFE0076201D /* AFHTTPSessionManager.m in Sources */,

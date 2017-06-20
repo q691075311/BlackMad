@@ -150,6 +150,8 @@ typedef enum:NSUInteger{
 #pragma mark -- More点击事件
 - (void)moreBtn{
     NSLog(@"首页moreBtn");
+    self.tabBarController.selectedIndex = 1;
+    
 }
 #pragma mark -- UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

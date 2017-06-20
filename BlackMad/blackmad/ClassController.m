@@ -36,13 +36,14 @@ typedef enum : NSUInteger {
     self.navBar.isAppearLineView = YES;
     self.actArr = [NSMutableArray array];
     self.ticketArr = [NSMutableArray array];
-    self.type = class_ACT;
+    self.type = class_TICKET;
     [self.navBar configNavBarTitle:@"分类" WithLeftView:nil WithRigthView:nil];
     [self initTableViewHeadView];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self getClassActRequest];
+//    [self getClassActRequest];
+    [self getTicketListRequest];
 }
 //初始化tableView的头视图
 - (void)initTableViewHeadView{
@@ -147,13 +148,13 @@ typedef enum : NSUInteger {
 }
 #pragma mark -- ClassTopViewDelegate
 - (void)chooseTopbarClass:(NSInteger)classType{
-    //选择的类型   0活动    1卡券
-    if (classType == 0) {
-        _type = class_ACT;
-        [self getClassActRequest];
-    }else if (classType == 1){
+    //选择的类型   100卡券    101活动
+    if (classType == 100) {
         _type = class_TICKET;
         [self getTicketListRequest];
+    }else if (classType == 101){
+        _type = class_ACT;
+        [self getClassActRequest];
     }
 }
 

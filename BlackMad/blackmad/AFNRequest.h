@@ -95,6 +95,10 @@
  *  分类卡券
  */
 + (void)classTicketListWithComplete:(void (^)(id))block;
+/**
+ *  分类-更多-类型列表
+ */
++ (void)getClassMoreTypeListWithType:(NSString *)type withComplete:(void (^)(NSDictionary *dic))block;
 
 /**
  *  字典转为Json字符串

@@ -525,6 +525,26 @@
         NSLog(@"%@",error.userInfo);
     }];
 }
+//分类-更多-类型列表
++ (void)getClassMoreTypeListWithType:(NSString *)type withComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,productType_list] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //请求body
+    NSDictionary * dic = @{@"bizType":type};
+    NSString * par = [self dictionaryToJson:dic];
+    [manager POST:url parameters:par progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
 
 //字典转为Json字符串
 + (NSString *)dictionaryToJson:(NSDictionary *)dic
