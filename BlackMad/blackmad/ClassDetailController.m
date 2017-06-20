@@ -281,7 +281,7 @@ typedef enum :NSUInteger{
 #pragma mark -- network
 //推荐-产品列表
 - (void)getActOrQuanInfoRequestWithPage:(NSString *)page withProductID:(NSString *)productID withOrderGuize:(NSString *)orderGuize{
-    [AFNRequest recommendProductItemWithCurrentPage:@"1"
+    [AFNRequest recommendProductItemWithCurrentPage:page
                                      withOrderGuize:orderGuize
                                   withProductTypeId:productID
                                        withComplete:^(NSDictionary *dic) {
