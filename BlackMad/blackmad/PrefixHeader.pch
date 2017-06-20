@@ -77,7 +77,8 @@
 #define COLLECTIONLISTDATA @"/phone/cardVolume/collectionList"
 //分类-卡卷
 #define TYPECARD @"/phone/type/cardVolumeList"
-
+//分类-更多-类型列表
+#define productType_list @"/phone/productType/list"
 
 
 

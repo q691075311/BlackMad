@@ -160,8 +160,7 @@
 
 //获取卡券的详情请求
 - (void)gettickinfoDataRequest{
-    NSNumber * carID = _ticketModle.ID;
-    NSString * carVoid = [NSString stringWithFormat:@"%@",carID];
+    NSString * carVoid = [NSString stringWithFormat:@"%@",_ticketModleID];
     [AFNRequest ticketInfoWithCardVolumeId:carVoid withComplete:^(NSDictionary *dic) {
         NSLog(@"%@",dic);
         NSDictionary * diction = dic[@"attribute"];
@@ -183,7 +182,7 @@
 }
 
 - (void)cardCollectionRequest{
-    NSNumber * carID = _ticketModle.ID;
+    NSNumber * carID = _ticketModleID;
     NSString * carVoid = [NSString stringWithFormat:@"%@",carID];
     [AFNRequest ticketCollectionWithCardID:carVoid withComplete:^(NSDictionary *dic) {
         [SVProgressHUD showSuccessWithStatus:@"收藏成功"];

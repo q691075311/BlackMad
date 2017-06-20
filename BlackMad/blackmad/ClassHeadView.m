@@ -48,22 +48,33 @@
         classBtn.center = CGPointMake((DWIDTH/4) + i*2*(DWIDTH/4), self.bounds.size.height/2);
         classBtn.bounds = CGRectMake(0, 0, 33, 22);
         classBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        classBtn.tag = i;
+        classBtn.tag = i+100;
         [classBtn addTarget:self action:@selector(cliockBtn:) forControlEvents:UIControlEventTouchUpInside];
         [classBtn setTitleColor:COLORWITHRGB(74, 74, 74) forState:UIControlStateNormal];
-        NSString * str = i == 0 ? @"活动" : @"卡券";
+        NSString * str = i == 0 ? @"卡券" : @"活动";
+        if (i == 0) {
+            [classBtn setTitleColor:[Tool appRedColor] forState:UIControlStateNormal];
+        }
         [classBtn setTitle:str forState:UIControlStateNormal];
         [self addSubview:classBtn];
     }
 }
 - (void)cliockBtn:(UIButton *)btn{
     NSLog(@"做动画");
+    UIButton * button = [self viewWithTag:100];
+    UIButton * button1 = [self viewWithTag:101];
+    [button setTitleColor:COLORWITHRGB(74, 74, 74) forState:UIControlStateNormal];
+    [button1 setTitleColor:COLORWITHRGB(74, 74, 74) forState:UIControlStateNormal];
+    [btn setTitleColor:[Tool appRedColor] forState:UIControlStateNormal];
+    
     [UIView animateWithDuration:0.3 animations:^{
         CGPoint point = _lineView.center;
         point.x = btn.center.x;
         _lineView.center = point;
     } completion:^(BOOL finished) {
-        
+        if (_delegate && [_delegate respondsToSelector:@selector(chooseTopbarClass:)]) {
+            [_delegate chooseTopbarClass:btn.tag];
+        }
     }];
 }
 

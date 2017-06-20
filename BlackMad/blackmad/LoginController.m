@@ -76,6 +76,7 @@ typedef enum :NSUInteger{
 }
 //设置页面的UI
 - (void)initUI{
+    [self.view addSubview:_scrollView];
     if (_type == userType_Login) {
         [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
@@ -117,7 +118,6 @@ typedef enum :NSUInteger{
     //设置登录btn的边框
     _loginBtn.layer.masksToBounds = YES;
     _loginBtn.layer.cornerRadius = 24;
-    _loginBtn.layer.borderWidth = 1;
     _loginBtn.layer.borderColor = COLORWITHRGB(166, 166, 166).CGColor;
     
     _headImage.layer.masksToBounds = YES;

@@ -477,7 +477,6 @@
     [manager POST:url parameters:par progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if ([self judgeStatusCodeWithDic:dic]) {
             block(dic);
@@ -495,14 +494,55 @@
     //head
     [manager.requestSerializer setValue:[LoginUser shareUser].token forHTTPHeaderField:@"token"];
     [manager.requestSerializer setValue:[LoginUser shareUser].uid forHTTPHeaderField:@"uid"];
-    [manager.requestSerializer setStringEncoding:NSUTF8StringEncoding];
     [manager POST:url parameters:@"" progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",dic);
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+//分类卡券
++ (void)classTicketListWithComplete:(void (^)(id))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,TYPECARD] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //head
+    [manager POST:url parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(responseObject);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+//分类-更多-类型列表
++ (void)getClassMoreTypeListWithType:(NSString *)type withComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,productType_list] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //请求body
+    NSDictionary * dic = @{@"bizType":type};
+    NSString * par = [self dictionaryToJson:dic];
+    [manager POST:url parameters:par progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
     }];
 }
 

@@ -46,7 +46,7 @@
                         <action selector="sortingBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="41i-Dq-6gE"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="WXs-0l-Lnb">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up" translatesAutoresizingMaskIntoConstraints="NO" id="WXs-0l-Lnb">
                     <rect key="frame" x="42" y="16" width="8" height="8"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="8" id="DQ4-co-Iyg"/>
@@ -77,11 +77,14 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="classImage" destination="WXs-0l-Lnb" id="pVt-cE-geK"/>
+                <outlet property="orderImage" destination="IPp-7Y-dKD" id="97P-gI-12z"/>
+            </connections>
             <point key="canvasLocation" x="586.5" y="385"/>
         </view>
     </objects>
     <resources>
-        <image name="down" width="9" height="5"/>
         <image name="up" width="9" height="5"/>
     </resources>
 </document>

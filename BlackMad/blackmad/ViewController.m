@@ -150,6 +150,8 @@ typedef enum:NSUInteger{
 #pragma mark -- More点击事件
 - (void)moreBtn{
     NSLog(@"首页moreBtn");
+    self.tabBarController.selectedIndex = 1;
+    
 }
 #pragma mark -- UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -232,7 +234,7 @@ typedef enum:NSUInteger{
     if ([LoginUser shareUser].isLogin) {
         MyTicketModle * ticketModle = _ticketArr[indexPath.row];
         TicketInfoController * ticketInfo = [[TicketInfoController alloc] init];
-        ticketInfo.ticketModle = ticketModle;
+        ticketInfo.ticketModleID = ticketModle.ID;
         [self.navigationController pushViewController:ticketInfo animated:YES];
     }else{
         [self toLogin];
