@@ -8,10 +8,11 @@
 
 #import "MyCollectionController.h"
 #import "MyCollectionCell.h"
+#import "MyTicketModle.h"
 
 @interface MyCollectionController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic,strong) NSMutableArray * collectionArr;
 @end
 
 @implementation MyCollectionController
@@ -25,6 +26,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.collectionArr = [NSMutableArray array];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -34,7 +36,7 @@
 
 #pragma mark--UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.collectionArr.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 110;
@@ -42,22 +44,42 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyCollectionCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyCollectionCell" forIndexPath:indexPath];
     cell.collectionCancleBtn.tag = indexPath.row + 100;
+    cell.ticketModle = self.collectionArr[indexPath.row];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 #pragma mark -- network
 - (void)collectionListRequest{
     [AFNRequest getCollectionListDataWithComplete:^(NSDictionary *dic) {
-        
+        NSDictionary * diction = dic[@"attribute"];
+        NSArray * arr = diction[@"list"];
+        for (NSDictionary * dictionary in arr) {
+            MyTicketModle * ticket = [[MyTicketModle alloc] initWithDic:dictionary];
+            [self.collectionArr addObject:ticket];
+        }
+        [self.tableView reloadData];
     }];
 }
 
 #pragma mark--取消收藏Btn
 - (IBAction)cancleCollection:(UIButton *)sender {
     NSLog(@"%ld",(long)sender.tag);
+    MyTicketModle * ticket = self.collectionArr[sender.tag-100];
+    [self cancelCollectionRequestWithproductID:[NSString stringWithFormat:@"%@",ticket.ID] withIndex:sender.tag];
 }
+
+- (void)cancelCollectionRequestWithproductID:(NSString *)productID withIndex:(NSInteger)index{
+    [AFNRequest cancelCollectionWithCardVolumeId:productID withComplete:^(NSDictionary *dic) {
+        [SVProgressHUD showSuccessWithStatus:@"成功取消收藏"];
+        [_collectionArr removeObjectAtIndex:index-100];
+        [self.tableView reloadData];
+    }];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

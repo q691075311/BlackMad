@@ -20,6 +20,12 @@
     [self.collectionCancleBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
 }
 
+- (void)setTicketModle:(MyTicketModle *)ticketModle{
+    [self.collectionImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,ticketModle.cardPictureAddress]]];
+    self.collectionTitle.text = ticketModle.cardName;
+    self.collectionPerce.text = [NSString stringWithFormat:@"¥%.2f",[ticketModle.cardVolumePresentPrice floatValue]];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

@@ -21,6 +21,8 @@
         self.cardVolumeOriginalPrice = (NSNumber *)dic[@"cardVolumeOriginalPrice"];
         self.cardVolumePresentPrice = (NSNumber *)dic[@"cardVolumePresentPrice"];
         self.collection = (NSNumber *)dic[@"collection"];
+        self.cardCode = dic[@"cardCode"];
+        self.cardVolumeStatus = dic[@"cardVolumeStatus"];
     }
     return self;
 }
