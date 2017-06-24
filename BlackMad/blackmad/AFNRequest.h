@@ -99,6 +99,10 @@
  *  分类-更多-类型列表
  */
 + (void)getClassMoreTypeListWithType:(NSString *)type withComplete:(void (^)(NSDictionary *dic))block;
+/**
+ *  取消收藏接口
+ */
++ (void)cancelCollectionWithCardVolumeId:(NSString *)str withComplete:(void (^)(NSDictionary *dic))block;
 
 /**
  *  字典转为Json字符串

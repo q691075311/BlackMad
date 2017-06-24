@@ -136,26 +136,16 @@ typedef enum: NSUInteger{
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyTicketModle * modle = _myTicketArr[indexPath.row];
-    CGRect rect = [self getLableRectWithText:modle.cardRemark];
-    if (rect.size.height < 40) {
-        return 200;
+    CGFloat height = [Tool getLableHeigthWithText:modle.cardRemark withLableWidth:DWIDTH-116 withTextFontOfSize:14];
+    if (height < 20) {
+        return 251;
     }else{
-        return 200+rect.size.height-40;
+        return 251+height-20;
     }
     return 251;
 }
 - (IBAction)exchangeBtn:(UIButton *)sender {
     NSLog(@"%ld",(long)sender.tag);
-}
-/**
- *  动态计算lable高度
- */
-- (CGRect)getLableRectWithText:(NSString *)str{
-    CGRect rect = [str boundingRectWithSize:CGSizeMake(DWIDTH-121, MAXFLOAT)
-                                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
-                                                     context:nil];
-    return rect;
 }
 
 #pragma mark--网络请求

@@ -10,6 +10,10 @@
 
 @interface MyTicketModle : NSObject
 /**
+ *  券code
+ */
+@property (nonatomic,copy) NSString *cardCode;
+/**
  *  券内容
  */
 @property (nonatomic,copy) NSString *cardContent;
@@ -45,6 +49,10 @@
  *  券是否收藏
  */
 @property (nonatomic,assign) NSNumber * collection;
+/**
+ *  卡券状态  
+ */
+@property (nonatomic,copy) NSString *cardVolumeStatus;
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
 

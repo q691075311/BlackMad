@@ -79,8 +79,8 @@
 #define TYPECARD @"/phone/type/cardVolumeList"
 //分类-更多-类型列表
 #define productType_list @"/phone/productType/list"
-
-
+//取消收藏
+#define CANCELCOLLECTION @"/phone/cardVolume/cancelCollection"
 
 /**
  *  生产接口

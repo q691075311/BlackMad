@@ -217,7 +217,6 @@
 + (void)requestMyTicketWithURL:(NSString *)URL WithpageNum:(NSString *)pageNum WithToken:(NSString *)token WithUID:(NSString *)uid WithComplete:(void (^)(NSDictionary *dic))block{
     AFHTTPSessionManager * manager = [self getHttpManager];
     //请求URL
-    [manager.requestSerializer setValue:@"application/json"forHTTPHeaderField:@"Content-Type"];
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,URL] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     //设置请求头
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
@@ -491,10 +490,13 @@
 + (void)getCollectionListDataWithComplete:(void (^)(NSDictionary *))block{
     AFHTTPSessionManager * manager = [self getHttpManager];
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,COLLECTIONLISTDATA] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSDictionary * diction = @{@"currentPage":@"1",@"itemsperpage":@"3"};
+    NSDictionary * dic = @{@"page":diction};
+    NSString * par = [self dictionaryToJson:dic];
     //head
     [manager.requestSerializer setValue:[LoginUser shareUser].token forHTTPHeaderField:@"token"];
     [manager.requestSerializer setValue:[LoginUser shareUser].uid forHTTPHeaderField:@"uid"];
-    [manager POST:url parameters:@"" progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:url parameters:par progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
@@ -531,6 +533,30 @@
     NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,productType_list] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     //请求body
     NSDictionary * dic = @{@"bizType":type};
+    NSString * par = [self dictionaryToJson:dic];
+    [manager POST:url parameters:par progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([self judgeStatusCodeWithDic:dic]) {
+            block(dic);
+        }else{
+            return;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+
+//取消收藏
++ (void)cancelCollectionWithCardVolumeId:(NSString *)str withComplete:(void (^)(NSDictionary *))block{
+    AFHTTPSessionManager * manager = [self getHttpManager];
+    NSString * url = [[NSString stringWithFormat:@"%@%@",BASEURL,CANCELCOLLECTION] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //设置head
+    [manager.requestSerializer setValue:[LoginUser shareUser].token forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[LoginUser shareUser].uid forHTTPHeaderField:@"uid"];
+    //请求body
+    NSDictionary * dic = @{@"cardVolumeId":str};
     NSString * par = [self dictionaryToJson:dic];
     [manager POST:url parameters:par progress:^(NSProgress * _Nonnull uploadProgress) {
         
