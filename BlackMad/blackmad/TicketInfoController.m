@@ -138,6 +138,7 @@
     [btn addTarget:self action:@selector(clickPay) forControlEvents:UIControlEventTouchUpInside];
     [tabBarBGView addSubview:btn];
 }
+#pragma mark--立即支付
 - (void)clickPay{
     
 }
@@ -155,7 +156,6 @@
         //收藏请求
         [self cardCollectionRequest];
     }else if (btn.tag == 2){
-//        [Tool configTabBarItem];
         if (self.tabBarController.selectedIndex == 2) {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
