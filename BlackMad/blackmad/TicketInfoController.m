@@ -146,6 +146,7 @@
     if (btn.tag == 0) {
         //回到首页
         [Tool configTabBarItem];
+        self.tabBarController.selectedIndex = 0;
     }else if (btn.tag == 1) {
         if (_isCollect) {
             [SVProgressHUD showErrorWithStatus:@"已经收藏过了"];
@@ -154,7 +155,12 @@
         //收藏请求
         [self cardCollectionRequest];
     }else if (btn.tag == 2){
-        self.tabBarController.selectedIndex = 2;
+//        [Tool configTabBarItem];
+        if (self.tabBarController.selectedIndex == 2) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            self.tabBarController.selectedIndex = 2;
+        }
     }
 }
 

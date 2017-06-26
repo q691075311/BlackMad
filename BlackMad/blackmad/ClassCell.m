@@ -42,6 +42,7 @@ typedef enum : NSUInteger {
 //配置活动的cell
 - (void)setActList:(ActList *)actList{
     [self cleanBtnBackgroundImage];
+    [self.actArr removeAllObjects];
     _type = class_ACT;
     self.typeName.text = actList.typeName;
     for (int i = 0; i<actList.productList.count; i++) {
@@ -54,6 +55,7 @@ typedef enum : NSUInteger {
 //配置卡券的cell
 - (void)setTicketList:(TicketList *)ticketList{
     [self cleanBtnBackgroundImage];
+    [self.ticketArr removeAllObjects];
     _type = class_TICKET;
     self.typeName.text = ticketList.typeName;
     for (NSInteger i = 0; i<ticketList.cardVolumeList.count; i++) {
@@ -67,14 +69,22 @@ typedef enum : NSUInteger {
 - (void)btnCilck:(UIButton *)btn{
     NSInteger tag = btn.tag;
     if (_type == class_ACT) {
-        ActProductList * actPro = self.actArr[tag];
-        if (_delegate && [_delegate respondsToSelector:@selector(cilckCellBtnWithActProductList:)]) {
-            [_delegate cilckCellBtnWithActProductList:actPro];
+        if (self.actArr.count>tag) {
+            ActProductList * actPro = self.actArr[tag];
+            if (_delegate && [_delegate respondsToSelector:@selector(cilckCellBtnWithActProductList:)]) {
+                [_delegate cilckCellBtnWithActProductList:actPro];
+            }
+        }else{
+            return;
         }
     }else if (_type == class_TICKET){
-        TicketCardVolumeList * ticketCard = self.ticketArr[tag];
-        if (_delegate && [_delegate respondsToSelector:@selector(cilckCellBtnWithTicketList:)]) {
-            [_delegate cilckCellBtnWithTicketList:ticketCard];
+        if (self.ticketArr.count>tag) {
+            TicketCardVolumeList * ticketCard = self.ticketArr[tag];
+            if (_delegate && [_delegate respondsToSelector:@selector(cilckCellBtnWithTicketList:)]) {
+                [_delegate cilckCellBtnWithTicketList:ticketCard];
+            }
+        }else{
+            return;
         }
     }
 }

@@ -11,7 +11,7 @@
 
 @interface TicketInfoController : BaseController
 /**
- *  卡券
+ *  接收卡券ID的传值
  */
 @property (nonatomic,strong) NSNumber * ticketModleID;
 

@@ -9,6 +9,7 @@
 #import "MyCollectionController.h"
 #import "MyCollectionCell.h"
 #import "MyTicketModle.h"
+#import "TicketInfoController.h"
 
 @interface MyCollectionController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -49,6 +50,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MyTicketModle * ticket = self.collectionArr[indexPath.row];
+    
+    TicketInfoController * ticketInfo = [[TicketInfoController alloc] init];
+    ticketInfo.ticketModleID = ticket.ID;
+    [self.navigationController pushViewController:ticketInfo animated:YES];
 }
 
 #pragma mark -- network
