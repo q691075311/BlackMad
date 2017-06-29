@@ -18,15 +18,22 @@ typedef enum :NSUInteger{
 }userType;
 
 @interface LoginController ()<UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *headImage;
-@property (weak, nonatomic) IBOutlet UITextField *loginPhone;
-@property (weak, nonatomic) IBOutlet UITextField *pwdField;
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *registeredBtn;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UITextField *validationField;
-@property (weak, nonatomic) IBOutlet UITextField *SMSValidationField;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnH;
+//头像
+@property (strong, nonatomic) UIImageView *headImage;
+//手机号
+@property (strong, nonatomic) UITextField *loginPhone;
+//密码
+@property (strong, nonatomic) UITextField *pwdField;
+//登录btn
+@property (strong, nonatomic) UIButton *loginBtn;
+//切换typeBtn
+@property (strong, nonatomic) UIButton *registeredBtn;
+@property (strong, nonatomic) UIScrollView *scrollView;
+//图形验证码
+@property (strong, nonatomic) UITextField *validationField;
+//手机号验证码
+@property (strong, nonatomic) UITextField *SMSValidationField;
+
 /**
  *  图形验证码
  */
@@ -51,12 +58,9 @@ typedef enum :NSUInteger{
         [self getVerifyImageRequestWithType:@"3"];
     }
     self.navigationController.navigationBar.hidden = YES;
-    _loginPhone.delegate = self;
-    _pwdField.delegate = self;
-    _validationField.delegate = self;
-    _SMSValidationField.delegate = self;
     IQKeyboardReturnKeyHandler * returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] init];
-    returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyDefault;
+    returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyNext;
+    [self addSameSubView];
     [self initUI];
 }
 
@@ -74,9 +78,65 @@ typedef enum :NSUInteger{
         self.pwdField.text = [USERDEF objectForKey:@"pwd"];
     }
 }
+//初始化页面的UI
+- (void)addSameSubView{
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, DWIDTH, DHIGTH-64)];
+    
+    _headImage = [[UIImageView alloc] init];
+    _headImage.center = CGPointMake(DWIDTH/2, 81);
+    _headImage.bounds = CGRectMake(0, 0, 120, 120);
+    [self.scrollView addSubview:_headImage];
+    
+    _loginPhone = [[UITextField alloc] init];
+    _loginPhone.center = CGPointMake(DWIDTH/2, 195);
+    _loginPhone.bounds = CGRectMake(0, 0, DWIDTH-50, 48);
+    _loginPhone.placeholder = @"请输入您的手机号";
+    _loginPhone.delegate = self;
+    [self.scrollView addSubview:_loginPhone];
+    
+    _pwdField = [[UITextField alloc] init];
+    _pwdField.center = CGPointMake(DWIDTH/2, 243+24);
+    _pwdField.bounds = CGRectMake(0, 0, DWIDTH-50, 48);
+    _pwdField.placeholder = @"请输入密码";
+    _pwdField.delegate = self;
+    [self.scrollView addSubview:_pwdField];
+    
+    _validationField = [[UITextField alloc] init];
+    _validationField.center = CGPointMake(DWIDTH/2, 315+24);
+    _validationField.bounds = CGRectMake(0, 0, DWIDTH-50, 48);
+    _validationField.delegate = self;
+    [self.scrollView addSubview:_validationField];
+    
+    _SMSValidationField = [[UITextField alloc] init];
+    _SMSValidationField.center = CGPointMake(DWIDTH/2, 388+24);
+    _SMSValidationField.bounds = CGRectMake(0, 0, DWIDTH-50, 48);
+    _SMSValidationField.placeholder = @"请输入短信验证码";
+    _SMSValidationField.delegate = self;
+    [self.scrollView addSubview:_SMSValidationField];
+    
+    _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _loginBtn.center = CGPointMake(DWIDTH/2, 460+24);
+    _loginBtn.bounds = CGRectMake(0, 0, DWIDTH-50, 48);
+    _loginBtn.backgroundColor = [Tool appRedColor];
+    _loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [_loginBtn addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.scrollView addSubview:_loginBtn];
+    
+    _registeredBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _registeredBtn.frame = CGRectMake(10, _loginBtn.frame.origin.y+48+26, DWIDTH-20, 22);
+    _registeredBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [_registeredBtn setTitleColor:[Tool appRedColor] forState:UIControlStateNormal];
+    [_registeredBtn addTarget:self action:@selector(registeredBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_registeredBtn setTitle:@"若已注册疯趣公众号请用公众号账号登录" forState:UIControlStateNormal];
+    [self.scrollView addSubview:_registeredBtn];
+    
+    [self.view addSubview:_scrollView];
+    
+}
+
 //设置页面的UI
 - (void)initUI{
-    [self.view addSubview:_scrollView];
     if (_type == userType_Login) {
         [self.navBar configNavBarTitle:@"账户登录" WithLeftView:nil WithRigthView:nil];
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
@@ -84,19 +144,20 @@ typedef enum :NSUInteger{
         NSString * headImageStr = [USERDEF objectForKey:@"headImage"];
         [_headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,headImageStr]] placeholderImage:[UIImage imageNamed:@"headimage"]];
         _pwdField.placeholder = @"请输入密码";
-        _btnH.constant = -48;
         _SMSValidationField.hidden = YES;
-        _scrollView.contentSize = CGSizeMake(DWIDTH, 537);
+        _scrollView.contentSize = CGSizeMake(DWIDTH, 503);
+        _loginBtn.center = CGPointMake(DWIDTH/2, 393+24);
     }else if (_type == userType_Registered){
         [self.navBar configNavBarTitle:@"账户注册" WithLeftView:nil WithRigthView:nil];
         [_loginBtn setTitle:@"注册" forState:UIControlStateNormal];
         [_registeredBtn setTitle:@"若已注册疯趣公众号请用公众号账号登录" forState:UIControlStateNormal];
         _headImage.image = [UIImage imageNamed:@"logo"];
         _pwdField.placeholder = @"请输入密码（6-18位字符）";
-        _btnH.constant = 24;
         _SMSValidationField.hidden = NO;
-        _scrollView.contentSize = CGSizeMake(DWIDTH, 610);
+        _scrollView.contentSize = CGSizeMake(DWIDTH, 565);
+        _loginBtn.center = CGPointMake(DWIDTH/2, 460+24);
     }
+    _registeredBtn.frame = CGRectMake(10, _loginBtn.frame.origin.y+48+26, DWIDTH-20, 22);
     [self.view bringSubviewToFront:self.navBar];
     //设置用户名的textfield的左边框
     [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
@@ -146,7 +207,7 @@ typedef enum :NSUInteger{
 
 #pragma mark--自定义UITextField的leftView和rightView
 - (UIView *)textFildLeftViewWithImage:(NSString *)imageURL{
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 24)];
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 24)];
     UIView * leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 24)];
     UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageURL]];
     imageView.frame = CGRectMake(20, 0, 24, 24);
@@ -181,7 +242,7 @@ typedef enum :NSUInteger{
     lineView.backgroundColor = [Tool appGrayColor];
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(9, 0, 80, 22);
-    btn.titleLabel.font = [UIFont systemFontOfSize:16];
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
     [btn setTitle:@"获取验证码" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(getSMSValidationCode) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitleColor:COLORWITHRGB(74, 74, 74) forState:UIControlStateNormal];
@@ -217,7 +278,7 @@ typedef enum :NSUInteger{
  *
  *  @param sender
  */
-- (IBAction)login:(UIButton *)sender {
+- (void)login:(UIButton *)sender {
     if (_loginPhone.text.length != 11 || _loginPhone.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"输入正确的手机号"];
         return;
@@ -340,7 +401,7 @@ typedef enum :NSUInteger{
  *
  *  @param sender
  */
-- (IBAction)registeredBtn:(UIButton *)sender {
+- (void)registeredBtn:(UIButton *)sender {
     if (_type == userType_Login) {
         _type = userType_Registered;
         [self getVerifyImageRequestWithType:@"0"];

@@ -46,6 +46,7 @@ typedef enum: NSUInteger{
     self.myTicketArr = [[NSMutableArray alloc] init];
     self.pageNum = 1;
     [self.navBar configNavBarTitle:@"我的券" WithLeftView:@"back" WithRigthView:nil];
+    [self requestMyTicketWithPageNum:@"1"];
     [self setMJRefreshFooter];
     [self addBarButton];
 }
@@ -62,7 +63,7 @@ typedef enum: NSUInteger{
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestMyTicketWithPageNum:@"1"];
+    
     
 }
 //添加列表头视图
