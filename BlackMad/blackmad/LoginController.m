@@ -56,7 +56,7 @@ typedef enum :NSUInteger{
     _validationField.delegate = self;
     _SMSValidationField.delegate = self;
     IQKeyboardReturnKeyHandler * returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] init];
-    returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyNext;
+    returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyDefault;
     [self initUI];
 }
 
@@ -95,10 +95,9 @@ typedef enum :NSUInteger{
         _pwdField.placeholder = @"请输入密码（6-18位字符）";
         _btnH.constant = 24;
         _SMSValidationField.hidden = NO;
-        _scrollView.contentSize = CGSizeMake(DWIDTH, 600);
+        _scrollView.contentSize = CGSizeMake(DWIDTH, 610);
     }
-    
-//    _scrollView.contentSize = CGSizeMake(DWIDTH, 1500);
+    [self.view bringSubviewToFront:self.navBar];
     //设置用户名的textfield的左边框
     [self changeTextFieldStyleWith:_loginPhone WithLeftView:@"user" WithR:205 WithG:48 WithB:44];
     [self changeTextFieldLayer:_loginPhone];
