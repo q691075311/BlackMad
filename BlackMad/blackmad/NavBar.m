@@ -28,8 +28,7 @@
     [self addSearchBarView];
     _rigthBtn.hidden = YES;
     _leftBtn.hidden = YES;
-//    _searchBar.hidden = YES;
-    
+    _searchBar.hidden = YES;
 }
 - (void)addSearchBarView{
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];

@@ -38,8 +38,8 @@
     _oldPrice.hidden = NO;
     [_classImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGEURL,ticketModle.cardPictureAddress]]];
     _classTitle.text = ticketModle.cardName;
-    _classNewPrice.text = [NSString stringWithFormat:@"¥%@.00",ticketModle.cardVolumePresentPrice];
-    _oldPrice.text = [NSString stringWithFormat:@"¥%@.00",ticketModle.cardVolumeOriginalPrice];
+    _classNewPrice.text = [NSString stringWithFormat:@"¥%.2f",[ticketModle.cardVolumePresentPrice floatValue]];
+    _oldPrice.text = [NSString stringWithFormat:@"¥%.2f",[ticketModle.cardVolumeOriginalPrice floatValue]];
     
 }
 

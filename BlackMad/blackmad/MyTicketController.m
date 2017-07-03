@@ -160,7 +160,7 @@ typedef enum: NSUInteger{
                               NSLog(@"%@",dic);
                               NSDictionary * dic1 = dic[@"attribute"];
                               NSArray * arr = dic1[@"list"];
-                              if (arr.count>0) {
+                               if (arr.count>0) {
                                   for (NSDictionary * dic2 in arr) {
                                       MyTicketModle * modle = [[MyTicketModle alloc] initWithDic:dic2];
                                       [_myTicketArr addObject:modle];
