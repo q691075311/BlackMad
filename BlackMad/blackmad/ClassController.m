@@ -42,7 +42,6 @@ typedef enum : NSUInteger {
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self getClassActRequest];
     [self getTicketListRequest];
 }
 //初始化tableView的头视图
